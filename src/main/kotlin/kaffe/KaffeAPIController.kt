@@ -13,6 +13,9 @@ open class KaffeAPIController {
     @Autowired
     lateinit var kaffeService: KaffeService
 
+    @Autowired
+    lateinit var bryggService: BryggService
+
     @RequestMapping("kaffe/{id}")
     fun getKaffeMedId(@PathVariable id: String) : Kaffe? {
         return kaffeService.getKaffe(id)
@@ -70,20 +73,25 @@ open class KaffeAPIController {
 
     @RequestMapping("brygg/{id}", method = arrayOf(RequestMethod.GET))
     fun getBryggMedId(@PathVariable id: String) : Brygg? {
-        return kaffeService.getBrygg(id)
+        return bryggService.getBrygg(id)
     }
 
     @RequestMapping("brygg", method = arrayOf(RequestMethod.GET))
     fun getBryggDatoIntervall(@RequestParam(value = "fra", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date? = null,
                            @RequestParam(value = "til", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date? = null) : MutableList<Brygg> {
         if (fra == null || til == null) {
-            return kaffeService.getAlleBrygg()
+            return bryggService.getAlleBrygg()
         }
-        return kaffeService.getBryggDatoIntervall(fra, til)
+        return bryggService.getBryggDatoIntervall(fra, til)
     }
 
     @RequestMapping("brygg", method = arrayOf(RequestMethod.POST))
     fun insertBrygg(@RequestBody brygg: Brygg) : Brygg {
-        return kaffeService.insertBrygg(brygg)
+        return bryggService.insertBrygg(brygg)
+    }
+
+    @RequestMapping("brygg/{id}/karakter", method = arrayOf(RequestMethod.POST))
+    fun registrerKarakter(@PathVariable id: String, @RequestBody karakter: Karakter): Brygg? {
+        return bryggService.registrerKarakter(id, karakter)
     }
 }

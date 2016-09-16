@@ -10,4 +10,8 @@ data class Bruker (var _id: String?, var navn: String, var sokNavn: String) : So
         return sokNavn
     }
 
+    fun erSammeBruker(other: Bruker) : Boolean {
+        return sokNavn.equals(other.sokNavn)
+    }
+
 }

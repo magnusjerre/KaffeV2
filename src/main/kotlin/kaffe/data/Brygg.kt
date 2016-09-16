@@ -15,4 +15,12 @@ data class Brygg(
 
     constructor(): this(null, "default", Kaffe(), Bruker(), Date(), 0f, 0f, true, mutableListOf())
 
+    fun getKarakterForBruker(bruker: Bruker) : Karakter? {
+        for (karakter in karakterer) {
+            if (karakter.bruker.erSammeBruker(bruker)) {
+                return karakter
+            }
+        }
+        return null
+    }
 }

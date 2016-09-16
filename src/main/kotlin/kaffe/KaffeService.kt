@@ -1,10 +1,12 @@
 package kaffe
 
 import kaffe.data.*
-import kaffe.repository.*
+import kaffe.repository.KaffeRepository
+import kaffe.repository.KaffetypeRepository
+import kaffe.repository.LandRepository
+import kaffe.repository.ProdusentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 open class KaffeService {
@@ -19,9 +21,6 @@ open class KaffeService {
 
     @Autowired
     lateinit var kaffetypeRepository: KaffetypeRepository
-
-    @Autowired
-    lateinit var bryggRepository: BryggRepository
 
     @Autowired
     lateinit var brukerService: BrukerService
@@ -56,22 +55,6 @@ open class KaffeService {
 
     fun getKaffetyper(): MutableList<Kaffetype> {
         return kaffetypeRepository.findAll()
-    }
-
-    fun getBrygg(id: String): Brygg? {
-        return bryggRepository.findOne(id)
-    }
-
-    fun getAlleBrygg(): MutableList<Brygg> {
-        return bryggRepository.findAll()
-    }
-
-    fun getBryggDatoIntervall(fra: Date, til: Date) : MutableList<Brygg> {
-        return bryggRepository.getBryggFraTilDato(fra, til)
-    }
-
-    fun insertBrygg(brygg: Brygg) : Brygg {
-        return bryggRepository.insert(brygg)
     }
 
     fun getBruker(id: String) : Bruker? {
