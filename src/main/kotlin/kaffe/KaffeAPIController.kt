@@ -7,72 +7,73 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
+@RequestMapping("api")
 open class KaffeAPIController {
 
     @Autowired
     lateinit var kaffeService: KaffeService
 
-    @RequestMapping("/kaffe/{id}")
+    @RequestMapping("kaffe/{id}")
     fun getKaffeMedId(@PathVariable id: String) : Kaffe? {
         return kaffeService.getKaffe(id)
     }
 
-    @RequestMapping("/kaffe")
+    @RequestMapping("kaffe")
     fun getAllKaffe() : MutableList<Kaffe> {
         return kaffeService.getAllKaffe();
     }
 
-    @RequestMapping("/produsent/{id}")
+    @RequestMapping("produsent/{id}")
     fun getProdusent(@PathVariable id: String): Produsent? {
         return kaffeService.getProdusent(id)
     }
 
-    @RequestMapping("/produsenter")
+    @RequestMapping("produsenter")
     fun getProdusenter(): MutableList<Produsent> {
         return kaffeService.getProusenter()
     }
 
-    @RequestMapping("/land/{id}")
+    @RequestMapping("land/{id}")
     fun getLandMedId(@PathVariable id: String): Land? {
         return kaffeService.getLand(id)
     }
 
-    @RequestMapping("/land")
+    @RequestMapping("land")
     fun getAlleLand() : MutableList<Land> {
         return kaffeService.getAlleLand()
     }
 
-    @RequestMapping("/kaffetype/{id}")
+    @RequestMapping("kaffetype/{id}")
     fun getKaffetypeMedId(@PathVariable id: String): Kaffetype? {
         return kaffeService.getKaffetype(id)
     }
 
-    @RequestMapping("/kaffetyper")
+    @RequestMapping("kaffetyper")
     fun getKaffetyper() : MutableList<Kaffetype> {
         return kaffeService.getKaffetyper()
     }
 
-    @RequestMapping("/bruker/{id}")
+    @RequestMapping("bruker/{id}")
     fun getBrukerMedId(@PathVariable id: String) : Bruker? {
         return kaffeService.getBruker(id)
     }
 
-    @RequestMapping("/bruker/navn/{soknavn}")
+    @RequestMapping("bruker/navn/{soknavn}")
     fun getBrukerMedSokNavn(@PathVariable soknavn: String) : Bruker? {
         return kaffeService.getBrukerMedSokNavn(soknavn)
     }
 
-    @RequestMapping("/brukere")
+    @RequestMapping("brukere")
     fun getAlleBrukere(): MutableList<Bruker> {
         return kaffeService.getAlleBrukere()
     }
 
-    @RequestMapping("/brygg/{id}", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("brygg/{id}", method = arrayOf(RequestMethod.GET))
     fun getBryggMedId(@PathVariable id: String) : Brygg? {
         return kaffeService.getBrygg(id)
     }
 
-    @RequestMapping("/brygg", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("brygg", method = arrayOf(RequestMethod.GET))
     fun getBryggDatoIntervall(@RequestParam(value = "fra", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date? = null,
                            @RequestParam(value = "til", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date? = null) : MutableList<Brygg> {
         if (fra == null || til == null) {
@@ -81,7 +82,7 @@ open class KaffeAPIController {
         return kaffeService.getBryggDatoIntervall(fra, til)
     }
 
-    @RequestMapping("/brygg", method = arrayOf(RequestMethod.POST))
+    @RequestMapping("brygg", method = arrayOf(RequestMethod.POST))
     fun insertBrygg(@RequestBody brygg: Brygg) : Brygg {
         return kaffeService.insertBrygg(brygg)
     }
