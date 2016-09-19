@@ -42,32 +42,32 @@ open class KaffeAPIController {
 
     @RequestMapping("produsent/{id}")
     fun getProdusent(@PathVariable id: String): Produsent? {
-        return produsentService.getProdusent(id)
+        return produsentService.getById(id)
     }
 
     @RequestMapping("produsent/soknavn/{navn}")
     fun getProdusentMedSokNavn(@PathVariable navn: String): Produsent? {
-        return produsentService.getProdusentMedSokNavn(navn)
+        return produsentService.getMedSokNavn(navn)
     }
 
     @RequestMapping("produsenter")
     fun getProdusenter(): MutableList<Produsent> {
-        return produsentService.getProusenter()
+        return produsentService.getAlle()
     }
 
     @RequestMapping("land/{id}")
     fun getLandMedId(@PathVariable id: String): Land? {
-        return landService.getLand(id)
+        return landService.getById(id)
     }
 
     @RequestMapping("land/soknavn/{navn}")
     fun getLandMedSokNavn(@PathVariable navn: String): Land? {
-       return landService.getLandMedSokNavn(navn)
+       return landService.getMedSokNavn(navn)
     }
 
     @RequestMapping("land")
     fun getAlleLand() : MutableList<Land> {
-        return landService.getAlleLand()
+        return landService.getAlle()
     }
 
     @RequestMapping("bruker/{id}")
