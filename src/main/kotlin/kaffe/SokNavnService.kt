@@ -18,7 +18,15 @@ abstract open class SokNavnService<R: SokNavnRepository<T>, T : SokNavn> {
     }
 
     fun getMedSokNavn(sokNavn: Array<String>) : MutableList<T> {
-        return repository.getMedSokNavn(sokNavn)
+        val output: MutableList<T> = mutableListOf()
+        for (navn in sokNavn) {
+            val t = getMedSokNavn(navn)
+            if (t != null) {
+                output.add(t)
+            }
+        }
+
+        return output
     }
 
     protected fun insertUtenSokNavnSjekk(obj: T) : T {

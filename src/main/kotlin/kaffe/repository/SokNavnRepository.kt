@@ -7,9 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean
 @NoRepositoryBean
 interface SokNavnRepository<T> : MongoRepository<T, String> {
 
-    @Query("{'sokNavn': ?0}")
+    @Query("{'navn': {\$regex: ?0, \$options: 'i'}}")
     fun getMedSokNavn(navn: String) : T?
 
-    @Query("{'sokNavn': {\$in: ?0}}")
-    fun getMedSokNavn(navn: Array<String>) : MutableList<T>
 }
