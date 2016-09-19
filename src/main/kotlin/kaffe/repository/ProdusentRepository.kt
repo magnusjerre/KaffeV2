@@ -3,4 +3,4 @@ package kaffe.repository
 import kaffe.data.Produsent
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface ProdusentRepository : MongoRepository<Produsent, String>
+interface ProdusentRepository : SokNavnRepository<Produsent>

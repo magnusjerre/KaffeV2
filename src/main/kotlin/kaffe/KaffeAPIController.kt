@@ -21,6 +21,11 @@ open class KaffeAPIController {
         return kaffeService.getKaffe(id)
     }
 
+    @RequestMapping("kaffe/soknavn/{navn}")
+    fun getKaffeMedSoknavn(@PathVariable navn: String): Kaffe? {
+        return kaffeService.getKaffeMedSokNavn(navn)
+    }
+
     @RequestMapping("kaffe")
     fun getAllKaffe() : MutableList<Kaffe> {
         return kaffeService.getAllKaffe();
@@ -29,6 +34,11 @@ open class KaffeAPIController {
     @RequestMapping("produsent/{id}")
     fun getProdusent(@PathVariable id: String): Produsent? {
         return kaffeService.getProdusent(id)
+    }
+
+    @RequestMapping("produsent/soknavn/{navn}")
+    fun getProdusentMedSokNavn(@PathVariable navn: String): Produsent? {
+        return kaffeService.getProdusentMedSokNavn(navn)
     }
 
     @RequestMapping("produsenter")
@@ -41,6 +51,11 @@ open class KaffeAPIController {
         return kaffeService.getLand(id)
     }
 
+    @RequestMapping("land/soknavn/{navn}")
+    fun getLandMedSokNavn(@PathVariable navn: String): Land? {
+       return kaffeService.getLandMedSokNavn(navn)
+    }
+
     @RequestMapping("land")
     fun getAlleLand() : MutableList<Land> {
         return kaffeService.getAlleLand()
@@ -49,6 +64,11 @@ open class KaffeAPIController {
     @RequestMapping("kaffetype/{id}")
     fun getKaffetypeMedId(@PathVariable id: String): Kaffetype? {
         return kaffeService.getKaffetype(id)
+    }
+
+    @RequestMapping("kaffetype/soknavn/{navn}")
+    fun getKaffetypeMedSokNavn(@PathVariable navn: String): Kaffetype? {
+        return kaffeService.getKaffetypeMedSokNavn(navn)
     }
 
     @RequestMapping("kaffetyper")
