@@ -39,6 +39,12 @@ open class BryggService {
         if (eksKarakter != null) {
             eksKarakter.endreKarakter(nyKarakter)
         } else {
+            //Dersom karakteren ikke finnes, vil det ikke være noen id for brukeren, denne må derfor hentes
+            var eksBruker = brukerService.getMedSokNavn(nyKarakter.bruker.sokNavn)
+            if (eksBruker == null) {
+                eksBruker = brukerService.insert(nyKarakter.bruker)
+            }
+            nyKarakter.bruker = eksBruker
             brygg.karakterer.add(nyKarakter)
         }
         return bryggRepository.save(brygg)
