@@ -14,7 +14,11 @@ abstract open class SokNavnService<R: SokNavnRepository<T>, T : SokNavn> {
     }
 
     fun getMedSokNavn(sokNavn: String) : T? {
-        return repository.getMedSokNavn(sokNavn)
+        val eksT = repository.getMedSokNavn(sokNavn)
+        if (eksT != null && eksT.sokNavn().equals(sokNavn)) {
+            return eksT
+        }
+        return null
     }
 
     fun getMedSokNavn(sokNavn: Array<String>) : MutableList<T> {
