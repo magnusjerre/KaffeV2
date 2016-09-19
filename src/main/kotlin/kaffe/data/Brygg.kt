@@ -5,7 +5,7 @@ import java.util.*
 data class Brygg(
         var _id: String?,
         var navn: String,
-        var kaffe: Kaffe,
+        var kaffe: KaffeEnkel,
         var brygger: Bruker,
         var dato: Date,
         var liter: Float,
@@ -15,7 +15,7 @@ data class Brygg(
         var malthet: Malthet,
         var karakterer: MutableList<Karakter>) {
 
-    constructor(): this(null, "default", Kaffe(), Bruker(), Date(), 0f, 0f, true, "", Malthet.MEDIUM, mutableListOf())
+    constructor(): this(null, "default", KaffeEnkel(), Bruker(), Date(), 0f, 0f, true, "", Malthet.MEDIUM, mutableListOf())
 
     fun getKarakterForBruker(bruker: Bruker) : Karakter? {
         for (karakter in karakterer) {

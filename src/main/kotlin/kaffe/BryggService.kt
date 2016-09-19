@@ -16,6 +16,9 @@ open class BryggService {
     @Autowired
     lateinit var brukerService: BrukerService
 
+    @Autowired
+    lateinit var kaffeService: KaffeService
+
     fun getBrygg(id: String): Brygg? {
         return bryggRepository.findOne(id)
     }
@@ -29,6 +32,12 @@ open class BryggService {
     }
 
     fun insertBrygg(brygg: Brygg) : Brygg {
+        brygg.kaffe = kaffeService.kvalitetssikreKaffeEnkel(brygg.kaffe)
+        brygg.brygger = brukerService.kvalitetssikreBruker(brygg.brygger)
+        for (karakter in brygg.karakterer) {
+            karakter.bruker = brukerService.kvalitetssikreBruker(karakter.bruker)
+            karakter.kaffe = kaffeService.kvalitetssikreKaffeEnkel(karakter.kaffe)
+        }
         return bryggRepository.insert(brygg)
     }
 
