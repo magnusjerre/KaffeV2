@@ -16,6 +16,15 @@ open class KaffeAPIController {
     @Autowired
     lateinit var bryggService: BryggService
 
+    @Autowired
+    lateinit var landService: LandService
+
+    @Autowired
+    lateinit var produsentService: ProdusentService
+
+    @Autowired
+    lateinit var brukerService: BrukerService
+
     @RequestMapping("kaffe/{id}")
     fun getKaffeMedId(@PathVariable id: String) : Kaffe? {
         return kaffeService.getKaffe(id)
@@ -33,47 +42,47 @@ open class KaffeAPIController {
 
     @RequestMapping("produsent/{id}")
     fun getProdusent(@PathVariable id: String): Produsent? {
-        return kaffeService.getProdusent(id)
+        return produsentService.getProdusent(id)
     }
 
     @RequestMapping("produsent/soknavn/{navn}")
     fun getProdusentMedSokNavn(@PathVariable navn: String): Produsent? {
-        return kaffeService.getProdusentMedSokNavn(navn)
+        return produsentService.getProdusentMedSokNavn(navn)
     }
 
     @RequestMapping("produsenter")
     fun getProdusenter(): MutableList<Produsent> {
-        return kaffeService.getProusenter()
+        return produsentService.getProusenter()
     }
 
     @RequestMapping("land/{id}")
     fun getLandMedId(@PathVariable id: String): Land? {
-        return kaffeService.getLand(id)
+        return landService.getLand(id)
     }
 
     @RequestMapping("land/soknavn/{navn}")
     fun getLandMedSokNavn(@PathVariable navn: String): Land? {
-       return kaffeService.getLandMedSokNavn(navn)
+       return landService.getLandMedSokNavn(navn)
     }
 
     @RequestMapping("land")
     fun getAlleLand() : MutableList<Land> {
-        return kaffeService.getAlleLand()
+        return landService.getAlleLand()
     }
 
     @RequestMapping("bruker/{id}")
     fun getBrukerMedId(@PathVariable id: String) : Bruker? {
-        return kaffeService.getBruker(id)
+        return brukerService.getById(id)
     }
 
     @RequestMapping("bruker/navn/{soknavn}")
     fun getBrukerMedSokNavn(@PathVariable soknavn: String) : Bruker? {
-        return kaffeService.getBrukerMedSokNavn(soknavn)
+        return brukerService.getMedSokNavn(soknavn)
     }
 
     @RequestMapping("brukere")
     fun getAlleBrukere(): MutableList<Bruker> {
-        return kaffeService.getAlleBrukere()
+        return brukerService.getAlle()
     }
 
     @RequestMapping("brygg/{id}", method = arrayOf(RequestMethod.GET))

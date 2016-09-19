@@ -4,7 +4,7 @@ import kaffe.data.SokNavn
 import kaffe.repository.SokNavnRepository
 import org.springframework.beans.factory.annotation.Autowired
 
-abstract open class SokNavnService<R: SokNavnRepository<T>, T : SokNavn> {
+abstract class SokNavnService<R: SokNavnRepository<T>, T : SokNavn> {
 
     @Autowired
     lateinit var repository: R
