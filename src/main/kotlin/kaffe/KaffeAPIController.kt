@@ -61,21 +61,6 @@ open class KaffeAPIController {
         return kaffeService.getAlleLand()
     }
 
-    @RequestMapping("kaffetype/{id}")
-    fun getKaffetypeMedId(@PathVariable id: String): Kaffetype? {
-        return kaffeService.getKaffetype(id)
-    }
-
-    @RequestMapping("kaffetype/soknavn/{navn}")
-    fun getKaffetypeMedSokNavn(@PathVariable navn: String): Kaffetype? {
-        return kaffeService.getKaffetypeMedSokNavn(navn)
-    }
-
-    @RequestMapping("kaffetyper")
-    fun getKaffetyper() : MutableList<Kaffetype> {
-        return kaffeService.getKaffetyper()
-    }
-
     @RequestMapping("bruker/{id}")
     fun getBrukerMedId(@PathVariable id: String) : Bruker? {
         return kaffeService.getBruker(id)
