@@ -42,7 +42,7 @@ open class BryggService {
     }
 
     fun registrerKarakter(bryggId: String, nyKarakter: Karakter): Brygg? {
-        val brygg = getBrygg(bryggId) ?: return null
+        val brygg = getBrygg(bryggId) ?: throw IllegalArgumentException("Kan ikke registrere karakter på brygg som ikke eksisterer")
 
         var eksKarakter = brygg.getKarakterForBruker(nyKarakter.bruker)
         if (eksKarakter != null) {
