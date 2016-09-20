@@ -30,6 +30,10 @@ open class KaffeService {
         return kaffeRepository.findAll()
     }
 
+    fun getSynligeKaffer() : MutableList<Kaffe> {
+        return kaffeRepository.alleVisKaffe()
+    }
+
     fun kvalitetssikreKaffeEnkel(kaffeEnkel: KaffeEnkel): KaffeEnkel {
         val kaffe = getKaffe(kaffeEnkel.id)
         if (kaffe == null) {

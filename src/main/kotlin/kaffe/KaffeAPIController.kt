@@ -46,6 +46,11 @@ open class KaffeAPIController {
         return kaffeService.getKaffeMedSokNavn(navn)
     }
 
+    @RequestMapping("kaffe/synlige")
+    fun getSynligeKaffer(): MutableList<Kaffe> {
+        return kaffeService.getSynligeKaffer()
+    }
+
     @RequestMapping("kaffe")
     fun getAllKaffe() : MutableList<Kaffe> {
         return kaffeService.getAllKaffe();
