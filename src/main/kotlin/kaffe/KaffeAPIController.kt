@@ -120,8 +120,10 @@ open class KaffeAPIController {
     }
 
     @RequestMapping("statistikk", method = arrayOf(RequestMethod.GET))
-    fun getStatistikk(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date = Date.from(Instant.EPOCH),
-                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date = Date()) : MutableList<Statistikk> {
-        return statistikkService.getStatistikkForPeriode(fra, til)
+    fun getStatistikk(@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date?,
+                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date?) : MutableList<Statistikk> {
+        val fraDato = fra ?: Date.from(Instant.EPOCH)
+        val tilDato = til ?: Date()
+        return statistikkService.getStatistikkForPeriode(fraDato, tilDato)
     }
 }
