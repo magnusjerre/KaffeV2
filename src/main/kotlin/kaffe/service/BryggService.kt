@@ -35,6 +35,7 @@ open class BryggService {
         brygg.kaffe = kaffeService.kvalitetssikreKaffeEnkel(brygg.kaffe)
         brygg.brygger = brukerService.kvalitetssikreBruker(brygg.brygger)
         for (karakter in brygg.karakterer) {
+            verifiserKarakterVerdi(karakter.karakter)
             karakter.bruker = brukerService.kvalitetssikreBruker(karakter.bruker)
             karakter.kaffe = kaffeService.kvalitetssikreKaffeEnkel(karakter.kaffe)
         }
@@ -42,6 +43,7 @@ open class BryggService {
     }
 
     fun registrerKarakter(bryggId: String, nyKarakter: Karakter): Brygg? {
+        verifiserKarakterVerdi(nyKarakter.karakter)
         val brygg = getBrygg(bryggId) ?: throw IllegalArgumentException("Kan ikke registrere karakter på brygg som ikke eksisterer")
 
         var eksKarakter = brygg.getKarakterForBruker(nyKarakter.bruker)
@@ -57,5 +59,11 @@ open class BryggService {
             brygg.karakterer.add(nyKarakter)
         }
         return bryggRepository.save(brygg)
+    }
+
+    private fun verifiserKarakterVerdi(karakter: Byte) {
+        if (karakter < 1 || 5 < karakter) {
+            throw IllegalArgumentException("Karakterverdi må være et heltall i intervallet 1-5 inklusiv, men er: ${karakter}")
+        }
     }
 }
