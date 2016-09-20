@@ -25,6 +25,11 @@ open class KaffeAPIController {
     @Autowired
     lateinit var brukerService: BrukerService
 
+    @RequestMapping("kaffe", method = arrayOf(RequestMethod.POST))
+    fun insertKaffe(@RequestBody kaffe: Kaffe): Kaffe {
+        return kaffeService.insertKaffe(kaffe)
+    }
+
     @RequestMapping("kaffe/{id}")
     fun getKaffeMedId(@PathVariable id: String) : Kaffe? {
         return kaffeService.getKaffe(id)

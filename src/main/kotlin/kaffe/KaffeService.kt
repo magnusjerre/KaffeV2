@@ -1,6 +1,5 @@
 package kaffe
 
-import kaffe.data.Bruker
 import kaffe.data.Kaffe
 import kaffe.data.KaffeEnkel
 import kaffe.repository.KaffeRepository
@@ -12,6 +11,12 @@ import org.springframework.stereotype.Service
 open class KaffeService {
     @Autowired
     lateinit var kaffeRepository: KaffeRepository
+
+    @Autowired
+    lateinit var landService: LandService
+
+    @Autowired
+    lateinit var produsentService: ProdusentService
 
     fun getKaffe(id: String) : Kaffe? {
         return kaffeRepository.findOne(id)
@@ -32,6 +37,12 @@ open class KaffeService {
         } else {
             return kaffeEnkelfromKaffe(kaffe)
         }
+    }
+
+    fun insertKaffe(kaffe: Kaffe): Kaffe {
+        kaffe.land = landService.insert(kaffe.land)
+        kaffe.produsent = produsentService.insert(kaffe.produsent)
+        return kaffeRepository.insert(kaffe)
     }
 
 }
