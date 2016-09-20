@@ -1,4 +1,4 @@
-package kaffe
+package kaffe.service
 
 import kaffe.data.Kaffe
 import kaffe.data.KaffeEnkel

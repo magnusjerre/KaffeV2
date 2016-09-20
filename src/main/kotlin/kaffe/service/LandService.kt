@@ -1,4 +1,4 @@
-package kaffe
+package kaffe.service
 
 import kaffe.data.Land
 import kaffe.repository.LandRepository
