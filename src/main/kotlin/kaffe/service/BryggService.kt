@@ -32,6 +32,7 @@ open class BryggService {
     }
 
     fun insertBrygg(brygg: Brygg) : Brygg {
+        verifiserUnikeKaraktergivere(brygg.karakterer)
         brygg.kaffe = kaffeService.kvalitetssikreKaffeEnkel(brygg.kaffe)
         brygg.brygger = brukerService.kvalitetssikreBruker(brygg.brygger)
         for (karakter in brygg.karakterer) {
@@ -40,6 +41,16 @@ open class BryggService {
             karakter.kaffe = kaffeService.kvalitetssikreKaffeEnkel(karakter.kaffe)
         }
         return bryggRepository.insert(brygg)
+    }
+
+    private fun verifiserUnikeKaraktergivere(karakterer: MutableList<Karakter>) {
+        val brukerSet: MutableSet<String> = mutableSetOf()
+        for (karakter in karakterer) {
+            if (brukerSet.contains(karakter.bruker.sokNavn())) {
+                throw IllegalArgumentException("Kan ikke ha flere karakterer av samme bruker; ${karakter.bruker.navn}")
+            }
+            brukerSet.add(karakter.bruker.sokNavn())
+        }
     }
 
     fun registrerKarakter(bryggId: String, nyKarakter: Karakter): Brygg? {
