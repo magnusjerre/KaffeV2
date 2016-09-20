@@ -1,9 +1,11 @@
 package kaffe
 
 import kaffe.data.*
+import kaffe.data.statistikk.Statistikk
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.*
+import java.time.Instant
 import java.util.*
 
 @RestController
@@ -24,6 +26,9 @@ open class KaffeAPIController {
 
     @Autowired
     lateinit var brukerService: BrukerService
+
+    @Autowired
+    lateinit var statistikkService: StatistikkService
 
     @RequestMapping("kaffe", method = arrayOf(RequestMethod.POST))
     fun insertKaffe(@RequestBody kaffe: Kaffe): Kaffe {
@@ -112,5 +117,11 @@ open class KaffeAPIController {
     @RequestMapping("brygg/{id}/karakter", method = arrayOf(RequestMethod.POST))
     fun registrerKarakter(@PathVariable id: String, @RequestBody karakter: Karakter): Brygg? {
         return bryggService.registrerKarakter(id, karakter)
+    }
+
+    @RequestMapping("statistikk", method = arrayOf(RequestMethod.GET))
+    fun getStatistikk(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date = Date.from(Instant.EPOCH),
+                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date = Date()) : MutableList<Statistikk> {
+        return statistikkService.getStatistikkForPeriode(fra, til)
     }
 }
