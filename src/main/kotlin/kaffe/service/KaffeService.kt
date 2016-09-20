@@ -34,12 +34,15 @@ open class KaffeService {
         return kaffeRepository.alleVisKaffe()
     }
 
-    fun kvalitetssikreKaffeEnkel(kaffeEnkel: KaffeEnkel): KaffeEnkel {
+    fun kvalitetssikreKaffeEnkel(kaffeEnkel: KaffeEnkel) {
         val kaffe = getKaffe(kaffeEnkel.id)
         if (kaffe == null) {
-            throw RuntimeException("Kaffe med id ${kaffeEnkel.id} finnes ikke")
+            throw RuntimeException("Kaffe med id ${kaffeEnkel.id} finnes ikke, kan derfor ikke kvalitetssikre")
         } else {
-            return kaffeEnkelfromKaffe(kaffe)
+            val eksKaffeEnkel = kaffeEnkelfromKaffe(kaffe)
+            kaffeEnkel.landNavn = eksKaffeEnkel.landNavn
+            kaffeEnkel.navn = eksKaffeEnkel.navn
+            kaffeEnkel.prodNavn = eksKaffeEnkel.prodNavn
         }
     }
 
