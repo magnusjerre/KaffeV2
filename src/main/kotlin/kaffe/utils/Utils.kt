@@ -1,7 +1,5 @@
 package kaffe.utils
 
-import kaffe.data.Kaffe
-
 fun sokbarString(s: String) : String {
     return s.trim().toLowerCase()
 }

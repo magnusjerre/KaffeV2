@@ -30,15 +30,17 @@ open class BryggService {
     }
 
     fun insertBrygg(brygg: Brygg) : Brygg {
-        verifiserUnikeKaraktergivere(brygg.karakterer)
-        kaffeService.kvalitetssikreKaffe(brygg.kaffe)
-        brygg.brygger = brygg.brygger.trim()
-        for (karakter in brygg.karakterer) {
-            verifiserKarakterVerdi(karakter.karakter)
-            karakter.bruker = karakter.bruker.trim()
-            kaffeService.kvalitetssikreKaffe(karakter.kaffe)
-        }
+        kaffeService.verifiserKaffeId(brygg.kaffeId)
+        verifiserKarakterer(brygg.karakterer)
         return bryggRepository.insert(brygg)
+    }
+
+    private fun verifiserKarakterer(karakterer: MutableList<Karakter>) {
+        verifiserUnikeKaraktergivere(karakterer)
+        for (karakter in karakterer) {
+            verifiserKarakterVerdi(karakter.karakter)
+            kaffeService.verifiserKaffeId(karakter.kaffeId)
+        }
     }
 
     private fun verifiserUnikeKaraktergivere(karakterer: MutableList<Karakter>) {
@@ -51,23 +53,23 @@ open class BryggService {
         }
     }
 
+    private fun verifiserKarakterVerdi(karakter: Byte) {
+        if (karakter < 1 || 5 < karakter) {
+            throw IllegalArgumentException("Karakterverdi må være et heltall i intervallet 1-5 inklusiv, men er: ${karakter}")
+        }
+    }
+
     fun registrerKarakter(bryggId: String, nyKarakter: Karakter): Brygg? {
+        kaffeService.verifiserKaffeId(nyKarakter.kaffeId)
         verifiserKarakterVerdi(nyKarakter.karakter)
         val brygg = getBrygg(bryggId) ?: throw IllegalArgumentException("Kan ikke registrere karakter på brygg som ikke eksisterer")
 
         val eksKarakter = brygg.getKarakterForBruker(nyKarakter.bruker)
         if (eksKarakter != null) {
-            eksKarakter.endreKarakter(nyKarakter)
-        } else {
-            nyKarakter.bruker = nyKarakter.bruker.trim()
-            brygg.karakterer.add(nyKarakter)
+            brygg.karakterer.remove(eksKarakter)
         }
-        return bryggRepository.save(brygg)
-    }
+        brygg.karakterer.add(nyKarakter)
 
-    private fun verifiserKarakterVerdi(karakter: Byte) {
-        if (karakter < 1 || 5 < karakter) {
-            throw IllegalArgumentException("Karakterverdi må være et heltall i intervallet 1-5 inklusiv, men er: ${karakter}")
-        }
+        return bryggRepository.save(brygg)
     }
 }

@@ -43,4 +43,10 @@ open class KaffeService {
         return kaffeRepository.insert(kaffe)
     }
 
+    fun verifiserKaffeId(id: String) {
+        if (getKaffe(id) == null) {
+            throw IllegalArgumentException("Kaffe med id ${id} finnes ikke")
+        }
+    }
+
 }
