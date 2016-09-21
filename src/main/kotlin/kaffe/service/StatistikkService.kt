@@ -20,7 +20,7 @@ open class StatistikkService {
         for (brygg in alleBrygg) {
             oppdaterBryggstatistikk(getStatstikk(brygg.brygger, statistikkMap), brygg)
             for (karakter in brygg.karakterer) {
-                oppdaterGjettestatistikk(fasitId = brygg.kaffe.id, karakter = karakter, statistikk = getStatstikk(karakter.bruker, statistikkMap))
+                oppdaterGjettestatistikk(fasitId = brygg.kaffe._id!!, karakter = karakter, statistikk = getStatstikk(karakter.bruker, statistikkMap))
             }
         }
         return statistikkMap.values.toMutableList()
@@ -42,7 +42,7 @@ open class StatistikkService {
     }
 
     private fun oppdaterGjettestatistikk(fasitId: String, karakter: Karakter, statistikk: Statistikk) {
-        val erKorrekt = fasitId.equals(karakter.kaffe.id)
+        val erKorrekt = fasitId.equals(karakter.kaffe._id)
         statistikk.gjetteStatistikk.addGjetting(riktig = erKorrekt, karakter = karakter.karakter.toFloat())
     }
 }

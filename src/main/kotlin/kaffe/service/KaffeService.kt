@@ -1,9 +1,7 @@
 package kaffe.service
 
 import kaffe.data.Kaffe
-import kaffe.data.KaffeEnkel
 import kaffe.repository.KaffeRepository
-import kaffe.utils.kaffeEnkelfromKaffe
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -28,15 +26,14 @@ open class KaffeService {
         return kaffeRepository.alleVisKaffe()
     }
 
-    fun kvalitetssikreKaffeEnkel(kaffeEnkel: KaffeEnkel) {
-        val kaffe = getKaffe(kaffeEnkel.id)
+    fun kvalitetssikreKaffe(eksKaffe: Kaffe) {
+        val kaffe = getKaffe(eksKaffe._id!!)
         if (kaffe == null) {
-            throw RuntimeException("Kaffe med id ${kaffeEnkel.id} finnes ikke, kan derfor ikke kvalitetssikre")
+            throw RuntimeException("Kaffe med id ${eksKaffe._id} finnes ikke, kan derfor ikke kvalitetssikre")
         } else {
-            val eksKaffeEnkel = kaffeEnkelfromKaffe(kaffe)
-            kaffeEnkel.landNavn = eksKaffeEnkel.landNavn
-            kaffeEnkel.navn = eksKaffeEnkel.navn
-            kaffeEnkel.prodNavn = eksKaffeEnkel.prodNavn
+            eksKaffe.land = kaffe.land
+            eksKaffe.navn = kaffe.navn
+            eksKaffe.produsent = kaffe.produsent
         }
     }
 

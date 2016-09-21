@@ -31,12 +31,12 @@ open class BryggService {
 
     fun insertBrygg(brygg: Brygg) : Brygg {
         verifiserUnikeKaraktergivere(brygg.karakterer)
-        kaffeService.kvalitetssikreKaffeEnkel(brygg.kaffe)
+        kaffeService.kvalitetssikreKaffe(brygg.kaffe)
         brygg.brygger = brygg.brygger.trim()
         for (karakter in brygg.karakterer) {
             verifiserKarakterVerdi(karakter.karakter)
             karakter.bruker = karakter.bruker.trim()
-            kaffeService.kvalitetssikreKaffeEnkel(karakter.kaffe)
+            kaffeService.kvalitetssikreKaffe(karakter.kaffe)
         }
         return bryggRepository.insert(brygg)
     }
