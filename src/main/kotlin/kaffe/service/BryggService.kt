@@ -3,6 +3,7 @@ package kaffe.service
 import kaffe.data.Brygg
 import kaffe.data.Karakter
 import kaffe.repository.BryggRepository
+import kaffe.utils.sokbarString
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -12,9 +13,6 @@ open class BryggService {
 
     @Autowired
     lateinit var bryggRepository: BryggRepository
-
-    @Autowired
-    lateinit var brukerService: BrukerService
 
     @Autowired
     lateinit var kaffeService: KaffeService
@@ -34,10 +32,10 @@ open class BryggService {
     fun insertBrygg(brygg: Brygg) : Brygg {
         verifiserUnikeKaraktergivere(brygg.karakterer)
         kaffeService.kvalitetssikreKaffeEnkel(brygg.kaffe)
-        brukerService.kvalitetssikreBruker(brygg.brygger)
+        brygg.brygger = brygg.brygger.trim()
         for (karakter in brygg.karakterer) {
             verifiserKarakterVerdi(karakter.karakter)
-            brukerService.kvalitetssikreBruker(karakter.bruker)
+            karakter.bruker = karakter.bruker.trim()
             kaffeService.kvalitetssikreKaffeEnkel(karakter.kaffe)
         }
         return bryggRepository.insert(brygg)
@@ -46,10 +44,10 @@ open class BryggService {
     private fun verifiserUnikeKaraktergivere(karakterer: MutableList<Karakter>) {
         val brukerSet: MutableSet<String> = mutableSetOf()
         for (karakter in karakterer) {
-            if (brukerSet.contains(karakter.bruker.sokNavn())) {
-                throw IllegalArgumentException("Kan ikke ha flere karakterer av samme bruker; ${karakter.bruker.navn}")
+            if (brukerSet.contains(sokbarString(karakter.bruker))) {
+                throw IllegalArgumentException("Kan ikke ha flere karakterer av samme bruker; ${sokbarString(karakter.bruker)}")
             }
-            brukerSet.add(karakter.bruker.sokNavn())
+            brukerSet.add(sokbarString(karakter.bruker))
         }
     }
 
@@ -57,16 +55,11 @@ open class BryggService {
         verifiserKarakterVerdi(nyKarakter.karakter)
         val brygg = getBrygg(bryggId) ?: throw IllegalArgumentException("Kan ikke registrere karakter på brygg som ikke eksisterer")
 
-        var eksKarakter = brygg.getKarakterForBruker(nyKarakter.bruker)
+        val eksKarakter = brygg.getKarakterForBruker(nyKarakter.bruker)
         if (eksKarakter != null) {
             eksKarakter.endreKarakter(nyKarakter)
         } else {
-            //Dersom karakteren ikke finnes, vil det ikke være noen id for brukeren, denne må derfor hentes
-            var eksBruker = brukerService.getMedSokNavn(nyKarakter.bruker.sokNavn())
-            if (eksBruker == null) {
-                eksBruker = brukerService.insert(nyKarakter.bruker)
-            }
-            nyKarakter.bruker = eksBruker
+            nyKarakter.bruker = nyKarakter.bruker.trim()
             brygg.karakterer.add(nyKarakter)
         }
         return bryggRepository.save(brygg)

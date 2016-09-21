@@ -1,12 +1,12 @@
 package kaffe.data
 
 data class Karakter(
-        var bruker: Bruker,
+        var bruker: String,
         var kaffe: KaffeEnkel,
         var karakter: Byte,
         var kommentar: String = "") {
 
-    constructor() : this(Bruker(), KaffeEnkel(), 0, "")
+    constructor() : this("default", KaffeEnkel(), 0, "")
 
     /**
      * Kun lov å endre karakter og kommentar, NB! begge endres

@@ -1,6 +1,5 @@
 package kaffe.service
 
-import kaffe.data.Bruker
 import kaffe.data.Brygg
 import kaffe.data.Karakter
 import kaffe.data.statistikk.Statistikk
@@ -27,8 +26,8 @@ open class StatistikkService {
         return statistikkMap.values.toMutableList()
     }
 
-    private fun getStatstikk(bruker: Bruker, map: MutableMap<String, Statistikk>) : Statistikk {
-        val key = bruker.sokNavn()
+    private fun getStatstikk(bruker: String, map: MutableMap<String, Statistikk>) : Statistikk {
+        val key = bruker.trim()
         if (!map.containsKey(key)) {
             map.put(key, Statistikk(bruker = bruker))
         }

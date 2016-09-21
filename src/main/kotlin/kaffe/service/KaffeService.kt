@@ -12,12 +12,6 @@ open class KaffeService {
     @Autowired
     lateinit var kaffeRepository: KaffeRepository
 
-    @Autowired
-    lateinit var landService: LandService
-
-    @Autowired
-    lateinit var produsentService: ProdusentService
-
     fun getKaffe(id: String) : Kaffe? {
         return kaffeRepository.findOne(id)
     }
@@ -47,8 +41,8 @@ open class KaffeService {
     }
 
     fun insertKaffe(kaffe: Kaffe): Kaffe {
-        kaffe.land = landService.insert(kaffe.land)
-        kaffe.produsent = produsentService.insert(kaffe.produsent)
+        kaffe.land = kaffe.land.trim()
+        kaffe.produsent = kaffe.produsent.trim()
         return kaffeRepository.insert(kaffe)
     }
 

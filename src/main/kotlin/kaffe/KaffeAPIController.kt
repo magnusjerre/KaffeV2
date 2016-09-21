@@ -56,48 +56,18 @@ open class KaffeAPIController {
         return kaffeService.getAllKaffe();
     }
 
-    @RequestMapping("produsent/{id}")
-    fun getProdusent(@PathVariable id: String): Produsent? {
-        return produsentService.getById(id)
-    }
-
-    @RequestMapping("produsent/soknavn/{navn}")
-    fun getProdusentMedSokNavn(@PathVariable navn: String): Produsent? {
-        return produsentService.getMedSokNavn(navn)
-    }
-
     @RequestMapping("produsenter")
-    fun getProdusenter(): MutableList<Produsent> {
+    fun getProdusenter(): Array<String> {
         return produsentService.getAlle()
     }
 
-    @RequestMapping("land/{id}")
-    fun getLandMedId(@PathVariable id: String): Land? {
-        return landService.getById(id)
-    }
-
-    @RequestMapping("land/soknavn/{navn}")
-    fun getLandMedSokNavn(@PathVariable navn: String): Land? {
-       return landService.getMedSokNavn(navn)
-    }
-
     @RequestMapping("land")
-    fun getAlleLand() : MutableList<Land> {
+    fun getAlleLand() : Array<String> {
         return landService.getAlle()
     }
 
-    @RequestMapping("bruker/{id}")
-    fun getBrukerMedId(@PathVariable id: String) : Bruker? {
-        return brukerService.getById(id)
-    }
-
-    @RequestMapping("bruker/navn/{soknavn}")
-    fun getBrukerMedSokNavn(@PathVariable soknavn: String) : Bruker? {
-        return brukerService.getMedSokNavn(soknavn)
-    }
-
     @RequestMapping("brukere")
-    fun getAlleBrukere(): MutableList<Bruker> {
+    fun getAlleBrukere(): Array<String> {
         return brukerService.getAlle()
     }
 

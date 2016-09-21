@@ -1,8 +1,10 @@
 package kaffe.service
 
-import kaffe.data.Produsent
-import kaffe.repository.ProdusentRepository
 import org.springframework.stereotype.Service
 
 @Service
-open class ProdusentService : SokNavnService<ProdusentRepository, Produsent>()
+open class ProdusentService {
+    fun getAlle(): Array<String> {
+        return arrayOf("Friele", "Evergood")
+    }
+}

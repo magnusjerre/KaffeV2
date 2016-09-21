@@ -1,12 +1,13 @@
 package kaffe.data
 
+import kaffe.utils.erSammeBruker
 import java.util.*
 
 data class Brygg(
         var _id: String?,
         var navn: String,
         var kaffe: KaffeEnkel,
-        var brygger: Bruker,
+        var brygger: String,
         var dato: Date,
         var liter: Float,
         var skjeer: Float,
@@ -15,11 +16,11 @@ data class Brygg(
         var malthet: Malthet,
         var karakterer: MutableList<Karakter>) {
 
-    constructor(): this(null, "default", KaffeEnkel(), Bruker(), Date(), 0f, 0f, true, "", Malthet.MEDIUM, mutableListOf())
+    constructor(): this(null, "default", KaffeEnkel(), "default", Date(), 0f, 0f, true, "", Malthet.MEDIUM, mutableListOf())
 
-    fun getKarakterForBruker(bruker: Bruker) : Karakter? {
+    fun getKarakterForBruker(bruker: String) : Karakter? {
         for (karakter in karakterer) {
-            if (karakter.bruker.erSammeBruker(bruker)) {
+            if (erSammeBruker(bruker, karakter.bruker)) {
                 return karakter
             }
         }
