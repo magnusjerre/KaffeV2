@@ -1,8 +1,13 @@
 package kaffe
 
-import kaffe.data.*
+import kaffe.data.Brygg
+import kaffe.data.Kaffe
+import kaffe.data.Karakter
 import kaffe.data.statistikk.Statistikk
-import kaffe.service.*
+import kaffe.service.AutocompleteFieldService
+import kaffe.service.BryggService
+import kaffe.service.KaffeService
+import kaffe.service.StatistikkService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.*
@@ -20,16 +25,10 @@ open class KaffeAPIController {
     lateinit var bryggService: BryggService
 
     @Autowired
-    lateinit var landService: LandService
-
-    @Autowired
-    lateinit var produsentService: ProdusentService
-
-    @Autowired
-    lateinit var brukerService: BrukerService
-
-    @Autowired
     lateinit var statistikkService: StatistikkService
+
+    @Autowired
+    lateinit var autocompleteService: AutocompleteFieldService
 
     @RequestMapping("kaffe", method = arrayOf(RequestMethod.POST))
     fun insertKaffe(@RequestBody kaffe: Kaffe): Kaffe {
@@ -56,19 +55,19 @@ open class KaffeAPIController {
         return kaffeService.getAllKaffe();
     }
 
-    @RequestMapping("produsenter")
-    fun getProdusenter(): Array<String> {
-        return produsentService.getAlle()
+    @RequestMapping("produsenter", method = arrayOf(RequestMethod.GET))
+    fun getProdusenter(): MutableSet<String> {
+        return autocompleteService.getAlleProdusenter()
     }
 
     @RequestMapping("land")
-    fun getAlleLand() : Array<String> {
-        return landService.getAlle()
+    fun getAlleLand() : MutableSet<String> {
+        return autocompleteService.getAlleLand()
     }
 
     @RequestMapping("brukere")
-    fun getAlleBrukere(): Array<String> {
-        return brukerService.getAlle()
+    fun getAlleBrukere(): MutableSet<String> {
+        return autocompleteService.getAlleBrukere()
     }
 
     @RequestMapping("brygg/{id}", method = arrayOf(RequestMethod.GET))
@@ -101,5 +100,20 @@ open class KaffeAPIController {
         val fraDato = fra ?: Date.from(Instant.EPOCH)
         val tilDato = til ?: Date()
         return statistikkService.getStatistikkForPeriode(fraDato, tilDato)
+    }
+
+    @RequestMapping("bruker", method = arrayOf(RequestMethod.POST))
+    fun insertBruker(@RequestBody navn: String): String {
+        return autocompleteService.insertBruker(navn)
+    }
+
+    @RequestMapping("land", method = arrayOf(RequestMethod.POST))
+    fun insertLand(@RequestBody navn: String): String {
+        return autocompleteService.insertLand(navn)
+    }
+
+    @RequestMapping("produsent", method = arrayOf(RequestMethod.POST))
+    fun insertProdusent(@RequestBody navn: String): String {
+        return autocompleteService.insertProdusent(navn)
     }
 }
