@@ -1,7 +1,7 @@
-package kaffe.service
+package kaffe.api.service
 
-import kaffe.data.AutocompleteField
-import kaffe.repository.AutocompleteFieldRepository
+import kaffe.api.data.AutocompleteField
+import kaffe.api.repository.AutocompleteFieldRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

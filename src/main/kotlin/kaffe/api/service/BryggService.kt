@@ -1,8 +1,8 @@
-package kaffe.service
+package kaffe.api.service
 
-import kaffe.data.Brygg
-import kaffe.data.Karakter
-import kaffe.repository.BryggRepository
+import kaffe.api.data.Brygg
+import kaffe.api.data.Karakter
+import kaffe.api.repository.BryggRepository
 import kaffe.utils.sokbarString
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

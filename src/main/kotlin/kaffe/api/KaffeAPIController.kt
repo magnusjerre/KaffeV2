@@ -1,13 +1,13 @@
-package kaffe
+package kaffe.api
 
-import kaffe.data.Brygg
-import kaffe.data.Kaffe
-import kaffe.data.Karakter
-import kaffe.data.statistikk.Statistikk
-import kaffe.service.AutocompleteFieldService
-import kaffe.service.BryggService
-import kaffe.service.KaffeService
-import kaffe.service.StatistikkService
+import kaffe.api.data.Brygg
+import kaffe.api.data.Kaffe
+import kaffe.api.data.Karakter
+import kaffe.api.data.statistikk.Statistikk
+import kaffe.api.service.AutocompleteFieldService
+import kaffe.api.service.BryggService
+import kaffe.api.service.KaffeService
+import kaffe.api.service.StatistikkService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.*

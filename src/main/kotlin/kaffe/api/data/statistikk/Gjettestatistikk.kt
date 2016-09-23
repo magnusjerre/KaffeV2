@@ -1,4 +1,4 @@
-package kaffe.data.statistikk
+package kaffe.api.data.statistikk
 
 data class GjetteStatistikk(var nGjettinger: Int = 0,
                             var nRiktige: Int = 0,

@@ -1,4 +1,4 @@
-package kaffe.data
+package kaffe.api.data
 
 data class Kaffe (
         var _id: String? = null,

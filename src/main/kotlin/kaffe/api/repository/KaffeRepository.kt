@@ -1,6 +1,6 @@
-package kaffe.repository
+package kaffe.api.repository
 
-import kaffe.data.Kaffe
+import kaffe.api.data.Kaffe
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.mongodb.repository.Query
 

@@ -1,4 +1,4 @@
-package kaffe.data
+package kaffe.api.data
 
 enum class Malthet(var navn: String) {
     FINMALT("Finmalt"),

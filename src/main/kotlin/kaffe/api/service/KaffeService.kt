@@ -1,7 +1,7 @@
-package kaffe.service
+package kaffe.api.service
 
-import kaffe.data.Kaffe
-import kaffe.repository.KaffeRepository
+import kaffe.api.data.Kaffe
+import kaffe.api.repository.KaffeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

@@ -1,8 +1,8 @@
-package kaffe.service
+package kaffe.api.service
 
-import kaffe.data.Brygg
-import kaffe.data.Karakter
-import kaffe.data.statistikk.Statistikk
+import kaffe.api.data.Brygg
+import kaffe.api.data.Karakter
+import kaffe.api.data.statistikk.Statistikk
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*

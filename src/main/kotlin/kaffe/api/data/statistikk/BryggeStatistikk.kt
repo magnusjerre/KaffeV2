@@ -1,4 +1,4 @@
-package kaffe.data.statistikk
+package kaffe.api.data.statistikk
 
 data class BryggeStatistikk(var nBrygg: Int = 0,
                             var nKarakterer: Int = 0,

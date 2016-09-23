@@ -1,4 +1,4 @@
-package kaffe.data
+package kaffe.api.data
 
 data class Karakter(
         var bruker: String,

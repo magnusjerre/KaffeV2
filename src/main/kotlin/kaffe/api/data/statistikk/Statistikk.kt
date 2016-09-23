@@ -1,4 +1,4 @@
-package kaffe.data.statistikk
+package kaffe.api.data.statistikk
 
 data class Statistikk(var bruker: String,
                       var bryggeStatistikk: BryggeStatistikk = BryggeStatistikk(),

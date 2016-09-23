@@ -1,6 +1,6 @@
-package kaffe.repository
+package kaffe.api.repository
 
-import kaffe.data.AutocompleteField
+import kaffe.api.data.AutocompleteField
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.mongodb.repository.Query
 

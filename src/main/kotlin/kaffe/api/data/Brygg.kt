@@ -1,4 +1,4 @@
-package kaffe.data
+package kaffe.api.data
 
 import kaffe.utils.erSammeBruker
 import java.util.*
