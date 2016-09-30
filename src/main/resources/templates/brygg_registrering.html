@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="brygg_registrering" class="registreringElement" data-bind="visible: $root.visNyttBrygg">
+    <div class="registreringElementTittel">
+        <h1>Nytt brygg</h1>
+    </div>
+    <div class="horizontalLine"></div>
+    <div class="karakterInnhold">
+        <div class="registreringElementRad">
+            <label>Kaffe:</label>
+            <select class="truncate"
+                    data-bind="options: $root.muligeKaffer,
+                            optionsCaption: 'Velg kaffe...',
+                            optionsText: function(item) {return item.produsent + ' - ' + item.navn},
+                            optionsValue: '_id',
+                            value: $root.nyttBrygg().kaffeId">
+            </select>
+        </div>
+        <div class="registreringElementRad">
+            <label>Malthet:</label>
+            <select data-bind="options: $root.malthet, value: $root.nyttBrygg().malthet">
+            </select>
+        </div>
+        <div class="registreringElementRad">
+            <label>Bryggnavn:</label>
+            <input data-bind="value: $root.nyttBrygg().navn" class="registreringInput" type="text" placeholder="Mandagsbrygg"/>
+        </div>
+        <div class="registreringElementRad">
+            <label>Brygger:</label>
+            <input data-bind="value: $root.nyttBrygg().brygger" class="registreringInput" type="text" placeholder="Jerre"/>
+        </div>
+        <div class="registreringElementRad">
+            <label>Liter:</label>
+            <input data-bind="value: $root.nyttBrygg().liter" class="registreringInput" type="number" min="0.1" max="2.0" step="0.1" placeholder="1.25"/>
+        </div>
+        <div class="registreringElementRad">
+            <label>Skjeer:</label>
+            <input data-bind="value: $root.nyttBrygg().skjeer" class="registreringInput" type="number" min="1" max="12" step="0.25" placeholder="2.5"/>
+        </div>
+        <div class="registreringElementRad">
+            <label>Kommentar:</label>
+            <input data-bind="value: $root.nyttBrygg().kommentar" class="registreringInput" type="text" placeholder="Blandet inn litt forskjellig..."/>
+        </div>
+    </div>
+    <button class="registreringButton" data-bind="click: $root.registrerBrygg" name="registrer">Registrer</button>
+</div>
+</body>
+</html>

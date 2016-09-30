@@ -62,6 +62,45 @@ $(document).ready(function(){
             self.karakter().karakter(0);
             self.karakter().kommentar("");
         }
+
+        self.visNyttBrygg = ko.observable(true);
+        self.nyttBrygg = ko.observable(new Brygg());
+        self.malthet = ko.observableArray(["FINMALT", "MEDIUM", "GROV"]);
+
+        self.registrerBrygg = function() {
+            if (gyldigBrygg(self.nyttBrygg)) {
+                self.nyttBrygg().dato = new Date();
+                if (!self.nyttBrygg().kommentar()) {
+                    self.nyttBrygg().kommentar("");
+                }
+                $.ajax("api/brygg", {
+                    contentType: 'application/json; charset=UTF-8',
+                    data: ko.toJSON(self.nyttBrygg),
+                    dataType: 'json',
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("error thrown")
+                        console.log(errorThrown)
+                    },
+                    method: 'POST',
+                    success: function(data, textStatus, jqXHR){
+                        clearNyttBrygg();
+                        self.bryggListe.push(data);
+                    }
+                });
+            } else {
+                alert("Brygg mangler verdier");
+            }
+        }
+        function clearNyttBrygg() {
+            self.visNyttBrygg(false);
+            self.nyttBrygg().navn(undefined);
+            self.nyttBrygg().kaffeId(undefined);
+            self.nyttBrygg().brygger(undefined);
+            self.nyttBrygg().liter(undefined);
+            self.nyttBrygg().skjeer(undefined);
+            self.nyttBrygg().kommentar(undefined);
+            self.nyttBrygg().malthet(undefined);
+        }
     }
 
     var viewModel = new RegistreringViewModel();
@@ -101,6 +140,41 @@ function gyldigKarakter(karakter) {
         return false;
     }
     if (!karakter().kommentar()) {
+        return false;
+    }
+    return true;
+}
+
+function Brygg() {
+    this.navn = ko.observable();
+    this.kaffeId = ko.observable();
+    this.brygger = ko.observable();
+    this.dato = null;
+    this.liter = ko.observable();
+    this.skjeer = ko.observable();
+    this.vis = true;
+    this.kommentar = ko.observable();
+    this.malthet = ko.observable("FINMALT");
+    this.karakterer = [];
+}
+
+function gyldigBrygg(brygg) {
+    if (!brygg().navn()) {
+        return false;
+    }
+    if (!brygg().kaffeId()) {
+        return false;
+    }
+    if (!brygg().brygger()) {
+        return false;
+    }
+    if (!brygg().liter()) {
+        return false;
+    }
+    if (!brygg().skjeer()) {
+        return false;
+    }
+    if (!brygg().malthet()) {
         return false;
     }
     return true;
