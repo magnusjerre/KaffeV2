@@ -30,10 +30,36 @@ $(document).ready(function(){
             }
         };
 
+        self.hoverBeans = function(data, event) {
+            $(event.target).parent().children().addClass("gray");
+            $(event.target).removeClass("gray");
+            $(event.target).prevAll().removeClass("gray");
+        };
+
+        self.setKarakter = function(verdi) {
+            self.karakter().karakter(parseInt(verdi));
+        };
+
+        self.finalizeBeansColor = function() {
+            var karaktererDiv = $("div.karakterBeansDiv");
+            karaktererDiv.children().addClass("gray");
+            var child = $(event.target).parent().children().first();
+            var counter = 0;
+            while (counter < self.karakter().karakter()) {
+                child.removeClass("gray");
+                counter++;
+                child = child.next();
+            }
+        };
+
+        self.karakter().karakter.subscribe(function(newValeue){
+            self.finalizeBeansColor();
+        });
+
         function clearKarakterVerdier() {
             self.karakter().bruker(null);
             self.karakter().kaffeId(null);
-            self.karakter().karakter(4);
+            self.karakter().karakter(0);
             self.karakter().kommentar("");
         }
     }
@@ -71,7 +97,7 @@ $(document).ready(function(){
 function Karakter() {
     this.bruker = ko.observable();
     this.kaffeId = ko.observable();
-    this.karakter = ko.observable(4);
+    this.karakter = ko.observable(0);
     this.kommentar = ko.observable("");
 }
 

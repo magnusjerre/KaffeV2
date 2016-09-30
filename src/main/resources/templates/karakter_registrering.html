@@ -28,7 +28,13 @@
             </div>
             <div class="registreringElementRad">
                 <label>Karakter: </label>
-                <span>1 2 3 4 5</span>
+                <div class="karakterBeansDiv" >
+                    <img th:src="@{css/images/coffee_bean.png}" class="karakterBean gray" alt="bean1" data-bind="event: {mouseover: hoverBeans, mouseout: finalizeBeansColor}, click: function() {setKarakter(1)}"/>
+                    <img th:src="@{css/images/coffee_bean.png}" class="karakterBean gray" alt="bean2" data-bind="event: {mouseover: hoverBeans, mouseout: finalizeBeansColor}, click: function() {setKarakter(2)}"/>
+                    <img th:src="@{css/images/coffee_bean.png}" class="karakterBean gray" alt="bean3" data-bind="event: {mouseover: hoverBeans, mouseout: finalizeBeansColor}, click: function() {setKarakter(3)}"/>
+                    <img th:src="@{css/images/coffee_bean.png}" class="karakterBean gray" alt="bean4" data-bind="event: {mouseover: hoverBeans, mouseout: finalizeBeansColor}, click: function() {setKarakter(4)}"/>
+                    <img th:src="@{css/images/coffee_bean.png}" class="karakterBean gray" alt="bean5" data-bind="event: {mouseover: hoverBeans, mouseout: finalizeBeansColor}, click: function() {setKarakter(5)}"/>
+                </div>
             </div>
             <div class="registreringElementRad">
                 <label>Kommentar: </label>

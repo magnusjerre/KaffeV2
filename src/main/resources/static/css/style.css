@@ -160,3 +160,27 @@ div.registreringElementTittel button:focus {
 .registreringElementTittel select:focus {
     outline: none;
 }
+
+.karakterBeansDiv {
+    padding: 0.1em;
+    display: flex;
+}
+
+.karakterBean {
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0;
+    margin: 0;
+    transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+}
+
+.gray {
+    filter: grayscale(100%) brightness(2);
+    -webkit-filter: grayscale(100%) brightness(2);
+    -moz-filter: grayscale(100%) brightness(2);
+    -o-filter: grayscale(100%) brightness(2);
+}
