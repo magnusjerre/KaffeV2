@@ -63,9 +63,31 @@ $(document).ready(function(){
             self.karakter().kommentar("");
         }
 
-        self.visNyttBrygg = ko.observable(true);
+        self.visNyttBrygg = ko.observable();
+        self.visNyttBrygg.subscribe(function(newValue) {
+            if (newValue) {
+                self.showNyttBrygg();
+            } else {
+                self.hideNyttBrygg();
+            }
+        });
         self.nyttBrygg = ko.observable(new Brygg());
         self.malthet = ko.observableArray(["FINMALT", "MEDIUM", "GROV"]);
+        self.toggleBryggRegistrering = function() {
+            self.visNyttBrygg(!self.visNyttBrygg());
+        };
+        self.showNyttBrygg = function() {
+            $('[name="hideableBrygg"]').show();
+            var toggleButton = $('button#toggleBryggButton');
+            toggleButton.removeClass("pointLeft");
+            toggleButton.addClass("pointDown");
+        };
+        self.hideNyttBrygg = function() {
+            $('[name="hideableBrygg"]').hide();
+            var toggleButton = $('button#toggleBryggButton');
+            toggleButton.removeClass("pointDown");
+            toggleButton.addClass("pointLeft");
+        };
 
         self.registrerBrygg = function() {
             if (gyldigBrygg(self.nyttBrygg)) {
@@ -101,6 +123,7 @@ $(document).ready(function(){
             self.nyttBrygg().kommentar(undefined);
             self.nyttBrygg().malthet(undefined);
         }
+        self.visNyttBrygg(false);
     }
 
     var viewModel = new RegistreringViewModel();
@@ -117,7 +140,12 @@ $(document).ready(function(){
         for (var i = 0; i < data.length; i++) {
             viewModel.bryggListe.push(data[i]);
         }
-        viewModel.valgtBrygg(data[data.length - 1]);
+        if (data.length == 0) {
+            viewModel.visNyttBrygg(true);
+        } else {
+            viewModel.visNyttBrygg(false);
+            viewModel.valgtBrygg(data[data.length - 1]);
+        }
     });
 
 });
