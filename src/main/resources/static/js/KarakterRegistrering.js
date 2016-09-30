@@ -14,6 +14,9 @@ $(document).ready(function(){
             if (!gyldigKarakter(self.karakter)) {
                 alert("Karakteren er ugyldig.");
             } else {
+                if (!self.karakter().kommentar()) {
+                    self.karakter().kommentar("");
+                }
                 $.ajax("api/brygg/" + self.valgtBrygg()._id + "/karakter", {
                     contentType: 'application/json; charset=UTF-8',
                     data: ko.toJSON(self.karakter),
@@ -171,9 +174,6 @@ function gyldigKarakter(karakter) {
         return false;
     }
     if (karakter().karakter() != null && !(0 < karakter().karakter() && karakter().karakter() < 6)) {
-        return false;
-    }
-    if (!karakter().kommentar()) {
         return false;
     }
     return true;
