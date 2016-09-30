@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-    <div class="registreringElement" th:fragment="karakter_registrering">
+    <div class="registreringElement" th:fragment="karakter_registrering" data-bind="visible: $root.visKarakterRegistrering">
         <div class="registreringElementTittel">
             <select class="truncate"
                     data-bind="options: $root.bryggListe,

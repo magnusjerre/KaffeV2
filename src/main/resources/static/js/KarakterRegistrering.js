@@ -9,6 +9,7 @@ $(document).ready(function(){
         self.valgtBrygg.subscribe(function(newValue){
             clearKarakterVerdier();
         });
+        self.visKarakterRegistrering = ko.observable(false);
         self.registrerKarakter = function() {
             if (!gyldigKarakter(self.karakter)) {
                 alert("Karakteren er ugyldig.");
@@ -107,6 +108,9 @@ $(document).ready(function(){
                     success: function(data, textStatus, jqXHR){
                         clearNyttBrygg();
                         self.bryggListe.push(data);
+                        if (self.bryggListe().length == 1) {
+                            self.visKarakterRegistrering(true);
+                        }
                     }
                 });
             } else {
@@ -142,9 +146,11 @@ $(document).ready(function(){
         }
         if (data.length == 0) {
             viewModel.visNyttBrygg(true);
+            viewModel.visKarakterRegistrering(false);
         } else {
             viewModel.visNyttBrygg(false);
             viewModel.valgtBrygg(data[data.length - 1]);
+            viewModel.visKarakterRegistrering(true);
         }
     });
 
