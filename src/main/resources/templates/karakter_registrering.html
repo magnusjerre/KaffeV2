@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <div class="registreringElement" th:fragment="karakter_registrering">
+        <div class="registreringElementTittel">
+            <select class="truncate"
+                    data-bind="options: $root.bryggListe,
+                        optionsText: function(item){return item.navn},
+                        value: $root.valgtBrygg">
+            </select>
+        </div>
+        <div name="hideable">
+            <div class="registreringElementRad">
+                <label>Kaffe: </label>
+                <select class="truncate" name="gjetteKaffeId"
+                        data-bind="options: $root.muligeKaffer,
+                            optionsCaption: 'Velg kaffe...',
+                            optionsText: function(item) {return item.produsent + ' - ' + item.navn},
+                            optionsValue: '_id',
+                            value: $root.karakter().kaffeId">
+                </select>
+            </div>
+            <div class="registreringElementRad">
+                <label>Bruker: </label>
+                <input data-bind="value: $root.karakter().bruker" class="registreringInput" type="text" name="bruker" placeholder="Jerre"/>
+            </div>
+            <div class="registreringElementRad">
+                <label>Karakter: </label>
+                <span>1 2 3 4 5</span>
+            </div>
+            <div class="registreringElementRad">
+                <label>Kommentar: </label>
+                <input data-bind="value: $root.karakter().kommentar" class="registreringInput" type="text" name="kommentar" placeholder="Denne var god..."/>
+            </div>
+            <button class="registreringButton" data-bind="click: $root.registrerKarakter" name="registrer">Registrer</button>
+        </div>
+    </div>
+</body>
+</html>
