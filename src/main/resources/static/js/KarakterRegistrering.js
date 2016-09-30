@@ -77,17 +77,6 @@ $(document).ready(function(){
     $.get("api/brygg", function(data){
         for (var i = 0; i < data.length; i++) {
             viewModel.bryggListe.push(data[i]);
-            var element = $("p:contains(" + data[i]._id + ")").parent().siblings('div[name="hideable"]')[0];
-            var arrow = $("p:contains(" + data[i]._id + ")").siblings('button')[0];
-            if (data[i].vis) {
-                $(element).show();
-                $(arrow).addClass("pointDown");
-                $(arrow).removeClass("pointLeft");
-            } else {
-                $(element).hide();
-                $(arrow).addClass("pointLeft");
-                $(arrow).removeClass("pointDown");
-            }
         }
         viewModel.valgtBrygg(data[data.length - 1]);
     });
