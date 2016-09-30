@@ -11,7 +11,8 @@
                         value: $root.valgtBrygg">
             </select>
         </div>
-        <div name="hideable">
+        <div class="horizontalLine"></div>
+        <div class="karakterInnhold">
             <div class="registreringElementRad">
                 <label>Kaffe: </label>
                 <select class="truncate" name="gjetteKaffeId"
@@ -21,10 +22,6 @@
                             optionsValue: '_id',
                             value: $root.karakter().kaffeId">
                 </select>
-            </div>
-            <div class="registreringElementRad">
-                <label>Bruker: </label>
-                <input data-bind="value: $root.karakter().bruker" class="registreringInput" type="text" name="bruker" placeholder="Jerre"/>
             </div>
             <div class="registreringElementRad">
                 <label>Karakter: </label>
@@ -37,11 +34,15 @@
                 </div>
             </div>
             <div class="registreringElementRad">
+                <label>Bruker: </label>
+                <input data-bind="value: $root.karakter().bruker" class="registreringInput" type="text" name="bruker" placeholder="Jerre"/>
+            </div>
+            <div class="registreringElementRad">
                 <label>Kommentar: </label>
                 <input data-bind="value: $root.karakter().kommentar" class="registreringInput" type="text" name="kommentar" placeholder="Denne var god..."/>
             </div>
-            <button class="registreringButton" data-bind="click: $root.registrerKarakter" name="registrer">Registrer</button>
         </div>
+        <button class="registreringButton" data-bind="click: $root.registrerKarakter" name="registrer">Registrer</button>
     </div>
 </body>
 </html>

@@ -26,7 +26,6 @@ body {
     width: 25em;
     display: flex;
     flex-direction: column;
-    padding: 1em;
     margin: 1em;
     color: saddlebrown;
     font-weight: bold;
@@ -46,6 +45,10 @@ body {
     flex-grow: 2;
     border: none;
     padding: 0.25em;
+}
+
+.karakterInnhold {
+    padding: 0 1em;
 }
 
 div.registreringElementRad label {
@@ -77,23 +80,7 @@ div.registreringElementRad input:focus {
     justify-content: space-between;
     flex-wrap: nowrap;
     flex-direction: row;
-}
-
-div.registreringElementTittel h1 {
-    font-size: 150%;
-    font-weight: bolder;
-    flex-grow: 2;
-    text-overflow: ellipsis;
-}
-
-div.registreringElementTittel button {
-    flex-grow: 0;
-    padding-left: 0.25em;
-    width: 2em;
-}
-
-div.registreringElementTittel button:focus {
-    outline: none;
+    padding: 0.25em;
 }
 
 .truncate {
@@ -183,4 +170,9 @@ div.registreringElementTittel button:focus {
     -webkit-filter: grayscale(100%) brightness(2);
     -moz-filter: grayscale(100%) brightness(2);
     -o-filter: grayscale(100%) brightness(2);
+}
+.horizontalLine {
+    border-style: solid;
+    border-width: thin;
+    margin: 0 0.5em;
 }
