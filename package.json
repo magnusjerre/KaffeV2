@@ -1,0 +1,31 @@
+{
+  "name": "kaffe",
+  "version": "1.0.0",
+  "description": "Webapp for registering coffee-brews and ratings. Technologies such as Spring Boot, Kotlin and Gradle are used.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magnusjerre/KaffeV2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magnusjerre/KaffeV2/issues"
+  },
+  "homepage": "https://github.com/magnusjerre/KaffeV2#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "css-loader": "^0.26.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  }
+}
