@@ -51,8 +51,14 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-data-mongodb"
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile "org.springframework.boot:spring-boot-devtools"
 }
 
 springBoot {
     mainClass = 'kaffe.ApplicationKt'
+}
+
+// Used by 'Spring Boot Gradle Plugin' in combination with 'Devtools' makes HTML/JS/CSS reloadable.
+bootRun {
+    addResources = true
 }
