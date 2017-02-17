@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-
-class Kaffe extends Component {
-    render() {
-        return <span>Kaffe er bra for helsa!</span>;
-    }
-}
+import BryggKarakterRegistrering from './components/brygg-karakter-registrering';
+import BryggRegistrering from './components/brygg-registrering'
 
 ReactDOM.render(
-    <Kaffe />,
+    <BryggRegistrering />,
     document.getElementById("react")
 );

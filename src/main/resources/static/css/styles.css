@@ -1,0 +1,38 @@
+.flexboxColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width:20em;
+}
+
+.registreringBox {
+    background-color: bisque;
+    padding: 1em;
+    border: 0;
+    border-radius: 0.25em;
+}
+
+.flexLabel {
+    display: flex;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.flexLabelInput {
+    flex-grow: 1;
+    background-color: burlywood;
+    border: 0;
+    padding: 0.25em 0.5em;
+    margin-left: 0.5em;
+    border-radius: 0.25em;
+}
+
+input[type="submit"] {
+    background-color: burlywood;
+    border: 0;
+    font-weight: bold;
+    font-size: 1.25em;
+    padding: 0.25em 0;
+    margin-top: 0.25em;
+    border-radius: 0.25em;
+}
