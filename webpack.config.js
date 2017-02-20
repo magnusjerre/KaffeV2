@@ -15,6 +15,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader',
+            },
+            {
+                test: /\.png/,
+                loader: 'file-loader',
+                options: {
+                    name: './../images/[name].[ext]'//The path relative to entry.js to the images location
+                }
             }
         ]
     }
