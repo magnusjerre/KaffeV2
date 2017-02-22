@@ -27,12 +27,14 @@ export default class Registrering extends Component {
     render() {
         return (
             <div className="appContent">
+                <div className="contentRow">
                 { this.state.brygg.map( brygg => {
                         return (
                             <BryggKarakterRegistrering key={brygg._id ? brygg._id : this._fallbackcounter++} bryggid={brygg._id} bryggnavn={brygg.navn} muligeKaffer={this.state.kaffer} />
                         );
                     })
                 }
+                </div>
                 { this.state.visRegistrerBrygg ?
                         <BryggRegistrering onRegistrerBrygg={() => this._onRegistrerBrygg()}/>
                         : <img src={plussTegn} className="nyttBryggTegn" alt="Nytt brygg" onClick={() => this.setState({visRegistrerBrygg: true})}/>
