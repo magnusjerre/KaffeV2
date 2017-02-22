@@ -1,10 +1,49 @@
 h1 {
     text-align: center;
     text-transform: uppercase;
+    color: saddlebrown;
 }
 
 body {
     background-color: burlywood;
+}
+
+.appContent {
+    display: flex;
+    align-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    border-bottom: 2px solid saddlebrown;
+    box-sizing: border-box;
+    margin: 0 auto 1em auto;
+    width: 80%;
+}
+
+nav > li {
+    display: inline-block;
+}
+
+.navElement {
+    display: inline-block;
+    padding: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: saddlebrown;
+    font-weight: bold;
+}
+
+.navElement:visited {
+    color: saddlebrown;
+}
+
+.navValgt {
+    background-color: bisque;
 }
 
 .flexboxColumn {

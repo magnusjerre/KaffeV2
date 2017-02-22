@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import BryggRegistrering from './components/brygg-registrering';
-import BryggKarakterContainer from './components/brygg-karakter-container.js';
+import ReactRouer, {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import App from './components/app'
+import Registrering from './components/registrering'
 import Header from './components/header'
 
 ReactDOM.render(
-    <div>
-        <Header />
-        <BryggRegistrering />
-        <BryggKarakterContainer />
-    </div>,
+    <Router history={browserHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={Registrering}/>
+            <Route path="historikk" component={Header}/>
+        </Route>
+    </Router>,
     document.getElementById("react")
 );

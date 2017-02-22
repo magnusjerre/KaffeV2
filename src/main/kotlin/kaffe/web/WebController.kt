@@ -15,7 +15,7 @@ open class WebController {
     @Autowired
     lateinit var kaffeService: KaffeService
 
-    @RequestMapping("index", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("/", method = arrayOf(RequestMethod.GET))
     fun index(model: Model): String {
         model.addAttribute("kaffe", kaffeService.getAllKaffe())
         return "index"
