@@ -63,6 +63,7 @@ export default class BryggRegistrering extends Component {
             method: 'POST',
             success: (data, textStatus, jqXHR) => {
                 this.clearForm()
+                this.props.onRegistrerBrygg();
             }
         });
     }

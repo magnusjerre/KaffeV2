@@ -114,3 +114,9 @@ input[type="submit"] {
 .inline-block-element {
     display: inline-block;
 }
+
+.nyttBryggTegn {
+    width: 3em;
+    height: 3em;
+    margin: 1em;
+}
