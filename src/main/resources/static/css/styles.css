@@ -59,6 +59,7 @@ nav > li {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .registreringBox {
@@ -218,4 +219,27 @@ input[type="submit"]:focus {
 .requiredNotOK {
     color: red;
     font-weight: bold;
+}
+
+.lukkGjetteResultat {
+    width: 2em;
+    height: 2em;
+    align-self: center;
+}
+
+.gjetteResultat {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 15em;
+    background-color: burlywood;
+    border-radius: 0.5em;
+    padding: 1em;
+    box-shadow: 0 0 1em saddlebrown;
+}
+
+.className > h2 {
+    font-size: large;
+    margin-top: 0;
+    margin-bottom: 0.5em;
 }

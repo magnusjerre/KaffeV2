@@ -30,7 +30,7 @@ export default class Registrering extends Component {
                 <div className="contentRow">
                 { this.state.brygg.map( brygg => {
                         return (
-                            <BryggKarakterRegistrering key={brygg._id ? brygg._id : this._fallbackcounter++} bryggid={brygg._id} bryggnavn={brygg.navn} muligeKaffer={this.state.kaffer} onSkjulBrygg={() => this.fetchDagensBrygg()}/>
+                            <BryggKarakterRegistrering key={brygg._id ? brygg._id : this._fallbackcounter++} bryggid={brygg._id} bryggnavn={brygg.navn} muligeKaffer={this.state.kaffer} korrektKaffeId={brygg.kaffeId} onSkjulBrygg={() => this.fetchDagensBrygg()}/>
                         );
                     })
                 }

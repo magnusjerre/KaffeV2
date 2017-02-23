@@ -3,6 +3,7 @@ import KaffeSelector from './kaffe-selector'
 import TextInput from './text-input'
 import KarakterLabel from './karakter-label'
 import Dialog from './dialog'
+import KarakterRegistreringResultat from './karakter-registrering-resultat'
 import $ from '../jquery-3.1.1.min.js';
 require('../../css/styles.css');
 import cross from '../../images/cross.png'
@@ -15,11 +16,13 @@ export default class BryggKarakterRegistrering extends Component {
             bruker: '',
             kommentar: '',
             karakter: 0,
-            showCloseDialog: false
+            showCloseDialog: false,
+            gjetteResultat: null
         };
         this._handleKafferChange.bind(this);
         this._handleSubmit.bind(this);
         this._handleClose.bind(this);
+        this._handleLukkMelding.bind(this);
     }
 
     render() {
@@ -32,8 +35,9 @@ export default class BryggKarakterRegistrering extends Component {
                 {this.state.showCloseDialog ?
                     <Dialog text={`Sikker på at du vil skjule "${this.props.bryggnavn}"? Det vil da ikke være mulig å registrere flere karakterer for dette brygget.`} positiveButton="Ja" negativeButton="Nei"
                             onPositive={() => {this._handleClose()}} onNegative={() => this.setState({showCloseDialog: false})}/>
+                    : this.state.gjetteResultat ?
+                    <KarakterRegistreringResultat title={this.state.gjetteResultat.title} text={this.state.gjetteResultat.text} onLukkMelding={() => this._handleLukkMelding()}/>
                     :
-
                     <form className="flexboxColumn" onSubmit={event => this._handleSubmit(event)}>
                         <KaffeSelector label="Kaffe: " name="kaffeId" kaffer={this.props.muligeKaffer} valgtKaffe={this.state.kaffeId} required={true} onChange={event => this._handleKafferChange(event)} />
                         <TextInput label="Bruker: " name="bruker" required="required" placeholder="Jerre" value={this.state.bruker} onChange={event => this._handleKafferChange(event)} />
@@ -56,6 +60,12 @@ export default class BryggKarakterRegistrering extends Component {
         this.setState({karakter: verdi});
     }
 
+    _handleLukkMelding() {
+        this.setState({
+            gjetteResultat: null
+        });
+    }
+
     _handleSubmit(event) {
         event.preventDefault();
 
@@ -70,6 +80,29 @@ export default class BryggKarakterRegistrering extends Component {
             }
         );
 
+        let gjetteResultat = {title: "", text: ""};
+        let riktigKaffe = this.getRiktigKaffe();
+        let korrektNavn = `${riktigKaffe.navn} - ${riktigKaffe.produsent}`;
+        gjetteResultat.text = `Dagens kaffe var "${korrektNavn}".`
+        if (this.state.kaffeId == this.props.korrektKaffeId) {
+            gjetteResultat.title = "Korrekt!";
+        } else {
+            gjetteResultat.title = "Feil...";
+            gjetteResultat.text += " Bedre lykke neste gang!";
+        }
+        this.setState({
+            gjetteResultat: gjetteResultat
+        });
+    }
+
+    getRiktigKaffe() {
+        for (let i = 0; i < this.props.muligeKaffer.length; i++) {
+            let kaffe = this.props.muligeKaffer[i];
+            if (this.props.korrektKaffeId == kaffe._id) {
+                return kaffe;
+            }
+        }
+        return null;
     }
 
     _handleClose() {
