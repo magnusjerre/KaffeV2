@@ -25,14 +25,24 @@ open class BryggService {
         return bryggRepository.findAll()
     }
 
-    fun getBryggDatoIntervall(fra: Date, til: Date) : MutableList<Brygg> {
-        return bryggRepository.getBryggFraTilDato(fra, til)
+    fun getBryggDatoIntervall(fra: Date, til: Date, eksSkjulte: Boolean) : MutableList<Brygg> {
+        val result = bryggRepository.getBryggFraTilDato(fra, til)
+        if (!eksSkjulte) {
+            return result
+        }
+        return result.filter{brygg -> brygg.vis}.toMutableList()
     }
 
     fun insertBrygg(brygg: Brygg) : Brygg {
         kaffeService.verifiserKaffeId(brygg.kaffeId)
         verifiserKarakterer(brygg.karakterer)
         return bryggRepository.insert(brygg)
+    }
+
+    fun skjulBrygg(id: String) {
+        val brygg = getBrygg(id) ?: throw RuntimeException("Fant ikke brygg med id $id")
+        brygg.vis = false
+        bryggRepository.save(brygg)
     }
 
     private fun verifiserKarakterer(karakterer: MutableList<Karakter>) {

@@ -30,7 +30,7 @@ export default class Registrering extends Component {
                 <div className="contentRow">
                 { this.state.brygg.map( brygg => {
                         return (
-                            <BryggKarakterRegistrering key={brygg._id ? brygg._id : this._fallbackcounter++} bryggid={brygg._id} bryggnavn={brygg.navn} muligeKaffer={this.state.kaffer} />
+                            <BryggKarakterRegistrering key={brygg._id ? brygg._id : this._fallbackcounter++} bryggid={brygg._id} bryggnavn={brygg.navn} muligeKaffer={this.state.kaffer} onSkjulBrygg={() => this.fetchDagensBrygg()}/>
                         );
                     })
                 }
@@ -54,7 +54,7 @@ export default class Registrering extends Component {
         now.setDate(now.getDate() + 1);
         let tomorrow = this.getDateString(now);
 
-        $.getJSON('api/brygg', {fra: today, til: tomorrow}, (data) => {
+        $.getJSON('api/brygg', {fra: today, til: tomorrow, eksSkjulte: true}, (data) => {
             this.setState({
                 brygg: data,
                 visRegistrerBrygg: data.length > 0 ? false : true

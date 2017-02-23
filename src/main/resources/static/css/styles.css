@@ -18,7 +18,7 @@ body {
 .contentRow {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     align-content: start;
     justify-content: center;
     flex-wrap: wrap;
@@ -59,7 +59,6 @@ nav > li {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    width:20em;
 }
 
 .registreringBox {
@@ -67,6 +66,7 @@ nav > li {
     padding: 1em;
     border: 0;
     border-radius: 0.25em;
+    width: 20em;
 }
 
 .boxListElemet {
@@ -130,8 +130,57 @@ input[type="submit"] {
     margin: 1em;
 }
 
+.bryggRegistrertHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
 .bryggNavnHeader {
-    margin: 0 0 0.5em 0;
+    margin: 0;
     font-size: 1.25em;
     text-align: left;
+    display: inline-block;
+}
+
+.closeButton {
+    width: 1em;
+    height: 1em;
+}
+
+.dialog {
+    display: flex;
+    flex-directino: row;
+    flex-wrap: wrap;
+    align-self: center;
+    justify-content: space-between;
+    width: 15em;
+    background-color: burlywood;
+    border-radius: 0.25em;
+    padding: 1em;
+    box-shadow: 0 0 0.5em saddlebrown;
+}
+
+.dialog > button {
+    padding: 0.25em;
+    border: 0;
+    border-radius: 0.5em;
+    background-color: bisque;
+    width: 25%;
+    font-weight: bold;
+    color: saddlebrown;
+    text-transform: uppercase;
+}
+
+.dialog > button:hover {
+    background-color: saddlebrown;
+    box-shadow: 0 0 1em saddlebrown;
+    color: bisque;
+}
+
+.dialog > p {
+    width: 100%;
+    margin-top: 0;
 }

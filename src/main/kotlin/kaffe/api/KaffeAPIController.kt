@@ -52,7 +52,7 @@ open class KaffeAPIController {
 
     @RequestMapping("kaffe")
     fun getAllKaffe() : MutableList<Kaffe> {
-        return kaffeService.getAllKaffe();
+        return kaffeService.getAllKaffe()
     }
 
     @RequestMapping("produsenter", method = arrayOf(RequestMethod.GET))
@@ -77,11 +77,12 @@ open class KaffeAPIController {
 
     @RequestMapping("brygg", method = arrayOf(RequestMethod.GET))
     fun getBryggDatoIntervall(@RequestParam(value = "fra", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") fra: Date? = null,
-                           @RequestParam(value = "til", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date? = null) : MutableList<Brygg> {
+                           @RequestParam(value = "til", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") til: Date? = null,
+                              @RequestParam(value = "eksSkjulte", required = false) eksSkjulte: Boolean = false) : MutableList<Brygg> {
         if (fra == null || til == null) {
             return bryggService.getAlleBrygg()
         }
-        return bryggService.getBryggDatoIntervall(fra, til)
+        return bryggService.getBryggDatoIntervall(fra, til, eksSkjulte)
     }
 
     @RequestMapping("brygg", method = arrayOf(RequestMethod.POST))
@@ -92,6 +93,11 @@ open class KaffeAPIController {
     @RequestMapping("brygg/{id}/karakter", method = arrayOf(RequestMethod.POST))
     fun registrerKarakter(@PathVariable id: String, @RequestBody karakter: Karakter): Brygg? {
         return bryggService.registrerKarakter(id, karakter)
+    }
+
+    @RequestMapping("brygg/{id}/skjul", method = arrayOf(RequestMethod.POST))
+    fun lukkBrygg(@PathVariable id: String) {
+        bryggService.skjulBrygg(id)
     }
 
     @RequestMapping("statistikk", method = arrayOf(RequestMethod.GET))

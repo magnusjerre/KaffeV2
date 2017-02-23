@@ -14,7 +14,7 @@ open class StatistikkService {
     lateinit var bryggService: BryggService
 
     fun getStatistikkForPeriode(fra: Date, til: Date) : MutableList<Statistikk> {
-        val alleBrygg = bryggService.getBryggDatoIntervall(fra, til)
+        val alleBrygg = bryggService.getBryggDatoIntervall(fra, til, false)
         val statistikkMap: MutableMap<String, Statistikk> = mutableMapOf()
 
         for (brygg in alleBrygg) {
