@@ -35,10 +35,10 @@ export default class BryggKarakterRegistrering extends Component {
                     :
 
                     <form className="flexboxColumn" onSubmit={event => this._handleSubmit(event)}>
-                        <KaffeSelector label="Kaffe: " name="kaffeId" kaffer={this.props.muligeKaffer} valgtKaffe={this.state.kaffeId} onChange={event => this._handleKafferChange(event)} />
+                        <KaffeSelector label="Kaffe: " name="kaffeId" kaffer={this.props.muligeKaffer} valgtKaffe={this.state.kaffeId} required={true} onChange={event => this._handleKafferChange(event)} />
                         <TextInput label="Bruker: " name="bruker" required="required" placeholder="Jerre" value={this.state.bruker} onChange={event => this._handleKafferChange(event)} />
                         <TextInput label="Kommentar: " name="kommentar" placeholder="Denne var rar..." value={this.state.kommentar} onChange={event => this._handleKafferChange(event)} />
-                        <KarakterLabel isEditable={true} maxKarakter={5} karakter={this.state.karakter} handleValgtKarakter={ verdi => this._handleKarakterValgt(verdi)}/>
+                        <KarakterLabel isEditable={true} maxKarakter={5} karakter={this.state.karakter} handleValgtKarakter={ verdi => this._handleKarakterValgt(verdi)} required={true}/>
                         <input type="submit" value="Registrer karakter"/>
                     </form>
                 }

@@ -209,3 +209,13 @@ input[type="submit"]:focus {
     width: 100%;
     margin-top: 0;
 }
+
+.requiredOK {
+    color: green;
+    font-weight: bold;
+}
+
+.requiredNotOK {
+    color: red;
+    font-weight: bold;
+}

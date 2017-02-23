@@ -13,8 +13,8 @@ export default class BryggRegistrering extends Component {
             brygger: '',
             kaffer:[],
             kaffeId: '',
-            liter: 0,
-            skjeer: 0
+            liter: 0.5,
+            skjeer: 0.5
         };
         this._storeChange.bind(this);
         this._handleKafferChange.bind(this);
@@ -33,8 +33,8 @@ export default class BryggRegistrering extends Component {
         return <form id="bryggregistreringForm" className="flexboxColumn registreringBox" onSubmit={event => this._handleSubmit(event)}>
                 <TextInput label="Bryggnavn: " required="required" name="navn" placeholder="Gang of four" value={this.state.navn} onChange={(event) => this._storeChange(event)} />
                 <TextInput label="Brygger: " required="required" name="brygger" placeholder="Jerre" value={this.state.brygger} onChange={(event) => this._storeChange(event)} />
-                <KaffeSelector required="required" name="kaffeId" kaffer={this.state.kaffer} valgtKaffe={this.state.kaffeId} onChange={(event) => this._handleKafferChange(event)}/>
-                <NumberInput label="Liter: " name="liter" required="required" value={this.state.liter} max="4" onChange={event => this._storeChange(event)} />
+                <KaffeSelector required={true} name="kaffeId" kaffer={this.state.kaffer} valgtKaffe={this.state.kaffeId} onChange={(event) => this._handleKafferChange(event)}/>
+                <NumberInput label="Liter: " name="liter" required="required" value={this.state.liter} min="0.5" max="4" onChange={event => this._storeChange(event)} />
                 <NumberInput label="Skjeer: " name="skjeer" required="required" value={this.state.skjeer} step="0.5" min="0.5" max="15" onChange={event => this._storeChange(event)} />
                 <input type="submit" value="Registrer brygg"/>
             </form>
