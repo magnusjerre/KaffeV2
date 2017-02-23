@@ -11,7 +11,7 @@ export default class BryggKarakterRegistrering extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            kaffeId: '',
+            kaffeId: 'default',
             bruker: '',
             kommentar: '',
             karakter: 0,
@@ -44,13 +44,6 @@ export default class BryggKarakterRegistrering extends Component {
                 }
             </div>
         );
-    }
-
-    getDefaultKaffeId() {
-        if (this.props.muligeKaffer.length == 0) {
-            return '';
-        }
-        return this.props.muligeKaffer[0].kaffeId
     }
     
     _handleKafferChange(event) {
@@ -94,7 +87,7 @@ export default class BryggKarakterRegistrering extends Component {
 
     clearForm() {
         this.setState({
-            kaffeId: '',
+            kaffeId: 'default',
             bruker: '',
             kommentar: '',
             karakter: 0
