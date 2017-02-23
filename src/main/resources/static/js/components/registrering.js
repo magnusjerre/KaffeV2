@@ -37,7 +37,7 @@ export default class Registrering extends Component {
                 </div>
                 { this.state.visRegistrerBrygg ?
                         <BryggRegistrering onRegistrerBrygg={() => this._onRegistrerBrygg()}/>
-                        : <img src={plussTegn} className="nyttBryggTegn" alt="Nytt brygg" onClick={() => this.setState({visRegistrerBrygg: true})}/>
+                    : <button className="closeButton nyttBryggTegn" onClick={() => this.setState({visRegistrerBrygg: true})}></button>
                 }
             </div>
         );

@@ -146,12 +146,6 @@ input[type="submit"]:focus {
     display: inline-block;
 }
 
-.nyttBryggTegn {
-    width: 3em;
-    height: 3em;
-    margin: 1em;
-}
-
 .bryggRegistrertHeader {
     display: flex;
     flex-direction: row;
@@ -165,11 +159,37 @@ input[type="submit"]:focus {
     font-size: 1.25em;
     text-align: left;
     display: inline-block;
+    border: 0.15em solid transparent;
+    border-radius: 0;
 }
 
 .closeButton {
-    width: 1em;
-    height: 1em;
+    background-image: url('../images/cross.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 100% 100%;
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.25em;
+    border: 0em solid transparent;
+}
+
+.closeButton:hover {
+    border: 0.15em solid transparent;
+    border-radius: 0.5em;
+}
+
+.closeButton:focus {
+    border: 0.4em solid transparent;
+    border-radius: 2em;
+    outline: none;
+}
+
+.nyttBryggTegn {
+    background-image: url('../images/pluss.png');
+    width: 3em;
+    height: 3em;
+    margin: 1em;
 }
 
 .dialog {
@@ -222,8 +242,6 @@ input[type="submit"]:focus {
 }
 
 .lukkGjetteResultat {
-    width: 2em;
-    height: 2em;
     align-self: center;
 }
 

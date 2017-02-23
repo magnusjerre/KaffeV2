@@ -6,7 +6,7 @@ export default function KarakterRegistreringResultat(props) {
         <div className="gjetteResultat">
             <h2>{props.title}</h2>
             <p>{props.text}</p>
-            <img className="lukkGjetteResultat" src={cross} alt="lukk" onClick={() => props.onLukkMelding()}/>
+            <button className="closeButton lukkGjetteResultat" onClick={() => props.onLukkMelding()}></button>
         </div>
     );
 }

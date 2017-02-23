@@ -30,7 +30,7 @@ export default class BryggKarakterRegistrering extends Component {
             <div className="flexboxColumn registreringBox boxListElemet">
                 <header className="bryggRegistrertHeader">
                     <h1 className="bryggNavnHeader">{this.props.bryggnavn}</h1>
-                    <img src={cross} alt="Close" className="closeButton" onClick={() => this.setState({showCloseDialog: !this.state.showCloseDialog})}/>
+                    <button className="closeButton" onClick={() => this.setState({showCloseDialog: !this.state.showCloseDialog})}></button>
                 </header>
                 {this.state.showCloseDialog ?
                     <Dialog text={`Sikker på at du vil skjule "${this.props.bryggnavn}"? Det vil da ikke være mulig å registrere flere karakterer for dette brygget.`} positiveButton="Ja" negativeButton="Nei"

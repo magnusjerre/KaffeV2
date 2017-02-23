@@ -4,6 +4,7 @@ module.exports = {
     output: {
         path: __dirname + '/src/main/resources/static/js',
         filename: "bundle.js"
+        // publicPath: 'https://kaffe-ala-jerre-v2.herokuapp.com'
     },
     module: {
         loaders: [
