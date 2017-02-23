@@ -78,6 +78,7 @@ nav > li {
     align-items: center;
     margin-bottom: 0.5em;
     font-weight: bold;
+    color: saddlebrown;
 }
 
 .flexLabelInput {
@@ -87,6 +88,14 @@ nav > li {
     padding: 0.25em 0.5em;
     margin-left: 0.5em;
     border-radius: 0.25em;
+}
+
+input:focus {
+    outline-color: saddlebrown;
+}
+
+select:focus {
+    outline-color: saddlebrown;
 }
 
 input[type="submit"] {
