@@ -90,13 +90,25 @@ nav > li {
 }
 
 input[type="submit"] {
-    background-color: burlywood;
-    border: 0;
+    border: 0.15em solid saddlebrown;
     font-weight: bold;
-    font-size: 1.25em;
-    padding: 0.25em 0;
+    font-size: 1em;
+    padding: 0.5em 0;
     margin-top: 0.25em;
     border-radius: 0.25em;
+    background-color: burlywood;
+    color: saddlebrown;
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0 0 0.5em saddlebrown;
+    background-color: saddlebrown;
+    color: burlywood;
+}
+
+input[type="submit"]:focus {
+    outline: 0;
 }
 
 .karakterBean {
@@ -165,7 +177,7 @@ input[type="submit"] {
 
 .dialog > button {
     padding: 0.25em;
-    border: 0;
+    border: 0.15em solid saddlebrown;
     border-radius: 0.5em;
     background-color: bisque;
     width: 25%;
@@ -178,6 +190,10 @@ input[type="submit"] {
     background-color: saddlebrown;
     box-shadow: 0 0 1em saddlebrown;
     color: bisque;
+}
+
+.dialog > button:focus {
+    outline: 0;
 }
 
 .dialog > p {
