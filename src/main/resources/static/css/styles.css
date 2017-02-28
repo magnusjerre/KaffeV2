@@ -193,16 +193,17 @@ input[type="submit"]:focus {
 }
 
 .dialog {
+    position: absolute;
     display: flex;
     flex-directino: row;
     flex-wrap: wrap;
-    align-self: center;
+    align-self: left;
     justify-content: space-between;
-    width: 15em;
     background-color: burlywood;
     border-radius: 0.25em;
     padding: 1em;
     box-shadow: 0 0 0.5em saddlebrown;
+    z-index: 5;
 }
 
 .dialog > button {
@@ -246,6 +247,7 @@ input[type="submit"]:focus {
 }
 
 .gjetteResultat {
+    position: absolute;
     display: flex;
     align-self: center;
     flex-direction: column;
@@ -256,8 +258,59 @@ input[type="submit"]:focus {
     box-shadow: 0 0 1em saddlebrown;
 }
 
+.toBackFace {
+    visibility: hidden;
+    transform: rotateX(180deg);
+    transition: visibility 0.25s step-end, transform 0.5s ease-in-out;
+}
+
+.toFrontFace {
+    visibility: visible;
+    transform: rotateX(0);
+    transition: visibility 0.25s step-end, transform 0.5s ease-in-out;
+}
+
 .className > h2 {
     font-size: large;
     margin-top: 0;
     margin-bottom: 0.5em;
+}
+
+.flipped {
+    transform: rotateX(180deg);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card {
+    position: absolute;
+    width: 20em;
+    height: 13em;
+    top: 0;
+    box-sizing: border-box;
+    background-color: burlywood;
+    border: 0.2em solid saddlebrown;
+    border-radius: 0.5em;
+    padding: 1em;
+}
+
+.cardHolder {
+    position: relative;
+    overflow: hidden;
+    height: 13em;
+}
+
+.cardOutTop {
+    top: -15em;
+    transition: top 0.3s ease-in-out;
+}
+
+.cardDefault {
+    top: 0em;
+    transition: top 0.3s ease-in-out;
+}
+
+.cardOutBottom {
+    top: 13em;
+    transition: top 0.3s ease-in-out;
 }

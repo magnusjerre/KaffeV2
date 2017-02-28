@@ -16,38 +16,62 @@ export default class BryggKarakterRegistrering extends Component {
             bruker: '',
             kommentar: '',
             karakter: 0,
-            showCloseDialog: false,
-            gjetteResultat: null
+            gjetteResultat: {title: '', text: ''}
         };
         this._handleKafferChange.bind(this);
         this._handleSubmit.bind(this);
         this._handleClose.bind(this);
         this._handleLukkMelding.bind(this);
+        this._toggleSkjulBryggBoks.bind(this);
     }
 
     render() {
         return (
-            <div className="flexboxColumn registreringBox boxListElemet">
+            <div ref={div => this.div = div } className="flexboxColumn registreringBox boxListElemet">
                 <header className="bryggRegistrertHeader">
                     <h1 className="bryggNavnHeader">{this.props.bryggnavn}</h1>
-                    <button className="closeButton" onClick={() => this.setState({showCloseDialog: !this.state.showCloseDialog})}></button>
+                    <button className="closeButton" onClick={() => this._toggleSkjulBryggBoks()}></button>
                 </header>
-                {this.state.showCloseDialog ?
+                <div className="cardHolder">
                     <Dialog text={`Sikker på at du vil skjule "${this.props.bryggnavn}"? Det vil da ikke være mulig å registrere flere karakterer for dette brygget.`} positiveButton="Ja" negativeButton="Nei"
-                            onPositive={() => {this._handleClose()}} onNegative={() => this.setState({showCloseDialog: false})}/>
-                    : this.state.gjetteResultat ?
-                    <KarakterRegistreringResultat title={this.state.gjetteResultat.title} text={this.state.gjetteResultat.text} onLukkMelding={() => this._handleLukkMelding()}/>
-                    :
-                    <form className="flexboxColumn" onSubmit={event => this._handleSubmit(event)}>
+                            onPositive={() => {this._handleClose()}} onNegative={() => this._toggleSkjulBryggBoks()} addRef={div => this.dialog = div}/>
+                    <KarakterRegistreringResultat title={this.state.gjetteResultat.title} text={this.state.gjetteResultat.text} onLukkMelding={() => this._handleLukkMelding()} addRef={div => this.regResultat = div}/>
+                    <form ref={form => this.form = form } className="flexboxColumn card cardDefault" onSubmit={event => this._handleSubmit(event)}>
                         <KaffeSelector label="Kaffe: " name="kaffeId" kaffer={this.props.muligeKaffer} valgtKaffe={this.state.kaffeId} required={true} onChange={event => this._handleKafferChange(event)} />
                         <TextInput label="Bruker: " name="bruker" required="required" placeholder="Jerre" value={this.state.bruker} onChange={event => this._handleKafferChange(event)} />
                         <TextInput label="Kommentar: " name="kommentar" placeholder="Denne var rar..." value={this.state.kommentar} onChange={event => this._handleKafferChange(event)} />
                         <KarakterLabel isEditable={true} maxKarakter={5} karakter={this.state.karakter} handleValgtKarakter={ verdi => this._handleKarakterValgt(verdi)} required={true}/>
-                        <input type="submit" value="Registrer karakter"/>
+                        <input type="submit" value="Registrer karakter" ref={submit => this.submit = submit } />
                     </form>
-                }
+                </div>
             </div>
         );
+    }
+
+    _toggleSkjulBryggBoks() {
+        if ($(this.dialog).hasClass("cardOutTop")) {
+            $(this.dialog).removeClass("cardOutTop");
+            $(this.dialog).addClass("cardDefault");
+            $(this.form).removeClass("cardDefault");
+            $(this.form).addClass("cardOutBottom");
+            $(this.regResultat).removeClass("cardDefault");
+            $(this.regResultat).addClass("cardOutBottom");
+        } else {
+            $(this.dialog).removeClass("cardDefault");
+            $(this.dialog).addClass("cardOutTop");
+            $(this.form).removeClass("cardOutBottom");
+            $(this.form).addClass("cardDefault");
+            $(this.regResultat).removeClass("cardOutBottom");
+            $(this.regResultat).addClass("cardDefault");
+        }
+    }
+
+    componentDidMount() {
+        $(this.regResultat).addClass("flipped");
+    }
+
+    isGjetteresultatChanged(previousGjetteState, nextGjetteState) {
+        return previousGjetteState.title != nextGjetteState.title && previousGjetteState.text != nextGjetteState.text;
     }
     
     _handleKafferChange(event) {
@@ -61,29 +85,32 @@ export default class BryggKarakterRegistrering extends Component {
     }
 
     _handleLukkMelding() {
-        this.setState({
-            gjetteResultat: null
-        });
+        this.clearForm();
+        $(this.form).removeClass("rotateRegistreringToBack toBackFace cardDefault");
+        $(this.form).addClass("rotateRegistreringToFront toFrontFace");
+        $(this.regResultat).removeClass("rotateRegistreringToFront toFrontFace cardDefault");
+        $(this.regResultat).addClass("rotateRegistreringToBack toBackFace");
     }
 
     _handleSubmit(event) {
         event.preventDefault();
+        $(this.form).removeClass("rotateRegistreringToFront toFrontFace cardDefault");
+        $(this.form).addClass("rotateRegistreringToBack toBackFace");
+        $(this.regResultat).removeClass("rotateRegistreringToBack toBackFace flipped cardDefault");
+        $(this.regResultat).addClass("rotateRegistreringToFront toFrontFace");
 
         $.ajax('api/brygg/' + this.props.bryggid + '/karakter', {
                 contentType: 'application/json; charset=UTF-8',
                 data: JSON.stringify(this.state),
                 method: 'POST',
-                dataType: 'json',
-                success: () => {
-                    this.clearForm();
-                }
+                dataType: 'json'
             }
         );
 
         let gjetteResultat = {title: "", text: ""};
         let riktigKaffe = this.getRiktigKaffe();
         let korrektNavn = `${riktigKaffe.navn} - ${riktigKaffe.produsent}`;
-        gjetteResultat.text = `Dagens kaffe var "${korrektNavn}".`
+        gjetteResultat.text = `Dagens kaffe var "${korrektNavn}".`;
         if (this.state.kaffeId == this.props.korrektKaffeId) {
             gjetteResultat.title = "Korrekt!";
         } else {
