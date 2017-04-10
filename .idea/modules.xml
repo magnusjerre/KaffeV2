@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KaffeV2.iml" filepath="$PROJECT_DIR$/KaffeV2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaffeV2.iml" filepath="$PROJECT_DIR$/.idea/modules/KaffeV2.iml" />
+      <module fileurl="file://C:\MJDev\KaffeV2\KaffeV2.iml" filepath="C:\MJDev\KaffeV2\KaffeV2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaffeV2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/KaffeV2_main.iml" group="KaffeV2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KaffeV2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/KaffeV2_test.iml" group="KaffeV2" />
     </modules>
   </component>
 </project>
