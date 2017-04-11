@@ -5,7 +5,7 @@ import BryggListe from "./ContainerComponents/BryggListe";
 import {createBrygg} from "../factory";
 
 let pluss = require("../../images/pluss.png")
-require("../../css/styles.css")
+require("../../css/styles.scss")
 
 declare function require(name: string): any
 

@@ -15,12 +15,22 @@ module.exports = {
                 test: /\.tsx?$/, loader: "awesome-typescript-loader"
             },
             {
-                test: /\.css$/, loader: 'style-loader!css-loader'
-            },
-            {
                 test: /\.png$/, loader: 'file-loader', options: {
                     name: './../images/[name].[ext]'    //The path relative to entry.js to the images location
                 }
+            },
+            {
+                test: /\.scss$/, use: [
+                {
+                    loader: 'style-loader'
+                },
+                {
+                    loader: 'css-loader'
+                },
+                {
+                    loader: 'sass-loader'
+                }
+                ]
             }
         ]
     // },
