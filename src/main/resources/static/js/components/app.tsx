@@ -3,6 +3,7 @@ import Header from './header'
 import NavBar from './nav-bar'
 import BryggListe from "./ContainerComponents/BryggListe";
 import {createBrygg} from "../factory";
+import BryggRegistrering from "./ContainerComponents/BryggRegistrering"
 
 let pluss = require("../../images/pluss.png")
 require("../../css/styles.scss")
@@ -17,6 +18,7 @@ const App : React.StatelessComponent<any> = props => (
             <img src={pluss} alt="pluss"></img>
         </div>
         <BryggListe />
+        <BryggRegistrering />
         {/*<BryggListe bryggListe={[createBrygg("hh", "Hh", "22", 1, 2)]}/>*/}
     </div>
 )
