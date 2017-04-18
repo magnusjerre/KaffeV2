@@ -3,7 +3,7 @@ import {
     ADD_BRYGG_REQUEST, ADD_BRYGG_SUCCESS,
     NEW_BRYGG_KAFFEID, NEW_BRYGG_NAVN, NEW_BRYGG_BRYGGER, NEW_BRYGG_LITER,
     NEW_BRYGG_SKJEER
-} from "../actions/actions";
+} from "../actions/brygg_actions";
 
 const initalState = {
     navn: "",
@@ -14,7 +14,7 @@ const initalState = {
     visBryggRegistrering: false
 }
 
-const nyttBryggReducer = (state: IBryggRegistrering = initalState, action: IAction<string | number | boolean>) : IBryggRegistrering => {
+const bryggRegistreringReducer = (state: IBryggRegistrering = initalState, action: IAction<string | number | boolean>) : IBryggRegistrering => {
     let newState = clone(state)
     switch(action.type) {
         case NEW_BRYGG_NAVN:
@@ -37,13 +37,13 @@ const nyttBryggReducer = (state: IBryggRegistrering = initalState, action: IActi
             return newState
         case ADD_BRYGG_SUCCESS:
             console.log("Reducer recieved ADD_BRYGG_SUCCESS action")
-            return newState
+            return clone(initalState)
         default:
             return state
     }
 }
 
-export default nyttBryggReducer
+export default bryggRegistreringReducer
 
 const clone = (state: IBryggRegistrering) : IBryggRegistrering => {
     return {

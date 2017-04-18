@@ -2,7 +2,7 @@ import * as React from "react";
 import {
     addBryggAction, newBryggBryggerAction, newBryggKaffeId, newBryggLiter,
     newBryggNavnAction, newBryggSkjeer
-} from "../../actions/actions";
+} from "../../actions/brygg_actions";
 import {connect, Dispatch} from "react-redux";
 import {IBryggRegistrering, IDispatchable, IKaffe, IState} from "../../models";
 import KaffeSelect from "../KaffeSelect";
