@@ -1,5 +1,5 @@
 module.exports = {
-    entry: __dirname + '/src/main/resources/static/js/entry.tsx',
+    entry: ['whatwg-fetch', __dirname + '/src/main/resources/static/js/entry.tsx'],
     devtool: 'source-map',
     output: {
         path: __dirname + '/src/main/resources/static/js',

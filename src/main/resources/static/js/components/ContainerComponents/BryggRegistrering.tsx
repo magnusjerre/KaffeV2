@@ -8,6 +8,7 @@ import {IBryggRegistrering, IDispatchable, IKaffe, IState} from "../../models";
 import KaffeSelect from "../KaffeSelect";
 
 interface IBryggRegistreringComp {
+    onSubmitBrygg?: (nyttBrygg: IBryggRegistrering) => VoidFunction
     onChangeBryggNavn?: (newValue: string) => VoidFunction
     onChangeBrygger?: (newValue: string) => VoidFunction
     onChangeKaffeId?: (newValue: string) => VoidFunction
@@ -17,9 +18,9 @@ interface IBryggRegistreringComp {
     muligeKaffer?: IKaffe[]
 }
 
-let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onChangeBryggNavn, onChangeBrygger, onChangeKaffeId, onChangeLiter, onChangeSkjeer, nyttBrygg, muligeKaffer}) => {
+let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeBryggNavn, onChangeBrygger, onChangeKaffeId, onChangeLiter, onChangeSkjeer, nyttBrygg, muligeKaffer}) => {
     return (
-        <form className="holder">
+        <form className="holder" onSubmit={ (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onSubmitBrygg(nyttBrygg) }}>
             <div className="formInputContent">
                 <label htmlFor="navn">Bryggnavn
                     <input name="navn" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeBryggNavn(e.currentTarget.value) }} value={nyttBrygg.navn} placeholder="Gang of four"/>
@@ -46,15 +47,18 @@ const mapStateToProps = (state: IState, props: IBryggRegistreringComp) : IBryggR
     return {
         nyttBrygg: state.nyttBrygg,
         muligeKaffer: [{
-            _id: "123", navn: "heio"
+            _id: "57e234e721816b3ec8ef2414", navn: "Maggas kaffe"
         }, {
-            _id: "321", navn: "oieh"
+            _id: "57e234fa21816b3ec8ef2415", navn: "Fredags kaffe"
         }]
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: IBryggRegistreringComp) => {
     return {
+        onSubmitBrygg: (nyttBrygg: IBryggRegistrering) => {
+            dispatch(addBryggAction(nyttBrygg))
+        },
         onChangeBryggNavn: (newValue: string) => {
             dispatch(newBryggNavnAction(newValue))
         },

@@ -2,11 +2,19 @@ import {Dispatch} from "react-redux";
 export interface IBrygg {
     _id: string
     navn: string
-    brygger: string
     kaffeId: string
+    brygger: string
+    dato: Date
     liter: number
     skjeer: number
+    vis: Boolean
+    kommentar: string
+    malthet: Malthet
     karakterer: IKarakter[]
+}
+
+export enum Malthet {
+    FINMALT, MEDIUM, GROV
 }
 
 export interface IKarakter {

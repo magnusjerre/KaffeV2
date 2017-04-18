@@ -1,5 +1,6 @@
 import {IAction, IBryggRegistrering} from "../models";
 import {
+    ADD_BRYGG_REQUEST, ADD_BRYGG_SUCCESS,
     NEW_BRYGG_KAFFEID, NEW_BRYGG_NAVN, NEW_BRYGG_BRYGGER, NEW_BRYGG_LITER,
     NEW_BRYGG_SKJEER
 } from "../actions/actions";
@@ -30,6 +31,12 @@ const nyttBryggReducer = (state: IBryggRegistrering = initalState, action: IActi
             return newState
         case NEW_BRYGG_SKJEER:
             newState.skjeer = action.payload as number
+            return newState
+        case ADD_BRYGG_REQUEST:
+            console.log("Reducer recieved ADD_BRYGG_REQUEST action")
+            return newState
+        case ADD_BRYGG_SUCCESS:
+            console.log("Reducer recieved ADD_BRYGG_SUCCESS action")
             return newState
         default:
             return state
