@@ -24,6 +24,9 @@ export interface IKarakter {
 export interface IKaffe {
     _id: string
     navn: string
+    produsent: string
+    land: string
+    vis: Boolean
 }
 
 export interface IBryggState {
@@ -41,7 +44,8 @@ export interface IBryggRegistrering {
 
 export interface IState {
     bryggListe: IBrygg[],
-    nyttBrygg: IBryggRegistrering
+    nyttBrygg: IBryggRegistrering,
+    kaffer: IKaffeFetcher
 }
 
 export interface IAction<T> {
@@ -59,4 +63,9 @@ export interface IKaffeSelect {
     name: string
     kaffeId: string
     id: string
+}
+
+export interface IKaffeFetcher {
+    muligeKaffer: IKaffe[]
+    isFetching: Boolean
 }

@@ -46,11 +46,7 @@ let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = (
 const mapStateToProps = (state: IState, props: IBryggRegistreringComp) : IBryggRegistreringComp => {
     return {
         nyttBrygg: state.nyttBrygg,
-        muligeKaffer: [{
-            _id: "57e234e721816b3ec8ef2414", navn: "Maggas kaffe"
-        }, {
-            _id: "57e234fa21816b3ec8ef2415", navn: "Fredags kaffe"
-        }]
+        muligeKaffer: state.kaffer.muligeKaffer
     }
 }
 
