@@ -11,6 +11,9 @@ export const NEW_BRYGG_KAFFEID = "NEW_BRYGG_KAFFEID"
 export const NEW_BRYGG_LITER = "NEW_BRYGG_LITER"
 export const NEW_BRYGG_SKJEER = "NEW_BRYGG_SKJEER"
 
+export const FETCH_BRYGG_REQUEST = "FETCH_BRYGG_REQUEST"
+export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
+
 //The first statement is a "shorthand" for the second statement
 // ... ThunkAction<void, IBryggRegistrering, void> => (dispatch: Dispatch<IAction<IBryggRegistrering>>) => {...}
 // ... ThunkAction<void, IBryggRegistrering, void> => { return (dispatch: Dispatch<IAction<IBryggRegistrering>>) => {...} }
@@ -78,4 +81,30 @@ export const newBryggSkjeer = (skjeer: number) : IAction<number> => {
         type: NEW_BRYGG_SKJEER,
         payload: skjeer
     }
+}
+
+export const createFetchBryggRequestAction = () : IAction<Boolean> => {
+    return {
+        type: FETCH_BRYGG_REQUEST,
+        payload: true
+    }
+}
+
+export const createFetchBryggSuccessAction = (brygg: IBrygg[]) : IAction<IBrygg[]> => {
+    return {
+        type: FETCH_BRYGG_SUCCESS,
+        payload: brygg
+    }
+}
+
+export const createFetchBryggAction = () : ThunkAction<void, IBrygg[], void> => (dispatch: Dispatch<IAction<IBrygg[]>>) => {
+    dispatch(createFetchBryggRequestAction())
+    let today = new Date()
+    let tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    let todayString = `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`
+    let tomorrowString = `${tomorrow.getUTCFullYear()}-${tomorrow.getUTCMonth() + 1}-${tomorrow.getUTCDate()}`
+
+    return fetch("/api/brygg?fra=" + todayString + "&til=" + tomorrowString).then((response: Response) => response.json()).then((json: any) => {dispatch(createFetchBryggSuccessAction(json))})
 }

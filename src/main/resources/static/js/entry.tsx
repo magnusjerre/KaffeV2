@@ -8,6 +8,7 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk"
 import {applyMiddleware} from "redux";
 import {fetchKafferAction} from "./actions/kaffe_actions";
+import {createFetchBryggAction} from "./actions/brygg_actions";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -16,6 +17,7 @@ declare function require(name: string): any
 
 let store = createStore(combinedReducers, composeWithDevTools(applyMiddleware(thunk)))
 store.dispatch(fetchKafferAction())
+store.dispatch(createFetchBryggAction())
 
 ReactDOM.render(
     <Provider store={store}>
