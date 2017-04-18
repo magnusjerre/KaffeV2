@@ -1,3 +1,9 @@
+$cardBackground: lightGray;
+$cardInputBackground: lighten(rgb(211, 211, 211), 10%);
+$cardSubmitBackground: darken(rgb(211, 211, 211), 20%);
+$cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
+$inputOutlineColor: darken(rgb(211, 211, 211), 20%);
+
 h1 {
   color: green;
 }
@@ -12,3 +18,70 @@ a {
     font-weight: bold;
   }
 }
+
+.holder {
+  width: 20em;
+
+  .formInputContent {
+    width: 100%;
+    padding: 0.5em 1em;
+    background-color: $cardBackground;
+    box-sizing: border-box;
+
+    label {
+      display: block;
+      margin: 0.5em 0;
+      padding: 0;
+      font-weight: bold;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 0.25em;
+      margin: 0;
+      margin-top: 0.25em;
+      box-sizing: border-box;
+      border: none;
+      background-color: $cardInputBackground;
+
+      &:focus {
+        outline-color: $inputOutlineColor;
+      }
+    }
+
+    select {
+      display: block;
+      width: 100%;
+      margin: 0;
+      border: none;
+      background-color: $cardInputBackground;
+
+      &:focus {
+        outline-color: $inputOutlineColor;
+      }
+    }
+  }
+
+  .formInputContent + input[type="submit"] {
+    width: 100%;
+    margin: 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border: none;
+    background: $cardSubmitBackground;
+    display: block;
+
+    &:focus {
+      outline: none;
+      background-color: $cardSubmitFocus;
+    }
+
+    &:hover {
+      background-color: $cardSubmitFocus;
+    }
+  }
+}
+
+
+
