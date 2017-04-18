@@ -2,7 +2,7 @@ $cardBackground: lightGray;
 $cardInputBackground: lighten(rgb(211, 211, 211), 10%);
 $cardSubmitBackground: darken(rgb(211, 211, 211), 20%);
 $cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
-$inputOutlineColor: darken(rgb(211, 211, 211), 20%);
+$inputOutlineColor: darken(rgb(211, 211, 211), 40%);
 
 @mixin transition($property, $value) {
   -webkit-transition: $property $value;
@@ -52,6 +52,8 @@ a {
       box-sizing: border-box;
       border: none;
       background-color: $cardInputBackground;
+      outline-color: transparent;
+      @include transition(outline-color, 0.5s);
 
       &:focus {
         outline-color: $inputOutlineColor;
@@ -62,9 +64,12 @@ a {
       display: block;
       width: 100%;
       margin: 0;
+      margin-top: 0.25em;
       padding: 0.25em 0;
       border: none;
       background-color: $cardInputBackground;
+      outline-color: transparent;
+      @include transition(outline-color, 0.5s);
 
       &:focus {
         outline-color: $inputOutlineColor;
@@ -80,7 +85,7 @@ a {
     border: none;
     background-color: $cardSubmitBackground;
     display: block;
-    @include transition(background-color, 1s);
+    @include transition(background-color, 0.5s);
 
     &:focus {
       outline: none;
