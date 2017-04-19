@@ -11,6 +11,8 @@ export interface IBrygg {
     kommentar: string
     malthet: Malthet
     karakterer: IKarakter[]
+    //Fields not part of the api
+    nyKarakter?: IKarakter
 }
 
 export enum Malthet {
@@ -18,7 +20,14 @@ export enum Malthet {
 }
 
 export interface IKarakter {
+    karakter: number
+    bruker: string
+    kaffeId: string
+    kommentar: string
+}
 
+export interface IKarakterRegistreringState {
+    karakterRegistreringer: IKarakter[]
 }
 
 export interface IKaffe {
@@ -59,7 +68,7 @@ export interface IDispatchable<T> {
 
 export interface IKaffeSelect {
     muligeKaffer: IKaffe[]
-    onChangeKaffe: (newId: string) => VoidFunction
+    onChangeKaffe: (newId: string) => void
     name: string
     kaffeId: string
     id: string

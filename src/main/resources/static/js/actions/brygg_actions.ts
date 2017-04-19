@@ -17,7 +17,7 @@ export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
 //The first statement is a "shorthand" for the second statement
 // ... ThunkAction<void, IBryggRegistrering, void> => (dispatch: Dispatch<IAction<IBryggRegistrering>>) => {...}
 // ... ThunkAction<void, IBryggRegistrering, void> => { return (dispatch: Dispatch<IAction<IBryggRegistrering>>) => {...} }
-export const addBryggAction = (brygg: IBryggRegistrering) : ThunkAction<void, IBryggRegistrering, void> => (dispatch: Dispatch<IAction<IBryggRegistrering>>) => {
+export const addBryggAction = (brygg: IBryggRegistrering) : ThunkAction<void, IBryggRegistrering, void> => (dispatch: Dispatch<any>) => {
     dispatch(addBryggRequestAction(brygg))
     let nyttBrygg = JSON.stringify(createBrygg(brygg.navn, brygg.brygger, brygg.kaffeId, brygg.liter, brygg.skjeer))
     return fetch("http://localhost:8080/api/brygg", {
@@ -30,6 +30,7 @@ export const addBryggAction = (brygg: IBryggRegistrering) : ThunkAction<void, IB
         .then((json: any) => {
             console.log("heio, dette funket");
             dispatch(addBryggSuccessAction())
+            dispatch(createFetchBryggAction())
         })
         .catch((response: Response) => response.statusText)
 }
