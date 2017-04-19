@@ -1,15 +1,11 @@
-import {IAction, IBrygg, IBryggRegistrering } from "../models"
+import {IAction, IBrygg, IBryggRegistrering, IPropertyChange} from "../models"
 import {ThunkAction} from "redux-thunk"
 import {Dispatch} from "react-redux";
 import {createBrygg} from "../factory";
 
 export const ADD_BRYGG_REQUEST = "ADD_BRYGG_REQUEST"
 export const ADD_BRYGG_SUCCESS = "ADD_BRYGG_SUCESS"
-export const NEW_BRYGG_NAVN = "NEW_BRYGG_NAVN"
-export const NEW_BRYGG_BRYGGER = "NEW_BRYGG_BRYGGER"
-export const NEW_BRYGG_KAFFEID = "NEW_BRYGG_KAFFEID"
-export const NEW_BRYGG_LITER = "NEW_BRYGG_LITER"
-export const NEW_BRYGG_SKJEER = "NEW_BRYGG_SKJEER"
+export const NEW_BRYGG_PROP_CHANGE = "NEW_BRYGG_PROP_CHANGE"
 
 export const FETCH_BRYGG_REQUEST = "FETCH_BRYGG_REQUEST"
 export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
@@ -49,38 +45,13 @@ const addBryggRequestAction = (brygg: IBryggRegistrering) : IAction<IBryggRegist
     }
 }
 
-export const newBryggNavnAction = (navn: string) : IAction<string> => {
+export const createBryggPropertyChangeAction = (property: string, value: any) : IAction<IPropertyChange> => {
     return {
-        type: NEW_BRYGG_NAVN,
-        payload: navn
-    }
-}
-
-export const newBryggBryggerAction = (brygger: string) : IAction<string> => {
-    return {
-        type: NEW_BRYGG_BRYGGER,
-        payload: brygger
-    }
-}
-
-export const newBryggKaffeId = (kaffeId: string) : IAction<string> => {
-    return {
-        type: NEW_BRYGG_KAFFEID,
-        payload: kaffeId
-    }
-}
-
-export const newBryggLiter = (liter: number) : IAction<number> => {
-    return {
-        type: NEW_BRYGG_LITER,
-        payload: liter
-    }
-}
-
-export const newBryggSkjeer = (skjeer: number) : IAction<number> => {
-    return {
-        type: NEW_BRYGG_SKJEER,
-        payload: skjeer
+        type: NEW_BRYGG_PROP_CHANGE,
+        payload: {
+            property,
+            value
+        }
     }
 }
 

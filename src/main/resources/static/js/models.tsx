@@ -78,3 +78,8 @@ export interface IKaffeFetcher {
     muligeKaffer: IKaffe[]
     isFetching: Boolean
 }
+
+export interface IPropertyChange {
+    property: string
+    value: any
+}
