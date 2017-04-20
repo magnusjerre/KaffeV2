@@ -1,7 +1,8 @@
-import * as React from "react"
+import * as React from "react";
 import {IBrygg, IState} from "../../models";
 import {connect} from "react-redux";
 import Brygg from "./KarakterRegistrering";
+import KarakterResultat from "./KarakterResultat";
 
 interface IBryggListeComp {
     bryggListe?: IBrygg[]
@@ -12,7 +13,10 @@ let BryggListeComp: React.StatelessComponent<IBryggListeComp> = (props) => (
         {
             props.bryggListe.map(
                 (brygg: IBrygg) => (
-                    <Brygg key={brygg._id} brygg={brygg} />
+                    <div className="flipContainer inlineblock" key={brygg._id}>
+                        <Brygg brygg={brygg} />
+                        <KarakterResultat brygg={brygg}/>
+                    </div>
                 )
             )
         }

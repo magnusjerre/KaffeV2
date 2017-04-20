@@ -13,6 +13,8 @@ export interface IBrygg {
     karakterer: IKarakter[]
     //Fields not part of the api
     nyKarakter?: IKarakter
+    gjetteResultat?: IKarakter
+    visGjetteResultat?: boolean
 }
 
 export enum Malthet {

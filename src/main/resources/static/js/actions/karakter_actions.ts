@@ -6,6 +6,7 @@ export const REGISTRER_KARAKTER_REQUEST_ACTION = "REGISTRER_KARAKTER_REQUEST_ACT
 export const REGISTRER_KARAKTER_CHANGE_ACTION = "REGISTRER_KARAKTER_CHANGE_ACTION"
 export const REGISTRER_KARAKTER_CLEAR_ACTION = "REGISTRER_KARAKTER_CLEAR_ACTION"
 export const REGISTRER_KARAKTER_FLYTT_ACTION = "REGISTRER_KARAKTER_FLYTT_ACTION"
+export const CHANGE_KARAKTER_RESULTAT_VISIBILITY = "Change karakter result visibility"
 
 export interface IKarakterRegistreringAction {
     bryggId: string
@@ -16,6 +17,11 @@ export interface IKarakterRegEndringAction {
     bryggId: string
     field: string
     value: string | number
+}
+
+export interface IKarakterResultat {
+    bryggId: string
+    visibility: boolean
 }
 
 export const createKarakterRequestAction = (bryggId: string) : IAction<string> => {
@@ -64,5 +70,16 @@ export const createRegistrerKarakterAction = (bryggId: string, karakter: IKarakt
     }).then((response: Response) => response.json()).then( (json: any) => {
         dispatch(createKarakterFlyttAction(bryggId, karakter))
         dispatch(createClearKarakterRegistreringAction(bryggId))
+        dispatch(createChangeKarakterResultVisibilityAction(bryggId, true))
     })
+}
+
+export const createChangeKarakterResultVisibilityAction = (bryggId: string, visibility: boolean) : IAction<IKarakterResultat> => {
+    return {
+        type: CHANGE_KARAKTER_RESULTAT_VISIBILITY,
+        payload: {
+            bryggId,
+            visibility
+        }
+    }
 }
