@@ -2,7 +2,6 @@ import {IAction, IBrygg, IKarakter} from "../models";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "react-redux";
 
-export const REGISTRER_KARAKTER_ACTION = "REGISTRER_KARAKTER_ACTION"
 export const REGISTRER_KARAKTER_REQUEST_ACTION = "REGISTRER_KARAKTER_REQUEST_ACTION"
 export const REGISTRER_KARAKTER_CHANGE_ACTION = "REGISTRER_KARAKTER_CHANGE_ACTION"
 export const REGISTRER_KARAKTER_CLEAR_ACTION = "REGISTRER_KARAKTER_CLEAR_ACTION"

@@ -5,6 +5,7 @@ import {
     REGISTRER_KARAKTER_CHANGE_ACTION,
     REGISTRER_KARAKTER_CLEAR_ACTION, REGISTRER_KARAKTER_FLYTT_ACTION
 } from "../actions/karakter_actions";
+import {deepCopy} from "../factory";
 
 const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakterRegEndringAction | string>) : IBrygg[] => {
     switch (action.type) {
@@ -15,39 +16,37 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
             addNyKarakterFieldToEachBrygg(bryggPayload)
             return bryggPayload
         case REGISTRER_KARAKTER_CLEAR_ACTION: {
-            let index = findIndexOfBryggById(action.payload as string, state)
-            let bryggCopy = JSON.parse(JSON.stringify(state[index]))
-            bryggCopy.nyKarakter = {
+            let newState = deepCopy(state)
+            let brygg = findBryggById(action.payload as string, newState)
+            if (brygg == null) {
+                return state;
+            }
+            brygg.nyKarakter = {
                 bruker: "",
                 kaffeId: "def",
                 karakter: 0,
                 kommentar: ""
             }
-            let newState = state.slice()
-            newState[index] = bryggCopy
             return newState
         }
         case REGISTRER_KARAKTER_CHANGE_ACTION: {
             let regEndrPayload: IKarakterRegEndringAction = action.payload as IKarakterRegEndringAction
-            let newState = state.slice()
-            let index = findIndexOfBryggById(regEndrPayload.bryggId, newState)
-
-            if (index === -1) {
+            let newState = deepCopy(state)
+            let brygg = findBryggById(regEndrPayload.bryggId, newState) as any
+            if (brygg == null) {
                 return state
             }
-
-            let bryggCopy = JSON.parse(JSON.stringify(state[index]))
-            bryggCopy.nyKarakter[regEndrPayload.field] = regEndrPayload.value
-            newState[index] = bryggCopy
+            brygg.nyKarakter[regEndrPayload.field] = regEndrPayload.value
             return newState
         }
         case REGISTRER_KARAKTER_FLYTT_ACTION: {
             let payload : IKarakterRegEndringAction = action.payload as IKarakterRegEndringAction
-            let index = findIndexOfBryggById(payload.bryggId, state)
-            let bryggCopy = JSON.parse(JSON.stringify(state[index]))
-            bryggCopy.karakterer.push(bryggCopy.nyKarakter)
-            let newState = state.slice()
-            newState[index] = bryggCopy
+            let newState = deepCopy(state)
+            let brygg = findBryggById(payload.bryggId, newState)
+            if (brygg == null) {
+                return state
+            }
+            brygg.karakterer.push(brygg.nyKarakter)
             return newState
         }
         default:
@@ -55,14 +54,14 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
     }
 }
 
-function findIndexOfBryggById(id: string, bryggListe: IBrygg[]) : number {
+function findBryggById(id: string, bryggListe: IBrygg[]) : IBrygg {
     for (let i = 0; i < bryggListe.length; i++) {
         let brygg = bryggListe[i]
         if (brygg._id === id) {
-            return i
+            return brygg
         }
     }
-    return -1
+    return null
 }
 
 function addNyKarakterFieldToEachBrygg(bryggListe: IBrygg[]) {
