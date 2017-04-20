@@ -3,6 +3,7 @@ import {IAction, IBryggReg, IState} from "../models";
 import BryggRegistrering from "./ContainerComponents/BryggRegistrering";
 import {connect, Dispatch} from "react-redux";
 import {createToggleNyBryggAction} from "../actions/brygg_actions";
+import BryggListe from "./ContainerComponents/BryggListe";
 
 let pluss = require("../../images/pluss.png")
 
@@ -14,7 +15,8 @@ export interface IRegContainer {
 }
 
 let RegCon : React.StatelessComponent<IRegContainer> = ({visKnapp, toggle}) => (
-    <div>
+    <div className="verticalContainer">
+        <BryggListe />
         {
             visKnapp ? <img src={pluss} alt="Nytt brygg" onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
         }

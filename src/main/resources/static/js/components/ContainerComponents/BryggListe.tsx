@@ -8,7 +8,7 @@ interface IBryggListeComp {
 }
 
 let BryggListeComp: React.StatelessComponent<IBryggListeComp> = (props) => (
-    <ul>
+    <ul className="nonListDisplay horizontalContainer">
         {
             props.bryggListe.map(
                 (brygg: IBrygg) => (

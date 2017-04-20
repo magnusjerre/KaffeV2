@@ -15,7 +15,6 @@ const App : React.StatelessComponent<any> = props => (
     <div>
         <Header />
         <NavBar />
-        <BryggListe />
         <RegistreringContainer />
     </div>
 )

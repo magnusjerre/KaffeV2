@@ -28,9 +28,10 @@ a {
 }
 
 .holder {
-  margin-bottom: 1em;
+  margin: 1em;
   width: 20em;
   background-color: $cardBackground;
+  display: inline-block;
 
   h1 {
     font-size: 1.5em;
@@ -106,6 +107,11 @@ a {
   }
 }
 
+ul.nonListDisplay {
+  margin: 0;
+  padding: 0;
+}
+
 .nyttBryggKnapp {
   width: 2em;
   height: 2em;
@@ -117,4 +123,20 @@ a {
     height: 1.5em;
     margin: 0.25em;
   }
+}
+
+.verticalContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.horizontalContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
