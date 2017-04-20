@@ -106,3 +106,15 @@ a {
   }
 }
 
+.nyttBryggKnapp {
+  width: 2em;
+  height: 2em;
+  margin: 0em;
+  transition: width 0.5s, height 0.5s, margin 0.5s;
+
+  &:hover, &:focus {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.25em;
+  }
+}

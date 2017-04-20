@@ -6,6 +6,7 @@ import {createBrygg} from "../factory";
 export const ADD_BRYGG_REQUEST = "ADD_BRYGG_REQUEST"
 export const ADD_BRYGG_SUCCESS = "ADD_BRYGG_SUCESS"
 export const NEW_BRYGG_PROP_CHANGE = "NEW_BRYGG_PROP_CHANGE"
+export const TOGGLE_NEW_BRYGG = "Toggle new brygg"
 
 export const FETCH_BRYGG_REQUEST = "FETCH_BRYGG_REQUEST"
 export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
@@ -27,6 +28,7 @@ export const addBryggAction = (brygg: IBryggRegistrering) : ThunkAction<void, IB
             console.log("heio, dette funket");
             dispatch(addBryggSuccessAction())
             dispatch(createFetchBryggAction())
+            dispatch(createToggleNyBryggAction())
         })
         .catch((response: Response) => response.statusText)
 }
@@ -79,4 +81,11 @@ export const createFetchBryggAction = () : ThunkAction<void, IBrygg[], void> => 
     let tomorrowString = `${tomorrow.getUTCFullYear()}-${tomorrow.getUTCMonth() + 1}-${tomorrow.getUTCDate()}`
 
     return fetch("/api/brygg?fra=" + todayString + "&til=" + tomorrowString).then((response: Response) => response.json()).then((json: any) => {dispatch(createFetchBryggSuccessAction(json))})
+}
+
+export const createToggleNyBryggAction = () : IAction<void> => {
+    return {
+        type: TOGGLE_NEW_BRYGG,
+        payload: undefined
+    }
 }

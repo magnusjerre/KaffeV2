@@ -51,9 +51,14 @@ export interface IBryggRegistrering {
     visBryggRegistrering?: boolean
 }
 
+export interface IBryggReg {
+    brygg: IBryggRegistrering
+    visKnapp: boolean
+}
+
 export interface IState {
-    bryggListe: IBrygg[],
-    nyttBrygg: IBryggRegistrering,
+    bryggListe: IBrygg[]
+    nyttBrygg: IBryggReg
     kaffer: IKaffeFetcher
 }
 

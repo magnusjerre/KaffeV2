@@ -38,7 +38,7 @@ let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = (
 
 const mapStateToProps = (state: IState, props: IBryggRegistreringComp) : IBryggRegistreringComp => {
     return {
-        nyttBrygg: state.nyttBrygg,
+        nyttBrygg: state.nyttBrygg.brygg,
         muligeKaffer: state.kaffer.muligeKaffer
     }
 }
