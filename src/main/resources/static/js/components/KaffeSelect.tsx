@@ -1,8 +1,8 @@
 import * as React from "react"
 import {IKaffeSelect} from "../models"
 
-const KaffeSelect : React.StatelessComponent<IKaffeSelect> = ({muligeKaffer, onChangeKaffe, id, name, kaffeId}) => (
-    <select id={id} name={name} onChange={ (e: React.FormEvent<HTMLSelectElement>) => {e.preventDefault(); onChangeKaffe(e.currentTarget.value)}} value={kaffeId}>
+const KaffeSelect : React.StatelessComponent<IKaffeSelect> = ({muligeKaffer, onChangeKaffe, name, value}) => (
+    <select id={name} name={name} onChange={ (e: React.FormEvent<HTMLSelectElement>) => {e.preventDefault(); onChangeKaffe(name, e.currentTarget.value)}} value={value}>
         <option value="def" disabled={true}>Velg kaffe</option>
         {
             muligeKaffer.map(kaffe => (

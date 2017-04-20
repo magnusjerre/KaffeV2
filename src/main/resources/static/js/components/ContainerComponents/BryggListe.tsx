@@ -1,7 +1,7 @@
 import * as React from "react"
 import {IBrygg, IState} from "../../models";
 import {connect} from "react-redux";
-import Brygg from "../KarakterRegistrering";
+import Brygg from "./KarakterRegistrering";
 
 interface IBryggListeComp {
     bryggListe?: IBrygg[]

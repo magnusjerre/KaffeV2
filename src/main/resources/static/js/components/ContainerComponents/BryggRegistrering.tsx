@@ -6,13 +6,12 @@ import KaffeSelect from "../KaffeSelect";
 
 interface IBryggRegistreringComp {
     onSubmitBrygg?: (nyttBrygg: IBryggRegistrering) => void
-    onChangeKaffeId?: (newValue: string) => void
     onChangeProperty?: (property: string, newValue: number | string) => void
     nyttBrygg?: IBryggRegistrering
     muligeKaffer?: IKaffe[]
 }
 
-let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeProperty, onChangeKaffeId, nyttBrygg, muligeKaffer}) => {
+let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeProperty, nyttBrygg, muligeKaffer}) => {
     return (
         <form className="holder" onSubmit={ (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onSubmitBrygg(nyttBrygg) }}>
             <div className="formInputContent">
@@ -22,8 +21,8 @@ let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = (
                 <label htmlFor="brygger">Brygger
                     <input name="brygger" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("brygger", e.currentTarget.value) }} value={nyttBrygg.brygger} placeholder="Jerre"/>
                 </label>
-                <label htmlFor="kaffeSelector">Kaffe
-                    <KaffeSelect id="kaffeSelector" kaffeId={nyttBrygg.kaffeId} name="kaffeSelector" muligeKaffer={muligeKaffer} onChangeKaffe={onChangeKaffeId} />
+                <label htmlFor="kaffeId">Kaffe
+                    <KaffeSelect value={nyttBrygg.kaffeId} name="kaffeId" muligeKaffer={muligeKaffer} onChangeKaffe={onChangeProperty} />
                 </label>
                 <label htmlFor="liter">Liter
                     <input name="liter" type="number" min="0.1" step="0.1" value={nyttBrygg.liter} onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("liter", parseFloat(e.currentTarget.value))}} placeholder="1.0"/>
@@ -51,9 +50,6 @@ const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: IBryggRegistrerin
         },
         onChangeProperty: (property: string, newValue: string | number) => {
           dispatch(createBryggPropertyChangeAction(property, newValue))
-        },
-        onChangeKaffeId: (newValue: string) => {
-            dispatch(createBryggPropertyChangeAction("kaffeId", newValue))
         }
     }
 }

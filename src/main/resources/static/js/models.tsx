@@ -68,10 +68,9 @@ export interface IDispatchable<T> {
 
 export interface IKaffeSelect {
     muligeKaffer: IKaffe[]
-    onChangeKaffe: (newId: string) => void
+    onChangeKaffe: (property: string, newId: string) => void
     name: string
-    kaffeId: string
-    id: string
+    value: string
 }
 
 export interface IKaffeFetcher {
