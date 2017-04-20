@@ -3,6 +3,7 @@ $cardInputBackground: lighten(rgb(211, 211, 211), 10%);
 $cardSubmitBackground: darken(rgb(211, 211, 211), 20%);
 $cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
 $inputOutlineColor: darken(rgb(211, 211, 211), 40%);
+$fast: 0.1s;
 
 @mixin transition($property, $value) {
   -webkit-transition: $property $value;
@@ -116,7 +117,7 @@ ul.nonListDisplay {
   width: 2em;
   height: 2em;
   margin: 0em;
-  transition: width 0.5s, height 0.5s, margin 0.5s;
+  transition: width $fast, height $fast, margin $fast;
 
   &:hover, &:focus {
     width: 1.5em;
