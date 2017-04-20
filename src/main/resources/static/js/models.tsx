@@ -14,7 +14,11 @@ export interface IBrygg {
     //Fields not part of the api
     nyKarakter?: IKarakter
     gjetteResultat?: IKarakter
-    visGjetteResultat?: boolean
+    visning?: RegistreringVisning
+}
+
+export enum RegistreringVisning {
+    REGISTRERING, RESULTAT, LUKK
 }
 
 export enum Malthet {

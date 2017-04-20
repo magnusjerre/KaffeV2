@@ -28,3 +28,21 @@ export function retrieveKaffer(json: any) : IKaffe[] {
 export function deepCopy(obj: any) : any {
     return JSON.parse(JSON.stringify(obj))
 }
+
+export function findBryggById(id: string, bryggListe: IBrygg[]) : IBrygg {
+    let index = findIndexForBryggById(id, bryggListe)
+    if (index == -1) {
+        return null
+    }
+    return bryggListe[index]
+}
+
+export function findIndexForBryggById(id: string, bryggListe: IBrygg[]) : number {
+    for (let i = 0; i < bryggListe.length; i++) {
+        let brygg = bryggListe[i]
+        if (brygg._id === id) {
+            return i
+        }
+    }
+    return -1
+}

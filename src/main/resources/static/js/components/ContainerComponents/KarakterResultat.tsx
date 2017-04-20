@@ -1,9 +1,8 @@
 import * as React from "react"
-import {IBrygg, IKaffe, IState} from "../../models";
+import {IBrygg, IKaffe, IState, RegistreringVisning} from "../../models";
 import DismissableMessage from "../DismissableMessage";
 import {connect, Dispatch} from "react-redux";
-import {createChangeKarakterResultVisibilityAction} from "../../actions/karakter_actions";
-
+import {createChangeVisningAction} from "../../actions/karakter_actions";
 
 interface IMethods {
     dismiss?: (id: string) => void
@@ -21,7 +20,7 @@ const KarakterRes : React.StatelessComponent<IProps> = ({brygg, dismiss, classes
 
 const mapStateToProps = (state: IState, ownProps: IProps) : IMethods => {
     return {
-        classes: "messageBox flippable " + (ownProps.brygg.visGjetteResultat ? "notFlipped" : "flipped"),
+        classes: "messageBox flippable " + (ownProps.brygg.visning === RegistreringVisning.RESULTAT ? "notFlipped" : "flipped"),
         message: getMessage(ownProps.brygg, state.kaffer.muligeKaffer),
     }
 }
@@ -32,6 +31,9 @@ function getMessage(brygg: IBrygg, kaffer: IKaffe[]) {
     }
 
     let korrektKaffe = getKaffeById(brygg.kaffeId, kaffer)
+    if (korrektKaffe == null) {
+        return
+    }
     let delmelding = `Dagens kaffe var "${korrektKaffe.navn}" av ${korrektKaffe.produsent}`
     if (brygg.kaffeId === brygg.gjetteResultat.kaffeId) {
         return `Korrekt! ${delmelding}`
@@ -53,7 +55,7 @@ function getKaffeById(id: string, kaffer: IKaffe[]) {
 const mapDispatchToProps = (dispatch: Dispatch<any>) : IMethods => {
     return {
         dismiss: (id: string) => {
-            dispatch(createChangeKarakterResultVisibilityAction(id, false))
+            dispatch(createChangeVisningAction(id, RegistreringVisning.REGISTRERING))
         }
     }
 }

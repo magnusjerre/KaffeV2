@@ -1,27 +1,35 @@
 import * as React from "react";
-import {IBrygg, IKaffe, IState, IKarakter} from "../../models";
+import {IBrygg, IKaffe, IState, IKarakter, RegistreringVisning} from "../../models";
 import KaffeSelect from "../KaffeSelect";
 import {connect, Dispatch} from "react-redux";
-import {createRegistrerChangeAction, createRegistrerKarakterAction} from "../../actions/karakter_actions";
+import {
+    createChangeVisningAction, createRegistrerChangeAction,
+    createRegistrerKarakterAction
+} from "../../actions/karakter_actions";
+import {createLukkBryggAction} from "../../actions/brygg_actions";
+let cross = require("../../../images/cross.png")
+
+declare function require(name: string): any
 
 export interface IKarakterReg {
     brygg: IBrygg
-    visKarakterRegistrering?: boolean
     muligeKaffer?: IKaffe[]
 }
 
 interface IChangeMethods {
     onSubmitKarakter?: (bryggId: string, karakter: IKarakter) => void
     onChangeProperty?: (property: string, value: any) => void
+    lukkBrygg?: VoidFunction
 }
 
 interface IEnkeltRegistrering extends IKarakterReg , IChangeMethods {}
 
-const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistrering> = ({brygg, visKarakterRegistrering, muligeKaffer, onSubmitKarakter, onChangeProperty}) => {
-    let visibilityClass = visKarakterRegistrering ? "flipped" : "notFlipped"
+const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistrering> = ({brygg, muligeKaffer, onSubmitKarakter, onChangeProperty, lukkBrygg}) => {
+    let visibilityClass = brygg.visning !== RegistreringVisning.REGISTRERING ? "flipped" : "notFlipped"
     let relevantClasses = "holder " + visibilityClass
     return (
         <form className={relevantClasses} onSubmit={ (e :  React.FormEvent<HTMLFormElement>) => {e.preventDefault(); e.stopPropagation(); onSubmitKarakter(brygg._id, brygg.nyKarakter)}}>
+            <img src={cross} alt="Lukk" className="closeButton" onClick={e => { lukkBrygg() }}/>
             <h1>{brygg.navn}</h1>
             <div className="formInputContent">
                 <label htmlFor="kaffeId">Kaffe
@@ -45,7 +53,6 @@ const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistreri
 const mapStateToProps = (state: IState, props: IEnkeltRegistrering) : IKarakterReg => {
     return {
         brygg: props.brygg,
-        visKarakterRegistrering: props.brygg.visGjetteResultat,
         muligeKaffer: state.kaffer.muligeKaffer
     }
 }
@@ -57,6 +64,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>, props: IKarakterReg) : ICha
         },
         onChangeProperty: (property: string, value: any) => {
             dispatch(createRegistrerChangeAction(props.brygg._id, property, value))
+        },
+        lukkBrygg: () => {
+            dispatch(createChangeVisningAction(props.brygg._id, RegistreringVisning.LUKK))
         }
     }
 }

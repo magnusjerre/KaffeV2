@@ -34,6 +34,7 @@ a {
   width: 20em;
   background-color: $cardBackground;
   display: inline-block;
+  position: relative;
 
   h1 {
     font-size: 1.5em;
@@ -171,6 +172,11 @@ ul.nonListDisplay {
 
   button {
     @extend .bottomButton;
+    display: inline-block;
+
+    &.halfWidth {
+      width: 50%;
+    }
   }
 
   h1 {
@@ -181,8 +187,17 @@ ul.nonListDisplay {
   }
 
   p {
-    padding: 0.5em 1em;
+    padding: 0 1em 0.5em 1em;
   }
+}
+
+.closeButton {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  margin: 1.25em 1em;
+  right: 0;
+  top: 0;
 }
 
 .flipContainer {

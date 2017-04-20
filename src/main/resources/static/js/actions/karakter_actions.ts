@@ -1,12 +1,13 @@
-import {IAction, IBrygg, IKarakter} from "../models";
+import {IAction, IBrygg, IKarakter, RegistreringVisning} from "../models";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "react-redux";
+import {IKarakterReg} from "../components/ContainerComponents/KarakterRegistrering";
 
 export const REGISTRER_KARAKTER_REQUEST_ACTION = "REGISTRER_KARAKTER_REQUEST_ACTION"
 export const REGISTRER_KARAKTER_CHANGE_ACTION = "REGISTRER_KARAKTER_CHANGE_ACTION"
 export const REGISTRER_KARAKTER_CLEAR_ACTION = "REGISTRER_KARAKTER_CLEAR_ACTION"
 export const REGISTRER_KARAKTER_FLYTT_ACTION = "REGISTRER_KARAKTER_FLYTT_ACTION"
-export const CHANGE_KARAKTER_RESULTAT_VISIBILITY = "Change karakter result visibility"
+export const CHANGE_VISNING = "Change regsitreringsvisning"
 
 export interface IKarakterRegistreringAction {
     bryggId: string
@@ -21,7 +22,7 @@ export interface IKarakterRegEndringAction {
 
 export interface IKarakterResultat {
     bryggId: string
-    visibility: boolean
+    visning: RegistreringVisning
 }
 
 export const createKarakterRequestAction = (bryggId: string) : IAction<string> => {
@@ -70,16 +71,16 @@ export const createRegistrerKarakterAction = (bryggId: string, karakter: IKarakt
     }).then((response: Response) => response.json()).then( (json: any) => {
         dispatch(createKarakterFlyttAction(bryggId, karakter))
         dispatch(createClearKarakterRegistreringAction(bryggId))
-        dispatch(createChangeKarakterResultVisibilityAction(bryggId, true))
+        dispatch(createChangeVisningAction(bryggId, RegistreringVisning.RESULTAT))
     })
 }
 
-export const createChangeKarakterResultVisibilityAction = (bryggId: string, visibility: boolean) : IAction<IKarakterResultat> => {
+export const createChangeVisningAction = (bryggId: string, visning: RegistreringVisning) : IAction<IKarakterResultat> => {
     return {
-        type: CHANGE_KARAKTER_RESULTAT_VISIBILITY,
+        type: CHANGE_VISNING,
         payload: {
             bryggId,
-            visibility
+            visning
         }
     }
 }

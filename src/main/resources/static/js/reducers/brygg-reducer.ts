@@ -1,12 +1,12 @@
-import {IAction, IBrygg} from "../models";
-import {FETCH_BRYGG_REQUEST, FETCH_BRYGG_SUCCESS} from "../actions/brygg_actions";
+import {IAction, IBrygg, RegistreringVisning} from "../models";
+import {FETCH_BRYGG_REQUEST, FETCH_BRYGG_SUCCESS, LUKK_BRYGG_SUCCESS} from "../actions/brygg_actions";
 import {
-    CHANGE_KARAKTER_RESULTAT_VISIBILITY,
+    CHANGE_VISNING,
     IKarakterRegEndringAction, IKarakterResultat,
     REGISTRER_KARAKTER_CHANGE_ACTION,
     REGISTRER_KARAKTER_CLEAR_ACTION, REGISTRER_KARAKTER_FLYTT_ACTION
 } from "../actions/karakter_actions";
-import {deepCopy} from "../factory";
+import {deepCopy, findIndexForBryggById} from "../factory";
 
 const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakterRegEndringAction | IKarakterResultat | string>) : IBrygg[] => {
     switch (action.type) {
@@ -14,8 +14,9 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
             return state
         case FETCH_BRYGG_SUCCESS:
             let bryggPayload : IBrygg[] = action.payload as IBrygg[]
-            addFieldsToEachBrygg(bryggPayload)
-            return bryggPayload
+            let filtrert = filterOnVis(bryggPayload)
+            addFieldsToEachBrygg(filtrert)
+            return filtrert
         case REGISTRER_KARAKTER_CLEAR_ACTION: {
             let newState = deepCopy(state)
             let brygg = findBryggById(action.payload as string, newState)
@@ -51,12 +52,18 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
             brygg.gjetteResultat = deepCopy(brygg.nyKarakter)
             return newState
         }
-        case CHANGE_KARAKTER_RESULTAT_VISIBILITY: {
+        case CHANGE_VISNING: {
             let payload = action.payload as IKarakterResultat
             let newState = deepCopy(state)
             let brygg = findBryggById(payload.bryggId, newState)
-            brygg.visGjetteResultat = payload.visibility
+            brygg.visning = payload.visning
             return newState
+        }
+        case LUKK_BRYGG_SUCCESS: {
+            let payload = action.payload as string
+            let newState = deepCopy(state)
+            let index = findIndexForBryggById(payload, newState)
+            return newState.splice(index, 1)
         }
         default:
             return state
@@ -73,6 +80,17 @@ function findBryggById(id: string, bryggListe: IBrygg[]) : IBrygg {
     return null
 }
 
+function filterOnVis(bryggListe: IBrygg[]) {
+    let output : IBrygg[] = []
+    for (let i = 0; i < bryggListe.length; i++) {
+        let brygg = bryggListe[i]
+        if (brygg.vis) {
+            output.push(brygg)
+        }
+    }
+    return output
+}
+
 function addFieldsToEachBrygg(bryggListe: IBrygg[]) {
     for (let i = 0; i < bryggListe.length; i++) {
         let brygg = bryggListe[i]
@@ -82,7 +100,7 @@ function addFieldsToEachBrygg(bryggListe: IBrygg[]) {
             karakter: 0,
             kommentar: ""
         }
-        brygg.visGjetteResultat = false
+        brygg.visning = RegistreringVisning.REGISTRERING
         brygg.gjetteResultat = {
             bruker: "",
             kaffeId: "def",
