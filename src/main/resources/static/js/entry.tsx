@@ -9,6 +9,7 @@ import thunk from "redux-thunk"
 import {applyMiddleware} from "redux";
 import {fetchKafferAction} from "./actions/kaffe_actions";
 import {createFetchBryggAction} from "./actions/brygg_actions";
+import Header from "./components/header";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -24,7 +25,7 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 {/*<IndexRoute component={Registrering}/>*/}
-                {/*<Route path="historikk" component={Header}/>*/}
+                <Route path="historikk" component={Header}/>
             </Route>
         </Router>
     </Provider>,

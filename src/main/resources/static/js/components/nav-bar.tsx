@@ -3,9 +3,9 @@ import {IndexLink, Link} from 'react-router';
 
 
 const NavBar : React.StatelessComponent<{}> = (elementer) => (
-    <nav>
-        <li><IndexLink className="navElement" to="/" activeClassName="navValgt">Registrering</IndexLink></li>
-        <li><Link className="navElement" to="/historikk" activeClassName="navValgt">Historikk</Link></li>
+    <nav className="content">
+        <IndexLink className="navElement" to="/" activeClassName="navValgt">Registrering</IndexLink>
+        <Link className="navElement" to="/historikk" activeClassName="navValgt">Historikk</Link>
     </nav>
 )
 export default NavBar;

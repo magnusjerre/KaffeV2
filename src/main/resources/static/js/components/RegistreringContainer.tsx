@@ -15,7 +15,7 @@ export interface IRegContainer {
 }
 
 let RegCon : React.StatelessComponent<IRegContainer> = ({visKnapp, toggle}) => (
-    <div className="verticalContainer">
+    <div className="verticalContainer content">
         <BryggListe />
         {
             visKnapp ? <img src={pluss} alt="Nytt brygg" onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />

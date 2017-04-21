@@ -5,6 +5,9 @@ $cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
 $inputOutlineColor: darken(rgb(211, 211, 211), 40%);
 $fast: 0.1s;
 $medium: 0.5s;
+$contentWidth: 80%;
+$contentWidthNarrowViewPort: 100%;
+$boxWidth: 20em;
 
 @mixin transition($property, $value) {
   -webkit-transition: $property $value;
@@ -30,8 +33,7 @@ a {
 }
 
 .holder {
-  margin: 1em;
-  width: 20em;
+  width: 100%;
   background-color: $cardBackground;
   display: inline-block;
   position: relative;
@@ -165,8 +167,7 @@ ul.nonListDisplay {
 }
 
 .messageBox {
-  margin: 1em;
-  width: 20em;
+  width: 100%;
   background-color: $cardBackground;
   display: inline-block;
 
@@ -202,6 +203,13 @@ ul.nonListDisplay {
 
 .flipContainer {
   position: relative;
+  width: $boxWidth;
+  margin: 1em;
+
+  @media all and (max-width: 420px) {
+    width: $contentWidthNarrowViewPort;
+    margin: 1em 0;
+  }
 }
 
 .flippable {
@@ -229,5 +237,29 @@ ul.nonListDisplay {
   }
   to {
     transform: rotateX(180deg);
+  }
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 0.25em black solid;
+
+  .navElement {
+    padding: 0.5em 1em;
+  }
+
+  .navValgt {
+    background-color: $cardSubmitBackground;
+  }
+}
+
+.content {
+  width: $contentWidth;
+  margin: auto;
+
+  @media all and (max-width: 420px){
+    width: $contentWidthNarrowViewPort;
   }
 }
