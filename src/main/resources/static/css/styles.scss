@@ -9,6 +9,8 @@ $contentWidth: 80%;
 $contentWidthNarrowViewPort: 100%;
 $boxWidth: 20em;
 $mediaNarrowWidth: 420px;
+$calendarItemBackground: $cardBackground;
+$calendarItemBackgroundHover: darken(rgb(211, 211, 211), 20%);
 
 @mixin transition($property, $value) {
   -webkit-transition: $property $value;
@@ -161,6 +163,10 @@ ul.nonListDisplay {
   align-items: flex-start;
 }
 
+.spread {
+  justify-content: space-between;
+}
+
 .bottomButton {
   width: 100%;
   margin: 0;
@@ -275,6 +281,10 @@ nav {
   }
 }
 
+.historikkContainer {
+  position: relative;
+}
+
 .calendar {
   display: flex;
   flex-direction: row;
@@ -287,10 +297,105 @@ nav {
       display: flex;
       flex-direction: column;
       height: 4em;
+      background-color: $calendarItemBackground;
+      @include transition(background-color, 0.25s);
+      margin: 0.1em;
 
       .cIDate {
         text-align: right;
+        margin: 0.25em 0.25em 0.5em auto;
+      }
+
+      &:hover {
+        background: $calendarItemBackgroundHover;
+      }
+
+      &.hidden {
+        visibility: hidden;
       }
     }
+
+    .cHeader {
+      font-weight: bold;
+      margin: 0.5em;
+    }
   }
+}
+
+.monthArrow {
+  width: 2em;
+  height: 2em;
+  margin: 1em;
+  align-self: center;
+}
+
+.rotated {
+  -webkit-transform: rotateZ(180deg);
+  -moz-transform: rotateZ(180deg);
+  -ms-transform: rotateZ(180deg);
+  -o-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+
+.historyMonth {
+  align-self: center;
+  font-weight: bold;
+  font-size: 2em;
+  margin: 1em 0;
+}
+
+.historikkDag {
+  width: $boxWidth;
+  background: $cardBackground;
+  padding: 1em;
+
+  .bryggNavn {
+    background: $cardSubmitBackground;
+    margin: 0.25em;
+    padding: 0.5em;
+    @include transition(background-color, $medium);
+
+    &.bryggNavnValgt {
+      background: $cardInputBackground;
+    }
+
+    &:hover {
+      background: $cardInputBackground;
+    }
+  }
+
+  label {
+    font-weight: bold;
+    display: inline-block;
+    margin: 0.25em;
+
+    span {
+      font-weight: normal;
+    }
+  }
+
+  .close{
+    width: 1em;
+    height: 1em;
+    margin: 1em;
+  }
+
+  .historikkBryggContainer {
+    width: 100%;
+  }
+
+  .historikkBryggData {
+    padding: 0.25em;
+  }
+
+  .historikkKarakter {
+    background: $cardInputBackground;
+    padding: 0.25em;
+  }
+
+}
+
+.disable {
+  background-color: rgba(0,0,0,50);
+  width: 100%
 }

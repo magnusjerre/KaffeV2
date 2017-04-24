@@ -4,7 +4,7 @@ export interface IBrygg {
     navn: string
     kaffeId: string
     brygger: string
-    dato: Date
+    dato: Date | string //Date when sending to server, string when receiving from server
     liter: number
     skjeer: number
     vis: Boolean
@@ -66,6 +66,7 @@ export interface IState {
     bryggListe: IBrygg[]
     nyttBrygg: IBryggReg
     kaffer: IKaffeFetcher
+    kalender: IKalenderState
 }
 
 export interface IAction<T> {
@@ -92,4 +93,12 @@ export interface IKaffeFetcher {
 export interface IPropertyChange {
     property: string
     value: any
+}
+
+export interface IKalenderState {
+    year: number
+    month: number
+    utvalgteBrygg: string[]
+    utvalgtBrygg: IBrygg
+    bryggForMnd: IBrygg[]
 }
