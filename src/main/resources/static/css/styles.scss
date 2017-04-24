@@ -8,6 +8,7 @@ $medium: 0.5s;
 $contentWidth: 80%;
 $contentWidthNarrowViewPort: 100%;
 $boxWidth: 20em;
+$mediaNarrowWidth: 420px;
 
 @mixin transition($property, $value) {
   -webkit-transition: $property $value;
@@ -37,6 +38,15 @@ a {
   background-color: $cardBackground;
   display: inline-block;
   position: relative;
+
+  &.bryggRegistrering {
+    width: 20em;
+
+    @media all and (max-width: $mediaNarrowWidth) {
+      width: $contentWidthNarrowViewPort;
+      margin: 1em 0;
+    }
+  }
 
   h1 {
     font-size: 1.5em;
@@ -117,6 +127,7 @@ a {
 }
 
 ul.nonListDisplay {
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -206,7 +217,7 @@ ul.nonListDisplay {
   width: $boxWidth;
   margin: 1em;
 
-  @media all and (max-width: 420px) {
+  @media all and (max-width: $mediaNarrowWidth) {
     width: $contentWidthNarrowViewPort;
     margin: 1em 0;
   }
@@ -259,7 +270,27 @@ nav {
   width: $contentWidth;
   margin: auto;
 
-  @media all and (max-width: 420px){
+  @media all and (max-width: $mediaNarrowWidth){
     width: $contentWidthNarrowViewPort;
+  }
+}
+
+.calendar {
+  display: flex;
+  flex-direction: row;
+
+  .calendarDayOfWeek {
+    display: flex;
+    flex-direction: column;
+
+    .cItem {
+      display: flex;
+      flex-direction: column;
+      height: 4em;
+
+      .cIDate {
+        text-align: right;
+      }
+    }
   }
 }

@@ -13,7 +13,7 @@ interface IBryggRegistreringComp {
 
 let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeProperty, nyttBrygg, muligeKaffer}) => {
     return (
-        <form className="holder" onSubmit={ (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onSubmitBrygg(nyttBrygg) }}>
+        <form className="holder bryggRegistrering" onSubmit={ (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onSubmitBrygg(nyttBrygg) }}>
             <div className="formInputContent">
                 <label htmlFor="navn">Bryggnavn
                     <input name="navn" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("navn", e.currentTarget.value) }} value={nyttBrygg.navn} placeholder="Gang of four"/>
