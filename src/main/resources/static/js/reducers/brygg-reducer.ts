@@ -1,5 +1,5 @@
 import {IAction, IBrygg, RegistreringVisning} from "../models";
-import {FETCH_BRYGG_REQUEST, FETCH_BRYGG_SUCCESS, LUKK_BRYGG_SUCCESS} from "../actions/brygg_actions";
+import {FETCH_BRYGG_REQUEST, FETCH_BRYGG_SUCCESS} from "../actions/brygg_actions";
 import {
     CHANGE_VISNING,
     IKarakterRegEndringAction, IKarakterResultat,
@@ -58,12 +58,6 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
             let brygg = findBryggById(payload.bryggId, newState)
             brygg.visning = payload.visning
             return newState
-        }
-        case LUKK_BRYGG_SUCCESS: {
-            let payload = action.payload as string
-            let newState = deepCopy(state)
-            let index = findIndexForBryggById(payload, newState)
-            return newState.splice(index, 1)
         }
         default:
             return state

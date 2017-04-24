@@ -8,7 +8,6 @@ export const ADD_BRYGG_SUCCESS = "ADD_BRYGG_SUCESS"
 export const NEW_BRYGG_PROP_CHANGE = "NEW_BRYGG_PROP_CHANGE"
 export const TOGGLE_NEW_BRYGG = "Toggle new brygg"
 export const LUKK_BRYGG_REQUEST = "Lukk brygg request"
-export const LUKK_BRYGG_SUCCESS = "Lukk brygg success"
 
 export const FETCH_BRYGG_REQUEST = "FETCH_BRYGG_REQUEST"
 export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
@@ -99,19 +98,12 @@ export const createLukkBryggRequestAction = (id: string) : IAction<string> => {
     }
 }
 
-export const createLukkBryggSuccessAction = (id: string) : IAction<string> => {
-    return {
-        type: LUKK_BRYGG_SUCCESS,
-        payload: id
-    }
-}
-
 export const createLukkBryggAction = (id: string) : ThunkAction<void, void, void> => (dispatch: Dispatch<any>) => {
     dispatch(createLukkBryggRequestAction(id))
     let url = `/api/brygg/${id}/skjul`
     return fetch(url, {
         method: "POST"
     }).then((response: Response) => {
-        dispatch(createLukkBryggSuccessAction(id))
+        dispatch(createFetchBryggAction())
     })
 }
