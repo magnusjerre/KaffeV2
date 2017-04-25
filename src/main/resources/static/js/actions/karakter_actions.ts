@@ -2,6 +2,7 @@ import {IAction, IBrygg, IKarakter, RegistreringVisning} from "../models";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "react-redux";
 import {IKarakterReg} from "../components/ContainerComponents/KarakterRegistrering";
+import {createFetchBryggForMonthAction} from "./kalender_actions";
 
 export const REGISTRER_KARAKTER_REQUEST_ACTION = "REGISTRER_KARAKTER_REQUEST_ACTION"
 export const REGISTRER_KARAKTER_CHANGE_ACTION = "REGISTRER_KARAKTER_CHANGE_ACTION"
@@ -72,6 +73,8 @@ export const createRegistrerKarakterAction = (bryggId: string, karakter: IKarakt
         dispatch(createKarakterFlyttAction(bryggId, karakter))
         dispatch(createClearKarakterRegistreringAction(bryggId))
         dispatch(createChangeVisningAction(bryggId, RegistreringVisning.RESULTAT))
+        let dato = new Date(parseInt(json.dato as string))
+        dispatch(createFetchBryggForMonthAction(dato.getFullYear(), dato.getMonth()))
     })
 }
 

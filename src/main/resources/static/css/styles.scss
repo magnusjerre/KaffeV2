@@ -4,7 +4,7 @@ $cardSubmitBackground: darken(rgb(211, 211, 211), 20%);
 $cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
 $inputOutlineColor: darken(rgb(211, 211, 211), 40%);
 $fast: 0.1s;
-$medium: 0.5s;
+$medium: 0.25s;
 $contentWidth: 80%;
 $contentWidthNarrowViewPort: 100%;
 $boxWidth: 20em;
@@ -411,9 +411,6 @@ nav {
 .historikkBryggSelect {
   background: $cardInputBackground;
   width: 100%;
-  //-webkit-appearance: none;
-  //-moz-appearance: none;
-  //appearance: none;
   border: none;
   align-self: flex-start;
   font-weight: bold;
