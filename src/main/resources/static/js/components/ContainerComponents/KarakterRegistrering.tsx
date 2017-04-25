@@ -7,6 +7,7 @@ import {
     createRegistrerKarakterAction
 } from "../../actions/karakter_actions";
 import {createLukkBryggAction} from "../../actions/brygg_actions";
+import SubmitScalable from "../SubmitScalable";
 let cross = require("../../../images/cross.png")
 
 declare function require(name: string): any
@@ -45,7 +46,7 @@ const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistreri
                     <input name="brygger" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("kommentar", e.currentTarget.value) }} value={brygg.nyKarakter.kommentar} placeholder="Denne smakte godt ja..."/>
                 </label>
             </div>
-            <input type="submit" value="Registrer karakter"/>
+            <SubmitScalable value="Registrer karakter" />
         </form>
     )
 }

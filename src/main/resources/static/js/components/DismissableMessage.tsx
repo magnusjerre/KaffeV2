@@ -1,4 +1,5 @@
 import * as React from "react"
+import Button from "./Button";
 
 interface IResultat {
     bryggId: string
@@ -12,7 +13,7 @@ const DismissableMessage : React.StatelessComponent<IResultat> = ({title, messag
     <div className={classes}>
         <h1>{title}</h1>
         <p>{message}</p>
-        <button onClick={e => dismiss(bryggId)}>Lukk</button>
+        <Button value="Lukk" onClick={dismiss} inputId={bryggId}/>
     </div>
 )
 

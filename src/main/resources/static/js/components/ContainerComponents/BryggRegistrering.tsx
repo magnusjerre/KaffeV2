@@ -3,6 +3,7 @@ import {addBryggAction, createBryggPropertyChangeAction} from "../../actions/bry
 import {connect, Dispatch} from "react-redux";
 import {IBryggRegistrering, IKaffe, IState} from "../../models";
 import KaffeSelect from "../KaffeSelect";
+import SubmitScalable from "../SubmitScalable";
 
 interface IBryggRegistreringComp {
     onSubmitBrygg?: (nyttBrygg: IBryggRegistrering) => void
@@ -31,7 +32,7 @@ let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = (
                     <input name="skjeer" type="number" min="0.25" step="0.25" value={nyttBrygg.skjeer} onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("skjeer", parseFloat(e.currentTarget.value))}} placeholder="5.5"/>
                 </label>
             </div>
-            <input type="submit" value="Registrer brygg"/>
+            <SubmitScalable value="Registrer brygg"/>
         </form>
     )
 }

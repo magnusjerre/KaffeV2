@@ -1,8 +1,9 @@
-$cardBackground: lightGray;
-$cardInputBackground: lighten(rgb(211, 211, 211), 10%);
-$cardSubmitBackground: darken(rgb(211, 211, 211), 20%);
-$cardSubmitFocus: darken(rgb(211, 211, 211), 50%);
-$inputOutlineColor: darken(rgb(211, 211, 211), 40%);
+$mainBackground: moccasin;
+$cardBackground: burlywood;
+$cardInputBackground: moccasin;
+$cardSubmitBackground: saddlebrown;
+$cardSubmitFocus: lighten($cardSubmitBackground, 20%);
+$inputOutlineColor: $cardSubmitBackground;
 $fast: 0.1s;
 $medium: 0.25s;
 $contentWidth: 80%;
@@ -10,18 +11,30 @@ $contentWidthNarrowViewPort: 100%;
 $boxWidth: 20em;
 $mediaNarrowWidth: 420px;
 $calendarItemBackground: $cardBackground;
-$calendarItemBackgroundHover: darken(rgb(211, 211, 211), 20%);
+$calendarItemBackgroundHover: $cardSubmitFocus;
 
-@mixin transition($property, $value) {
-  -webkit-transition: $property $value;
-  -moz-transition: $property $value;
-  -ms-transition: $property $value;
-  -o-transition: $property $value;
-  transition: $property $value;
+$textColor: saddlebrown;
+
+@mixin transition($propertyValues...) {
+  -webkit-transition: $propertyValues;
+  -moz-transition: $propertyValues;
+  -ms-transition: $propertyValues;
+  -o-transition: $propertyValues;
+  transition: $propertyValues;
+}
+
+html{
+  background: linear-gradient(to top, $mainBackground, $cardBackground);
+  background: $mainBackground;
+  height: 100%;
 }
 
 h1 {
-  color: green;
+  color: $textColor;
+}
+
+p, a, h1, h2, label, select, input, button, span {
+  color: $textColor;
 }
 
 p {
@@ -79,10 +92,10 @@ a {
       border: none;
       background-color: $cardInputBackground;
       outline-color: transparent;
-      @include transition(outline-color, 0.5s);
+      @include transition(outline-color 0.5s);
 
-      &:focus {
-        outline-color: $inputOutlineColor;
+      &:focus, &:hover {
+        outline: $inputOutlineColor 0.2em solid;
       }
     }
 
@@ -95,30 +108,34 @@ a {
       border: none;
       background-color: $cardInputBackground;
       outline-color: transparent;
-      @include transition(outline-color, 0.5s);
+      @include transition(outline-color 0.5s);
 
-      &:focus {
-        outline-color: $inputOutlineColor;
+      &:focus, &:hover {
+        outline: $inputOutlineColor 0.2em solid;
       }
     }
   }
 
   .formInputContent + input[type="submit"] {
     width: 100%;
+    height: 3em;
     margin: 0;
     padding: 0.5em;
     box-sizing: border-box;
     border: none;
     background-color: $cardSubmitBackground;
+    color: $cardInputBackground;
     display: block;
-    @include transition(background-color, 0.5s);
+    font-size: 1em;
+    @include transition(background-color 0.5s);
 
-    &:focus {
+    &:focus, &:hover {
       outline: none;
-      background-color: $cardSubmitFocus;
-    }
-
-    &:hover {
+      //transform: scale(1.1);
+      font-size: 1.25em;
+      //box-sizing: content-box;
+      padding: 0;
+      //margin: auto;
       background-color: $cardSubmitFocus;
     }
   }
@@ -168,35 +185,10 @@ ul.nonListDisplay {
   justify-content: space-between;
 }
 
-.bottomButton {
-  width: 100%;
-  margin: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  border: none;
-  background-color: $cardSubmitBackground;
-  display: block;
-  @include transition(background-color, 0.5s);
-
-  &:focus, &:hover {
-    outline: none;
-    background-color: $cardSubmitFocus;
-  }
-}
-
 .messageBox {
   width: 100%;
   background-color: $cardBackground;
   display: inline-block;
-
-  button {
-    @extend .bottomButton;
-    display: inline-block;
-
-    &.halfWidth {
-      width: 50%;
-    }
-  }
 
   h1 {
     font-size: 1.5em;
@@ -217,6 +209,18 @@ ul.nonListDisplay {
   margin: 1.25em 1em;
   right: 0;
   top: 0;
+  @include transition(transform $medium, width $medium, height $medium, margin $medium);
+
+  &:hover {
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    width: 0.8em;
+    height: 0.8em;
+    margin: 1.35em 1.1em;
+  }
 }
 
 .flipContainer {
@@ -262,7 +266,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border-bottom: 0.25em black solid;
+  border-bottom: 0.25em $cardSubmitBackground solid;
 
   .navElement {
     padding: 0.5em 1em;
@@ -270,6 +274,7 @@ nav {
 
   .navValgt {
     background-color: $cardSubmitBackground;
+    color: $cardInputBackground;
   }
 }
 
@@ -305,7 +310,7 @@ nav {
       flex-direction: column;
       height: 4.5em;
       background-color: $calendarItemBackground;
-      @include transition(background-color, 0.25s);
+      @include transition(background-color 0.25s);
       margin: 0.1em;
       overflow: hidden;
 
@@ -361,7 +366,7 @@ nav {
     background: $cardSubmitBackground;
     margin: 0.25em;
     padding: 0.5em;
-    @include transition(background-color, $medium);
+    @include transition(background-color $medium);
 
     &.bryggNavnValgt {
       background: $cardInputBackground;
@@ -416,7 +421,6 @@ nav {
   font-weight: bold;
   font-size: large;
   padding: 0.5em;
-  color: green;
 }
 
 .historikkVelger {
@@ -439,4 +443,37 @@ nav {
 .antallHolder {
   @extend .horizontalContainer;
   wrap: wrap;
+}
+
+.buttonOuter {
+  width: 100%;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $cardSubmitBackground;
+  font-size: 1em;
+  color: $cardInputBackground;
+  border: none;
+  outline: none;
+  @include transition(background $medium, font-size $medium);
+
+  &:hover, &:focus {
+    background: $cardSubmitFocus;
+    font-size: 1.25em;
+    height: (2.5em / 1.25);
+  }
+}
+
+.buttonInner {
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+.halfWidth {
+  width: 50%;
 }

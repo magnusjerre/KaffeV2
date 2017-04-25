@@ -1,4 +1,5 @@
 import * as React from "react"
+import Button from "./Button";
 
 interface IResultat {
     bryggId: string
@@ -13,8 +14,10 @@ const MessageBox : React.StatelessComponent<IResultat> = ({title, message, cance
     <div className={classes}>
         <h1>{title}</h1>
         <p>{message}</p>
-        <button className="halfWidth" onClick={e => cancel(bryggId)}>Nei</button>
-        <button className="halfWidth" onClick={e => accept(bryggId)}>Ja</button>
+        <div className="horizontalContainer">
+            <Button onClick={cancel} value="Nei" inputId={bryggId} outerClasses="buttonOuter halfWidth"/>
+            <Button onClick={accept} value="Ja" inputId={bryggId} outerClasses="buttonOuter halfWidth"/>
+        </div>
     </div>
 )
 
