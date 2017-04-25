@@ -382,10 +382,10 @@ nav {
     }
   }
 
-  .close{
+  .close {
     width: 1em;
     height: 1em;
-    margin: 1em;
+    margin: 0 1em 1em 1em;
   }
 
   .historikkBryggContainer {
@@ -396,11 +396,36 @@ nav {
     padding: 0.25em;
   }
 
-  .historikkKarakter {
-    background: $cardInputBackground;
-    padding: 0.25em;
-  }
 
+}
+
+.historikkKarakter {
+  background: $cardInputBackground;
+  padding: 0.25em;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+}
+
+.historikkBryggSelect {
+  background: $cardInputBackground;
+  width: 100%;
+  //-webkit-appearance: none;
+  //-moz-appearance: none;
+  //appearance: none;
+  border: none;
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: large;
+  padding: 0.5em;
+  color: green;
+}
+
+.historikkVelger {
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 .disable {

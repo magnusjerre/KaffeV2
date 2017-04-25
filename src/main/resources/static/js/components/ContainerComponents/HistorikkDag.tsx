@@ -19,16 +19,16 @@ export interface IHistorikkDag {
 const HistorikkDag : React.StatelessComponent<any> = ({dagensBrygg, valgtBrygg, kaffer, onClose, changeBrygg}) => (
     <div className="verticalContainer historikkDag">
         <img src={cross} alt="Lukk dags-historikk" className="close" onClick={ e => onClose()}/>
-        <div className="horizontalContainer">
+        <select id="brygg" name="brygg" value={valgtBrygg._id} className="historikkBryggSelect" onChange={(e: React.FormEvent<HTMLSelectElement>) => {
+            e.preventDefault()
+            changeBrygg(e.currentTarget.value)
+        }}>
             {
-                dagensBrygg.map((brygg: IBrygg) => {
-                    let classes = brygg._id == valgtBrygg._id ? "bryggNavn bryggNavnValgt" : "bryggNavn"
-                    return (
-                        <span key={brygg._id} className={classes} onClick={e => changeBrygg(brygg._id)}>{brygg.navn}</span>
-                    )}
-                )
+                dagensBrygg.map( (brygg : IBrygg) => (
+                    <option key={brygg._id} value={brygg._id}>{brygg.navn}</option>
+                ))
             }
-        </div>
+        </select>
         <HistorikkBrygg brygg={valgtBrygg} kaffer={kaffer} />
     </div>
 )
@@ -42,7 +42,6 @@ interface IHistorikkKarakterComp {
 const HistorikkBrygg : React.StatelessComponent<IHistorikkKarakterComp> = ({brygg, kaffer}) => (
     <div className="historikkBryggContainer">
         <div className="historikkBryggData">
-            <h1>{brygg.navn}</h1>
             <label>Kaffe: <span>{findKaffeForId(brygg.kaffeId, kaffer).navn}</span></label>
             <div className="horizontalContainer spread">
                 <label>Brygger: <span>{brygg.brygger}</span></label>
