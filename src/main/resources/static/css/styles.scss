@@ -153,6 +153,7 @@ ul.nonListDisplay {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
+  width: 100%
 }
 
 .horizontalContainer {
@@ -288,18 +289,25 @@ nav {
 .calendar {
   display: flex;
   flex-direction: row;
+  width: 50em;
+
+  @media all and (max-width: 1024px) {
+    width: 100%;
+  }
 
   .calendarDayOfWeek {
     display: flex;
     flex-direction: column;
+    width: (100% / 7);
 
     .cItem {
       display: flex;
       flex-direction: column;
-      height: 4em;
+      height: 4.5em;
       background-color: $calendarItemBackground;
       @include transition(background-color, 0.25s);
       margin: 0.1em;
+      overflow: hidden;
 
       .cIDate {
         text-align: right;
@@ -398,4 +406,15 @@ nav {
 .disable {
   background-color: rgba(0,0,0,50);
   width: 100%
+}
+
+.antallBean {
+  width: 1em;
+  height: 1em;
+  margin: 0.1em;
+}
+
+.antallHolder {
+  @extend .horizontalContainer;
+  wrap: wrap;
 }

@@ -24,71 +24,114 @@ const CalendarComp : React.StatelessComponent<ICalendar> = ({bryggForMnd, onClic
     // let firstDay = getFirstDay(year, month)
     let firstDay = getFirstDay(year, month)
     let lastDayOfMonth = getLastDay(year, month)
-    console.log("month: " + month + " firstDay: " + firstDay + ", last day: " + lastDayOfMonth)
+    let map = {
+        "11": getDayOfMonth("11", firstDay, lastDayOfMonth),
+        "21": getDayOfMonth("21", firstDay, lastDayOfMonth),
+        "31": getDayOfMonth("31", firstDay, lastDayOfMonth),
+        "41": getDayOfMonth("41", firstDay, lastDayOfMonth),
+        "51": getDayOfMonth("51", firstDay, lastDayOfMonth),
+        "61": getDayOfMonth("61", firstDay, lastDayOfMonth),
+        "12": getDayOfMonth("12", firstDay, lastDayOfMonth),
+        "22": getDayOfMonth("22", firstDay, lastDayOfMonth),
+        "32": getDayOfMonth("32", firstDay, lastDayOfMonth),
+        "42": getDayOfMonth("42", firstDay, lastDayOfMonth),
+        "52": getDayOfMonth("52", firstDay, lastDayOfMonth),
+        "62": getDayOfMonth("62", firstDay, lastDayOfMonth),
+        "13": getDayOfMonth("13", firstDay, lastDayOfMonth),
+        "23": getDayOfMonth("23", firstDay, lastDayOfMonth),
+        "33": getDayOfMonth("33", firstDay, lastDayOfMonth),
+        "43": getDayOfMonth("43", firstDay, lastDayOfMonth),
+        "53": getDayOfMonth("53", firstDay, lastDayOfMonth),
+        "63": getDayOfMonth("63", firstDay, lastDayOfMonth),
+        "14": getDayOfMonth("14", firstDay, lastDayOfMonth),
+        "24": getDayOfMonth("24", firstDay, lastDayOfMonth),
+        "34": getDayOfMonth("34", firstDay, lastDayOfMonth),
+        "44": getDayOfMonth("44", firstDay, lastDayOfMonth),
+        "54": getDayOfMonth("54", firstDay, lastDayOfMonth),
+        "64": getDayOfMonth("64", firstDay, lastDayOfMonth),
+        "15": getDayOfMonth("15", firstDay, lastDayOfMonth),
+        "25": getDayOfMonth("25", firstDay, lastDayOfMonth),
+        "35": getDayOfMonth("35", firstDay, lastDayOfMonth),
+        "45": getDayOfMonth("45", firstDay, lastDayOfMonth),
+        "55": getDayOfMonth("55", firstDay, lastDayOfMonth),
+        "65": getDayOfMonth("65", firstDay, lastDayOfMonth),
+        "16": getDayOfMonth("16", firstDay, lastDayOfMonth),
+        "26": getDayOfMonth("26", firstDay, lastDayOfMonth),
+        "36": getDayOfMonth("36", firstDay, lastDayOfMonth),
+        "46": getDayOfMonth("46", firstDay, lastDayOfMonth),
+        "56": getDayOfMonth("56", firstDay, lastDayOfMonth),
+        "66": getDayOfMonth("66", firstDay, lastDayOfMonth),
+        "17": getDayOfMonth("17", firstDay, lastDayOfMonth),
+        "27": getDayOfMonth("27", firstDay, lastDayOfMonth),
+        "37": getDayOfMonth("37", firstDay, lastDayOfMonth),
+        "47": getDayOfMonth("47", firstDay, lastDayOfMonth),
+        "57": getDayOfMonth("57", firstDay, lastDayOfMonth),
+        "67": getDayOfMonth("67", firstDay, lastDayOfMonth)
+    }
     return (
     <div className="calendar">
         <div className="calendarDayOfWeek">
             <p className="cHeader">Mandag</p>
-            <CalendarItem calId="11" date={getDayOfMonth("11", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="21" date={getDayOfMonth("21", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="31" date={getDayOfMonth("31", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="41" date={getDayOfMonth("41", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="51" date={getDayOfMonth("51", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="61" date={getDayOfMonth("61", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="11" date={map["11"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["11"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="21" date={map["21"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["21"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="31" date={map["31"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["31"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="41" date={map["41"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["41"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="51" date={map["51"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["51"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="61" date={map["61"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["61"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Tirsdag</p>
-            <CalendarItem calId="12" date={getDayOfMonth("12", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="22" date={getDayOfMonth("22", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="32" date={getDayOfMonth("32", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="42" date={getDayOfMonth("42", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="52" date={getDayOfMonth("52", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="62" date={getDayOfMonth("62", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="12" date={map["12"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["12"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="22" date={map["22"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["22"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="32" date={map["32"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["32"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="42" date={map["42"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["42"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="52" date={map["52"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["52"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="62" date={map["62"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["62"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Onsdag</p>
-            <CalendarItem calId="13" date={getDayOfMonth("13", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="23" date={getDayOfMonth("23", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="33" date={getDayOfMonth("33", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="43" date={getDayOfMonth("43", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="53" date={getDayOfMonth("53", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="63" date={getDayOfMonth("63", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="13" date={map["13"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["13"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="23" date={map["23"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["23"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="33" date={map["33"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["33"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="43" date={map["43"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["34"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="53" date={map["53"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["35"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="63" date={map["63"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["36"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Torsdag</p>
-            <CalendarItem calId="14" date={getDayOfMonth("14", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="24" date={getDayOfMonth("24", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="34" date={getDayOfMonth("34", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="44" date={getDayOfMonth("44", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="54" date={getDayOfMonth("54", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="64" date={getDayOfMonth("64", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="14" date={map["14"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["14"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="24" date={map["24"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["24"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="34" date={map["34"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["34"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="44" date={map["44"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["44"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="54" date={map["54"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["54"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="64" date={map["64"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["64"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Fredag</p>
-            <CalendarItem calId="15" date={getDayOfMonth("15", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="25" date={getDayOfMonth("25", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="35" date={getDayOfMonth("35", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="45" date={getDayOfMonth("45", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="55" date={getDayOfMonth("55", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="65" date={getDayOfMonth("65", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="15" date={map["15"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["15"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="25" date={map["25"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["25"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="35" date={map["35"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["35"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="45" date={map["45"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["45"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="55" date={map["55"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["55"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="65" date={map["65"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["65"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Lørdag</p>
-            <CalendarItem calId="16" date={getDayOfMonth("16", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="26" date={getDayOfMonth("26", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="36" date={getDayOfMonth("36", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="46" date={getDayOfMonth("46", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="56" date={getDayOfMonth("56", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="66" date={getDayOfMonth("66", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="16" date={map["16"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["16"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="26" date={map["26"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["26"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="36" date={map["36"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["36"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="46" date={map["46"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["46"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="56" date={map["56"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["56"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="66" date={map["66"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["66"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Søndag</p>
-            <CalendarItem calId="17" date={getDayOfMonth("17", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="27" date={getDayOfMonth("27", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="37" date={getDayOfMonth("37", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="47" date={getDayOfMonth("47", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="57" date={getDayOfMonth("57", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
-            <CalendarItem calId="67" date={getDayOfMonth("67", firstDay, lastDayOfMonth)} clicked={onClick(year, month)}/>
+            <CalendarItem calId="17" date={map["17"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["17"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="27" date={map["27"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["27"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="37" date={map["37"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["37"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="47" date={map["47"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["47"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="57" date={map["57"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["57"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="67" date={map["67"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["67"]), month, year, bryggForMnd)}/>
         </div>
     </div>
 )}
@@ -123,9 +166,25 @@ function getDayOfMonth(matrixPos: string, firstDayOfWeek: number, lastDayOfMonth
     return "" + day
 }
 
+function getNumberOfBryggForDay(day: number, month: number, year: number, bryggListe: IBrygg[]) {
+    if (isNaN(day)) {
+        return -1
+    }
+    let min = new Date(year, month, day).getTime()
+    let max = new Date(year, month, day + 1).getTime()
+    let sum = 0;
+    for (let i = 0; i < bryggListe.length; i++) {
+        let millis = parseInt(bryggListe[i].dato as string)
+        if (min <= millis && millis < max) {
+            sum++
+        }
+    }
+    return sum
+}
+
 const mapStateToProps = (state: IState, props: ICalendar) : ICalendarProps => {
     return {
-        bryggForMnd: state.bryggListe
+        bryggForMnd: state.kalender.bryggForMnd
     }
 }
 

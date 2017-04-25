@@ -16,7 +16,7 @@ const App : React.StatelessComponent<any> = props => (
     <div>
         <Header />
         <NavBar />
-        <div className="verticalContainer">
+        <div className="content">
         {
             props.children
         }
