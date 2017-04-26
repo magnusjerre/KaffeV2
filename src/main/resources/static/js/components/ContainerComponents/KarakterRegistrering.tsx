@@ -30,7 +30,8 @@ const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistreri
     let relevantClasses = "holder " + visibilityClass
     return (
         <form className={relevantClasses} onSubmit={ (e :  React.FormEvent<HTMLFormElement>) => {e.preventDefault(); e.stopPropagation(); onSubmitKarakter(brygg._id, brygg.nyKarakter)}}>
-            <img src={cross} alt="Lukk" className="closeButton" onClick={e => { lukkBrygg() }}/>
+            <button className="closeButtonButton upperRight" onClick={e => { e.preventDefault(); lukkBrygg() }}/>
+            {/*<img src={cross} alt="Lukk" className="closeButton" onClick={e => { lukkBrygg() }}/>*/}
             <h1>{brygg.navn}</h1>
             <div className="formInputContent">
                 <label htmlFor="kaffeId">Kaffe

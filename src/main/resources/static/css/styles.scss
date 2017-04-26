@@ -35,6 +35,8 @@ h1 {
 
 p, a, h1, h2, label, select, input, button, span {
   color: $textColor;
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -154,13 +156,25 @@ ul.nonListDisplay {
 .nyttBryggKnapp {
   width: 2em;
   height: 2em;
-  margin: 0em;
-  transition: width $fast, height $fast, margin $fast;
+  margin: 0.2em;
+  background-color: transparent;
+  background-image: url("../images/pluss.png");
+  background-size: 2em;
+  background-repeat: no-repeat;
+  border: none;
+  box-sizing: content-box;
+
+  @include transition(transform $medium);
 
   &:hover, &:focus {
-    width: 1.5em;
-    height: 1.5em;
-    margin: 0.25em;
+    border: solid $cardSubmitBackground 0.2em;
+    margin: 0;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    outline: none;
   }
 }
 
@@ -209,7 +223,7 @@ ul.nonListDisplay {
   margin: 1.25em 1em;
   right: 0;
   top: 0;
-  @include transition(transform $medium, width $medium, height $medium, margin $medium);
+  @include transition(transform $medium);
 
   &:hover {
     -webkit-transform: rotateZ(45deg);
@@ -217,9 +231,6 @@ ul.nonListDisplay {
     -ms-transform: rotateZ(45deg);
     -o-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
-    width: 0.8em;
-    height: 0.8em;
-    margin: 1.35em 1.1em;
   }
 }
 
@@ -313,13 +324,15 @@ nav {
       @include transition(background-color 0.25s);
       margin: 0.1em;
       overflow: hidden;
+      border: none;
+      outline: none;
 
       .cIDate {
         text-align: right;
         margin: 0.25em 0.25em 0.5em auto;
       }
 
-      &:hover {
+      &:hover, &:focus {
         background: $calendarItemBackgroundHover;
       }
 
@@ -340,6 +353,20 @@ nav {
   height: 2em;
   margin: 1em;
   align-self: center;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background-image: url("../images/arrow_left.png");
+  background-size: 2em 2em;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include transition(background-size $medium);
+
+  &:hover, &:focus {
+    background-size: 2em 1em;
+  }
 }
 
 .rotated {
@@ -391,6 +418,15 @@ nav {
     width: 1em;
     height: 1em;
     margin: 0 1em 1em 1em;
+    @include transition(transform $medium);
+
+    &:hover {
+      -webkit-transform: rotateZ(45deg);
+      -moz-transform: rotateZ(45deg);
+      -ms-transform: rotateZ(45deg);
+      -o-transform: rotateZ(45deg);
+      transform: rotateZ(45deg);
+    }
   }
 
   .historikkBryggContainer {
@@ -421,6 +457,12 @@ nav {
   font-weight: bold;
   font-size: large;
   padding: 0.5em;
+  outline-color: transparent;
+  @include transition(outline-color $medium);
+
+  &:focus, &:hover {
+    outline: $inputOutlineColor 0.2em solid;
+  }
 }
 
 .historikkVelger {
@@ -447,33 +489,71 @@ nav {
 
 .buttonOuter {
   width: 100%;
-  height: 2.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   background: $cardSubmitBackground;
-  font-size: 1em;
   color: $cardInputBackground;
   border: none;
   outline: none;
-  @include transition(background $medium, font-size $medium);
+  height: 2.5em;
+  font-size: 1em;
+  @include transition(background $medium);
 
   &:hover, &:focus {
     background: $cardSubmitFocus;
-    font-size: 1.25em;
-    height: (2.5em / 1.25);
+    height: 2.5em;
+
+    .buttonInner {
+      font-size: 1.25em;
+    }
   }
 }
 
 .buttonInner {
+  width: 100%;
   margin: 0;
   background: transparent;
   border: none;
   outline: none;
   color: inherit;
-  font-size: inherit;
+  font-size: 1em;
+
+  @include transition(font-size $medium);
 }
 
 .halfWidth {
   width: 50%;
+}
+
+.closeButtonButton {
+  width: 1em;
+  height: 1em;
+  margin: 1.25em 1em;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/cross.png");
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+
+  @include transition(transform $medium);
+
+  &:hover, &:focus {
+    outline: $cardSubmitBackground 0.2em solid;
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+  }
+}
+
+.historikkClose {
+  margin: 0 1em 1em 1em;
+}
+
+.upperRight {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

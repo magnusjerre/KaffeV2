@@ -29,9 +29,9 @@ interface  IHistorikkComp {
 const HistorikkComp : React.StatelessComponent<IHistorikkComp> = ({month = new Date().getFullYear(), year = new Date().getMonth(), valgtBrygg, kaffer, dagensBrygg, onClose, onChangeBrygg, nextMonth, prevMonth}) => (
     <div className="verticalContainer">
         <div className="horizontalContainer">
-            <img src={leftArrow} alt="Previous month" className="monthArrow" onClick={e => prevMonth(year, month)}/>
+            <button className="monthArrow" onClick={e => prevMonth(year, month)} />
             <span className="historyMonth">{getMonthName(month) + " " + year}</span>
-            <img src={leftArrow} alt="Next month" className="monthArrow rotated" onClick={e => nextMonth(year, month)}/>
+            <button className="monthArrow rotated" onClick={e => nextMonth(year, month)} />
         </div>
         {
             dagensBrygg && dagensBrygg.length > 0 ? <HistorikkDag onClose={onClose} kaffer={kaffer} dagensBrygg={dagensBrygg} valgtBrygg={valgtBrygg} changeBrygg={onChangeBrygg}/> : <Calendar year={year} month={month}/>

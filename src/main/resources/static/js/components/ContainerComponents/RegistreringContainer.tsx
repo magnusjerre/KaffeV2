@@ -18,7 +18,8 @@ let RegCon : React.StatelessComponent<IRegContainer> = ({visKnapp, toggle}) => (
     <div className="verticalContainer content">
         <BryggListe />
         {
-            visKnapp ? <img src={pluss} alt="Nytt brygg" onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
+            // visKnapp ? <img src={pluss} alt="Nytt brygg" onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
+            visKnapp ? <button onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
         }
     </div>
 )
