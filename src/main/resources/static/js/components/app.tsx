@@ -6,22 +6,42 @@ import {createBrygg} from "../factory";
 import BryggRegistrering from "./ContainerComponents/BryggRegistrering"
 import RegistreringContainer from "./ContainerComponents/RegistreringContainer";
 import Calendar from "./Calendar";
+import {KeyCode} from "../KeyCode";
+import {connect, Dispatch} from "react-redux";
+import {createClearSelectedDayAction} from "../actions/kalender_actions";
+import {addKeyUpListener} from "../KeyboardInterceptor";
 
 let pluss = require("../../images/pluss.png")
 require("../../css/styles.scss")
 
 declare function require(name: string): any
 
-const App : React.StatelessComponent<any> = props => (
+interface IApp {
+    onClose?: VoidFunction
+}
+
+const AppComp : React.StatelessComponent<IApp> = ({onClose, children}) => {
+    addKeyUpListener(KeyCode.ESCAPE, onClose)
+
+    return (
     <div>
         <Header />
         <NavBar />
         <div className="content">
         {
-            props.children
+            children
         }
         </div>
     </div>
-)
+)}
 
+const mapDispatchToProps = (dispatch: Dispatch<any>) : IApp => {
+    return {
+        onClose: () => {
+            dispatch(createClearSelectedDayAction())
+        }
+    }
+}
+
+const App = connect(null, mapDispatchToProps)(AppComp)
 export default App

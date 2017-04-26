@@ -35,7 +35,7 @@ const KarakterEnkeltRegisteringComp : React.StatelessComponent<IEnkeltRegistreri
             <h1>{brygg.navn}</h1>
             <div className="formInputContent">
                 <label htmlFor="kaffeId">Kaffe
-                    <KaffeSelect value={brygg.nyKarakter.kaffeId} name="kaffeId" muligeKaffer={muligeKaffer} onChangeKaffe={onChangeProperty} />
+                    <KaffeSelect autofocus={true} value={brygg.nyKarakter.kaffeId} name="kaffeId" muligeKaffer={muligeKaffer} onChangeKaffe={onChangeProperty} />
                 </label>
                 <label htmlFor="bruker">Bruker
                     <input name="bruker" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("bruker", e.currentTarget.value) }} value={brygg.nyKarakter.bruker} placeholder="Jerre"/>

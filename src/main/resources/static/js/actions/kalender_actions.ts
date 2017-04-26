@@ -3,6 +3,7 @@ import {Dispatch} from "react-redux";
 import {ThunkAction} from "redux-thunk";
 export const CALENDAR_SELECTED_BRYGG = "Selected brygg for dato"
 export const SET_CALENDAR_MONTH = "Set calendar month"
+export const CHANGE_CALENDAR_MONTH = "Change calendar month by amount"
 export const SET_BRYGG_FOR_MONTH = "Set brygg for month"
 export const CLEAR_SELECTED_DAY = "Clearing selected day"
 export const HISTORY_CHANGE_BRYGG_FOR_DAY = "Change brygg for selected day"
@@ -26,6 +27,13 @@ export const createSetCalendarMonthAction = (year: number, month: number) : IAct
     return {
         type: SET_CALENDAR_MONTH,
         payload: new Date(year, month, 1)
+    }
+}
+
+export const createChangeCalendarMonthAction = (amount: number) : IAction<number> => {
+    return {
+        type: CHANGE_CALENDAR_MONTH,
+        payload: amount
     }
 }
 
@@ -54,7 +62,6 @@ export const createFetchBryggForMonthAction = (year: number, month: number) : Th
     dispatch(createSetCalendarMonthAction(year, month))
     let firstDay = format(getFirstDay(year, month))
     let nextMonth = format(getLastDay(year, month))
-    console.log("firstDay: " + firstDay)
     return fetch(`/api/brygg?fra=${firstDay}&til=${nextMonth}`).then((response: Response) => response.json()).then((json : any)=> {
         dispatch(createSetBryggForMonthAction(json as IBrygg[]))
     })

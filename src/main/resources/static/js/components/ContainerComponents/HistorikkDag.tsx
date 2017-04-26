@@ -1,8 +1,6 @@
-import * as React from "react"
-import {IBrygg, IKaffe, IKarakter, IState} from "../../models";
-import {calculateSnittKarakter, findBryggWithIDs, findKaffeForId} from "../../factory";
-import {connect, Dispatch} from "react-redux";
-import {createClearSelectedDayAction} from "../../actions/kalender_actions";
+import * as React from "react";
+import {IBrygg, IKaffe, IKarakter} from "../../models";
+import {calculateSnittKarakter, findKaffeForId} from "../../factory";
 
 let cross = require("../../../images/cross.png")
 
@@ -19,7 +17,7 @@ export interface IHistorikkDag {
 const HistorikkDag : React.StatelessComponent<any> = ({dagensBrygg, valgtBrygg, kaffer, onClose, changeBrygg}) => (
     <div className="verticalContainer historikkDag">
         <button className="closeButtonButton historikkClose" onClick={ e => onClose() }/>
-        <select id="brygg" name="brygg" value={valgtBrygg._id} className="historikkBryggSelect" onChange={(e: React.FormEvent<HTMLSelectElement>) => {
+        <select autoFocus={true} name="brygg" value={valgtBrygg._id} className="historikkBryggSelect" onChange={(e: React.FormEvent<HTMLSelectElement>) => {
             e.preventDefault()
             changeBrygg(e.currentTarget.value)
         }}>

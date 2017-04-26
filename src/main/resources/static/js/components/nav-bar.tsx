@@ -1,11 +1,20 @@
-import * as React from 'react';
-import {IndexLink, Link} from 'react-router';
+import * as React from "react";
+import {browserHistory, IndexLink, Link} from "react-router";
+import {addKeyUpListener} from "../KeyboardInterceptor";
+import {KeyCode} from "../KeyCode";
 
 
-const NavBar : React.StatelessComponent<{}> = (elementer) => (
-    <nav className="content">
-        <IndexLink className="navElement" to="/" activeClassName="navValgt">Registrering</IndexLink>
-        <Link className="navElement" to="/historikk" activeClassName="navValgt">Historikk</Link>
-    </nav>
-)
+const NavBar : React.StatelessComponent<{}> = () => {
+    addKeyUpListener(KeyCode.R, () => {
+        browserHistory.push("")
+    })
+    addKeyUpListener(KeyCode.H, () => {
+        browserHistory.push("historikk")
+    })
+    return (
+        <nav className="content">
+            <IndexLink className="navElement" to="/" activeClassName="navValgt">Registrering</IndexLink>
+            <Link className="navElement" to="/historikk" activeClassName="navValgt">Historikk</Link>
+        </nav>
+    )}
 export default NavBar;

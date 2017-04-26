@@ -83,6 +83,7 @@ export interface IKaffeSelect {
     onChangeKaffe: (property: string, newId: string) => void
     name: string
     value: string
+    autofocus?: boolean
 }
 
 export interface IKaffeFetcher {

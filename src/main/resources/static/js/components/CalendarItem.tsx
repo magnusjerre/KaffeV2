@@ -12,9 +12,11 @@ export interface ICalendarItem extends ICalendarItemDispatch {
 }
 
 const CalendarItem : React.StatelessComponent<ICalendarItem> = ({date, calId, numberOfBrygg, clicked}) => (
-    <button id={calId} className={isNaN(parseInt(date)) ? "cItem hidden" : "cItem"} onClick={e => clicked(date)}>
-        <p className="cIDate">{date}</p>
-        <AntallIndikator value={numberOfBrygg}/>
+    <button autoFocus={date === "1"} id={calId} className={isNaN(parseInt(date)) ? "cItem hidden" : "cItem"} onClick={e => clicked(date)}>
+        <div className="cItemSub">
+            <p className="cIDate">{date}</p>
+            <AntallIndikator value={numberOfBrygg}/>
+        </div>
     </button>
 )
 

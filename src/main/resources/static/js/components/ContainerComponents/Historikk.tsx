@@ -9,6 +9,8 @@ import {
     createFetchBryggForMonthAction,
     createHistoryChangeBryggForDayAction
 } from "../../actions/kalender_actions";
+import {KeyCode} from "../../KeyCode";
+import {addKeyUpListener} from "../../KeyboardInterceptor";
 
 let leftArrow = require("../../../images/arrow_left.png")
 
@@ -26,18 +28,25 @@ interface  IHistorikkComp {
     prevMonth?: Function
 }
 
-const HistorikkComp : React.StatelessComponent<IHistorikkComp> = ({month = new Date().getFullYear(), year = new Date().getMonth(), valgtBrygg, kaffer, dagensBrygg, onClose, onChangeBrygg, nextMonth, prevMonth}) => (
-    <div className="verticalContainer">
-        <div className="horizontalContainer">
-            <button className="monthArrow" onClick={e => prevMonth(year, month)} />
-            <span className="historyMonth">{getMonthName(month) + " " + year}</span>
-            <button className="monthArrow rotated" onClick={e => nextMonth(year, month)} />
+const HistorikkComp : React.StatelessComponent<IHistorikkComp> = ({month = new Date().getFullYear(), year = new Date().getMonth(), valgtBrygg, kaffer, dagensBrygg, onClose, onChangeBrygg, nextMonth, prevMonth}) => {
+    addKeyUpListener(KeyCode.A, () => {
+        prevMonth(year, month)
+    })
+    addKeyUpListener(KeyCode.D, () => {
+        nextMonth(year, month)
+    })
+    return (
+        <div className="verticalContainer">
+            <div className="horizontalContainer">
+                <button className="monthArrow" onClick={e => prevMonth(year, month)} />
+                <span className="historyMonth">{getMonthName(month) + " " + year}</span>
+                <button className="monthArrow rotated" onClick={e => nextMonth(year, month)} />
+            </div>
+            {
+                dagensBrygg && dagensBrygg.length > 0 ? <HistorikkDag onClose={onClose} kaffer={kaffer} dagensBrygg={dagensBrygg} valgtBrygg={valgtBrygg} changeBrygg={onChangeBrygg}/> : <Calendar year={year} month={month}/>
+            }
         </div>
-        {
-            dagensBrygg && dagensBrygg.length > 0 ? <HistorikkDag onClose={onClose} kaffer={kaffer} dagensBrygg={dagensBrygg} valgtBrygg={valgtBrygg} changeBrygg={onChangeBrygg}/> : <Calendar year={year} month={month}/>
-        }
-    </div>
-)
+    )}
 
 const mapStateToProps = (state: IState, props: IHistorikkComp) : IHistorikkComp => {
     return {
