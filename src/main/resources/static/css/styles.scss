@@ -287,6 +287,14 @@ nav {
     background-color: $cardSubmitBackground;
     color: $cardInputBackground;
   }
+
+  a {
+    &:focus, &:hover {
+      outline: none;
+      font-weight: bold;
+      background-color: $cardSubmitFocus;
+    }
+  }
 }
 
 .content {
