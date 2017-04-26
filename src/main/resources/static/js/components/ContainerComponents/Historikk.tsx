@@ -38,9 +38,9 @@ const HistorikkComp : React.StatelessComponent<IHistorikkComp> = ({month = new D
     return (
         <div className="verticalContainer">
             <div className="horizontalContainer">
-                <button className="monthArrow" onClick={e => prevMonth(year, month)} />
+                <button className="monthArrow" onClick={e => { e.currentTarget.blur(); prevMonth(year, month) }} />
                 <span className="historyMonth">{getMonthName(month) + " " + year}</span>
-                <button className="monthArrow rotated" onClick={e => nextMonth(year, month)} />
+                <button className="monthArrow rotated" onClick={e => { e.currentTarget.blur(); nextMonth(year, month) }} />
             </div>
             {
                 dagensBrygg && dagensBrygg.length > 0 ? <HistorikkDag onClose={onClose} kaffer={kaffer} dagensBrygg={dagensBrygg} valgtBrygg={valgtBrygg} changeBrygg={onChangeBrygg}/> : <Calendar year={year} month={month}/>
