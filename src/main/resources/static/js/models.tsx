@@ -85,6 +85,7 @@ export interface IKaffeSelect {
     name: string
     value: string
     autofocus?: boolean
+    required?: boolean
 }
 
 export interface IKaffeFetcher {

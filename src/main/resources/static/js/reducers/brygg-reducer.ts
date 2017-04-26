@@ -25,7 +25,7 @@ const bryggReducer = (state: IBrygg[] = [], action: IAction<IBrygg[] | IKarakter
             }
             brygg.nyKarakter = {
                 bruker: "",
-                kaffeId: "def",
+                kaffeId: "",
                 karakter: 0,
                 kommentar: ""
             }
@@ -90,14 +90,14 @@ function addFieldsToEachBrygg(bryggListe: IBrygg[]) {
         let brygg = bryggListe[i]
         brygg.nyKarakter = {
             bruker: "",
-            kaffeId: "def",
+            kaffeId: "",
             karakter: 0,
             kommentar: ""
         }
         brygg.visning = RegistreringVisning.REGISTRERING
         brygg.gjetteResultat = {
             bruker: "",
-            kaffeId: "def",
+            kaffeId: "",
             karakter: 0,
             kommentar: ""
         }

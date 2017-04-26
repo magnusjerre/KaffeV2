@@ -6,7 +6,7 @@ const initalState : IBryggReg = {
     brygg: {
         navn: "",
         brygger: "",
-        kaffeId: "def",
+        kaffeId: "",
         liter: 0,
         skjeer: 0,
         visBryggRegistrering: false
