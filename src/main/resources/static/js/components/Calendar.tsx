@@ -93,9 +93,9 @@ const CalendarComp : React.StatelessComponent<ICalendar> = ({bryggForMnd, onClic
             <CalendarItem calId="13" date={map["13"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["13"]), month, year, bryggForMnd)}/>
             <CalendarItem calId="23" date={map["23"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["23"]), month, year, bryggForMnd)}/>
             <CalendarItem calId="33" date={map["33"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["33"]), month, year, bryggForMnd)}/>
-            <CalendarItem calId="43" date={map["43"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["34"]), month, year, bryggForMnd)}/>
-            <CalendarItem calId="53" date={map["53"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["35"]), month, year, bryggForMnd)}/>
-            <CalendarItem calId="63" date={map["63"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["36"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="43" date={map["43"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["43"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="53" date={map["53"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["53"]), month, year, bryggForMnd)}/>
+            <CalendarItem calId="63" date={map["63"]} clicked={onClick(year, month)} numberOfBrygg={getNumberOfBryggForDay(parseInt(map["63"]), month, year, bryggForMnd)}/>
         </div>
         <div className="calendarDayOfWeek">
             <p className="cHeader">Torsdag</p>

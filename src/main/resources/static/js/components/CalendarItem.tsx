@@ -1,5 +1,5 @@
 import * as React from "react"
-import Karakter from "./AntallIndikator";
+import AntallIndikator from "./AntallIndikator";
 
 interface ICalendarItemDispatch {
     clicked?: (date: string) => void
@@ -14,7 +14,7 @@ export interface ICalendarItem extends ICalendarItemDispatch {
 const CalendarItem : React.StatelessComponent<ICalendarItem> = ({date, calId, numberOfBrygg, clicked}) => (
     <div id={calId} className={isNaN(parseInt(date)) ? "cItem hidden" : "cItem"} onClick={e => clicked(date)}>
         <p className="cIDate">{date}</p>
-        <Karakter value={numberOfBrygg}/>
+        <AntallIndikator value={numberOfBrygg}/>
     </div>
 )
 
