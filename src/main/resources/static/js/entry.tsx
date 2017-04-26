@@ -14,6 +14,7 @@ import CalendarItem from "./components/CalendarItem";
 import {createFetchBryggForMonthAction} from "./actions/kalender_actions";
 import RegistreringContainer from "./components/ContainerComponents/RegistreringContainer";
 import Historikk from "./components/ContainerComponents/Historikk"
+import KaffeRegistrering from "./components/ContainerComponents/KaffeRegistrering";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -31,6 +32,7 @@ ReactDOM.render(
             <Route path="/" component={App}>
                 <IndexRoute component={RegistreringContainer} />
                 <Route path="historikk" component={Historikk} />
+                <Route path="kafferegistrering" component={KaffeRegistrering} />
             </Route>
         </Router>
     </Provider>,

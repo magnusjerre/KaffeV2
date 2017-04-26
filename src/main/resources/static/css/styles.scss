@@ -6,6 +6,7 @@ $cardSubmitFocus: lighten($cardSubmitBackground, 20%);
 $inputOutlineColor: $cardSubmitBackground;
 $fast: 0.1s;
 $medium: 0.25s;
+$long: 0.5s;
 $contentWidth: 80%;
 $contentWidthNarrowViewPort: 100%;
 $boxWidth: 20em;
@@ -262,6 +263,18 @@ ul.nonListDisplay {
   transform: rotateY(180deg);
   visibility: hidden;
   transition: transform $medium linear, visibility ($medium / 2) step-end;
+}
+
+.flipper {
+  transition: transform $long;
+}
+
+.flip90Deg {
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  transform: rotateY(90deg);
 }
 
 @keyframes flipVertical {

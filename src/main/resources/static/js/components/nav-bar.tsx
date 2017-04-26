@@ -11,10 +11,14 @@ const NavBar : React.StatelessComponent<{}> = () => {
     addKeyUpListener(KeyCode.H, () => {
         browserHistory.push("historikk")
     })
+    addKeyUpListener(KeyCode.K, () => {
+        browserHistory.push("kafferegistrering")
+    })
     return (
         <nav className="content">
             <IndexLink className="navElement" to="/" activeClassName="navValgt">Registrering</IndexLink>
             <Link className="navElement" to="/historikk" activeClassName="navValgt">Historikk</Link>
+            <Link className="navElement" to="/kafferegistrering" activeClassName="navValgt">Kaffe registrering</Link>
         </nav>
     )}
 export default NavBar;

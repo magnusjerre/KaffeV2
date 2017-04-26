@@ -1,5 +1,5 @@
 import {IAction, IKaffe, IKaffeFetcher} from "../models";
-import {FETCH_KAFFER_REQUEST, FETCH_KAFFER_SUCCESS} from "../actions/kaffe_actions";
+import {FETCH_KAFFER_REQUEST, FETCH_KAFFER_SUCCESS, KAFFE_CLEAR_REGISTRERING} from "../actions/kaffe_actions";
 
 const initState : IKaffeFetcher = {
     muligeKaffer: [],

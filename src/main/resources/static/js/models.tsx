@@ -37,7 +37,7 @@ export interface IKarakterRegistreringState {
 }
 
 export interface IKaffe {
-    _id: string
+    _id?: string
     navn: string
     produsent: string
     land: string
@@ -67,6 +67,7 @@ export interface IState {
     nyttBrygg: IBryggReg
     kaffer: IKaffeFetcher
     kalender: IKalenderState
+    kaffeRegistrering: IKaffe
 }
 
 export interface IAction<T> {
