@@ -33,7 +33,10 @@ const bryggRegistreringReducer = (state: IBryggReg = initalState, action: IActio
             }
         }
         case TOGGLE_NEW_BRYGG: {
-            newState.visKnapp = !newState.visKnapp
+            let visKnapp = !state.visKnapp
+            newState = deepCopy(initalState)
+            newState.visKnapp = visKnapp
+            newState.brygg.navn
             return newState
         }
         default:

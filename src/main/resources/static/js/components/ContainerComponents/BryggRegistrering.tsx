@@ -1,5 +1,5 @@
 import * as React from "react";
-import {addBryggAction, createBryggPropertyChangeAction} from "../../actions/brygg_actions";
+import {addBryggAction, createBryggPropertyChangeAction, createToggleNyBryggAction} from "../../actions/brygg_actions";
 import {connect, Dispatch} from "react-redux";
 import {IBryggRegistrering, IKaffe, IState} from "../../models";
 import KaffeSelect from "../KaffeSelect";
@@ -10,11 +10,14 @@ interface IBryggRegistreringComp {
     onChangeProperty?: (property: string, newValue: number | string) => void
     nyttBrygg?: IBryggRegistrering
     muligeKaffer?: IKaffe[]
+    lukkRegistrering?: VoidFunction
 }
 
-let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeProperty, nyttBrygg, muligeKaffer}) => {
+let BryggRegistreringComp : React.StatelessComponent<IBryggRegistreringComp> = ({onSubmitBrygg, onChangeProperty, nyttBrygg, muligeKaffer, lukkRegistrering}) => {
     return (
         <form className="holder bryggRegistrering" onSubmit={ (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onSubmitBrygg(nyttBrygg) }}>
+            <button className="closeButtonButton upperRight" onClick={e => { e.preventDefault(); lukkRegistrering();}} />
+            <h1>Nytt brygg</h1>
             <div className="formInputContent">
                 <label htmlFor="navn">Bryggnavn
                     <input autoFocus={true} name="navn" type="text" onChange={ (e: React.FormEvent<HTMLInputElement>) => { e.preventDefault(); onChangeProperty("navn", e.currentTarget.value) }} value={nyttBrygg.navn} placeholder="Gang of four"/>
@@ -51,6 +54,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: IBryggRegistrerin
         },
         onChangeProperty: (property: string, newValue: string | number) => {
           dispatch(createBryggPropertyChangeAction(property, newValue))
+        },
+        lukkRegistrering: () => {
+            dispatch(createToggleNyBryggAction())
         }
     }
 }
