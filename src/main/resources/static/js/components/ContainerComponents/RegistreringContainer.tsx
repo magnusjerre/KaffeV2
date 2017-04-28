@@ -17,10 +17,11 @@ export interface IRegContainer {
 let RegCon : React.StatelessComponent<IRegContainer> = ({visKnapp, toggle}) => (
     <div className="verticalContainer content">
         <BryggListe />
+        <div className="standardMargin">
         {
-            // visKnapp ? <img src={pluss} alt="Nytt brygg" onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
             visKnapp ? <button onClick={e => { toggle() }} className="nyttBryggKnapp"/> : <BryggRegistrering />
         }
+        </div>
     </div>
 )
 
