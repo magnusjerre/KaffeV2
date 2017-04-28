@@ -1,4 +1,5 @@
 import {Dispatch} from "react-redux";
+import Statistikk from "./components/ContainerComponents/Statistikk";
 export interface IBrygg {
     _id: string
     navn: string
@@ -23,6 +24,10 @@ export enum RegistreringVisning {
 
 export enum Malthet {
     FINMALT, MEDIUM, GROV
+}
+
+export enum StatistikkIntervall {
+    UKE, MND, EVIGHETEN
 }
 
 export interface IKarakter {
@@ -68,6 +73,7 @@ export interface IState {
     kaffer: IKaffeFetcher
     kalender: IKalenderState
     kaffeRegistrering: IKaffe
+    statistikk: IStatistikkState
 }
 
 export interface IAction<T> {
@@ -105,4 +111,29 @@ export interface IKalenderState {
     utvalgteBrygg: string[]
     utvalgtBrygg: IBrygg
     bryggForMnd: IBrygg[]
+}
+
+export interface IBryggStatistikk {
+    nbrygg: number
+    nkarakterer: number
+    snittKarakter: number
+}
+
+export interface IGjetteStatistikk {
+    ngjettinger: number
+    nriktige: number
+    snittKarakter: number
+    andelRiktige: number
+}
+
+export interface IStatistikk{
+    bruker: string
+    bryggeStatistikk: IBryggStatistikk
+    gjetteStatistikk: IGjetteStatistikk
+}
+
+export interface IStatistikkState {
+    uke: IStatistikk[]
+    mnd: IStatistikk[]
+    evigheten: IStatistikk[]
 }

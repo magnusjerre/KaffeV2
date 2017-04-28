@@ -4,6 +4,7 @@ import nyttBryggReducer from "./brygg-registrering-reducer";
 import kaffeReducer from "./kaffe-reducer"
 import kalenderReducer from "./kalender_reducer";
 import kafferegistreringReducer from "./kafferegistrering_reducer";
+import {statistikkReducer} from "./statistikk-reducer";
 
 
 const combinedReducers = combineReducers({
@@ -11,7 +12,8 @@ const combinedReducers = combineReducers({
         nyttBrygg: nyttBryggReducer,
         kaffer: kaffeReducer,
         kalender: kalenderReducer,
-        kaffeRegistrering: kafferegistreringReducer
+        kaffeRegistrering: kafferegistreringReducer,
+        statistikk: statistikkReducer
 })
 
 export default combinedReducers

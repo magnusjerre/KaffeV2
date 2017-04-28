@@ -1,4 +1,4 @@
-import {IBrygg, IKaffe, IKarakter, Malthet} from "./models";
+import {IBrygg, IKaffe, IKarakter, IStatistikk, Malthet} from "./models";
 
 export function createBrygg (navn: string, brygger: string, kaffeId: string, liter: number, skjeer: number) : IBrygg {
     return {
@@ -94,4 +94,51 @@ export function calculateSnittKarakter(karakterer: IKarakter[]) : number {
         sum += karakterer[i].karakter
     }
     return sum / karakterer.length
+}
+
+export function getToday() {
+    let today = new Date()
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate())
+}
+
+export function getFirstDayOfWeek () {
+    let firstDayOfWeek  = getToday()
+    if (firstDayOfWeek.getDay() != 1) { //monday = 1
+        while (firstDayOfWeek.getDay() != 1) {
+            firstDayOfWeek.setDate(firstDayOfWeek.getDate() - 1)
+        }
+    }
+    return firstDayOfWeek
+}
+
+export function getLastDayOfWeek() {
+    let lastDayOfWeek = getToday()
+    if (lastDayOfWeek.getDay() != 0) {
+        lastDayOfWeek.setDate(lastDayOfWeek.getDate() + (7 - lastDayOfWeek.getDay()))
+    }
+    return lastDayOfWeek
+}
+
+export function getFirstDayOfMonth() {
+    let firstDayOfMonth = getToday()
+    firstDayOfMonth.setDate(1)
+    return firstDayOfMonth
+}
+
+export function getLastDayOfMonth() {
+    let lastDayOfMonth = getToday()
+    lastDayOfMonth.setDate(1)
+    lastDayOfMonth.setMonth(lastDayOfMonth.getMonth() + 1)
+    lastDayOfMonth.setDate(0)
+    return lastDayOfMonth;
+}
+
+export function getEpoch() {
+    return new Date(0)
+}
+
+export function getTomorrow() {
+    let tomorrow = getToday()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    return tomorrow
 }

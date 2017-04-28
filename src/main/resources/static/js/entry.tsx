@@ -16,6 +16,10 @@ import RegistreringContainer from "./components/ContainerComponents/Registrering
 import Historikk from "./components/ContainerComponents/Historikk"
 import KaffeRegistrering from "./components/ContainerComponents/KaffeRegistrering";
 import KaffeListe from "./components/KaffeVisning";
+import {fetchStatistikk} from "./actions/statistikk_actions";
+import {getFirstDayOfWeek} from "./factory";
+import {StatistikkIntervall} from "./models";
+import Statistikk from "./components/ContainerComponents/Statistikk";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -26,6 +30,9 @@ let store = createStore(combinedReducers, composeWithDevTools(applyMiddleware(th
 store.dispatch(fetchKafferAction())
 store.dispatch(createFetchBryggAction())
 store.dispatch(createFetchBryggForMonthAction(new Date().getFullYear(), new Date().getMonth()))
+store.dispatch(fetchStatistikk(StatistikkIntervall.UKE))
+store.dispatch(fetchStatistikk(StatistikkIntervall.MND))
+store.dispatch(fetchStatistikk(StatistikkIntervall.EVIGHETEN))
 
 ReactDOM.render(
     <Provider store={store}>
@@ -35,6 +42,7 @@ ReactDOM.render(
                 <Route path="historikk" component={Historikk} />
                 <Route path="kafferegistrering" component={KaffeRegistrering} />
                 <Route path="kaffeliste" component={KaffeListe} />
+                <Route path="statistikk" component={Statistikk} />
             </Route>
         </Router>
     </Provider>,

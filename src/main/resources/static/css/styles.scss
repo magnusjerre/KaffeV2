@@ -666,3 +666,36 @@ table {
   }
 
 }
+
+.statistikk {
+  background-color: $cardBackground;
+  width: $boxWidth;
+  margin: 1em;
+
+  h1 {
+    margin: 0.5em auto 0 auto;
+    padding: 0;
+  }
+
+  .checkMark {
+    width: 1em;
+    height: 1em;
+  }
+
+  table {
+    margin: 0;
+    padding: 1em;
+
+
+    tbody tr:nth-child(odd) {
+      background-color: $cardInputBackground;
+    }
+    tbody tr:nth-child(even) {
+      background-color: transparent;
+    }
+    tr td, tr th {
+      padding: 0.25em 0.5em;
+      text-align: center;
+    }
+  }
+}
