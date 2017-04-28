@@ -30,14 +30,16 @@ html{
   height: 100%;
 }
 
-h1 {
-  color: $textColor;
-}
 
 p, a, h1, h2, label, select, input, button, span {
   color: $textColor;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 1em;
 }
 
 p {
