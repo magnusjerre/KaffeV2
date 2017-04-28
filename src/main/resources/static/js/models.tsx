@@ -41,7 +41,7 @@ export interface IKaffe {
     navn: string
     produsent: string
     land: string
-    vis: Boolean
+    vis: boolean
 }
 
 export interface IBryggState {
@@ -90,6 +90,7 @@ export interface IKaffeSelect {
 
 export interface IKaffeFetcher {
     muligeKaffer: IKaffe[]
+    alleKaffer: IKaffe[]
     isFetching: Boolean
 }
 

@@ -40,6 +40,11 @@ open class KaffeAPIController {
         return kaffeService.getKaffe(id)
     }
 
+    @RequestMapping("kaffe/{id}/synlighet", method = arrayOf(RequestMethod.POST))
+    fun editKaffeSynlighet(@PathVariable id: String, @RequestBody vis: Boolean) : Kaffe? {
+        return kaffeService.editKaffeSynlighet(id, vis)
+    }
+
     @RequestMapping("kaffe/soknavn/{navn}")
     fun getKaffeMedSoknavn(@PathVariable navn: String): Kaffe? {
         return kaffeService.getKaffeMedSokNavn(navn)

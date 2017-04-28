@@ -15,6 +15,7 @@ import {createFetchBryggForMonthAction} from "./actions/kalender_actions";
 import RegistreringContainer from "./components/ContainerComponents/RegistreringContainer";
 import Historikk from "./components/ContainerComponents/Historikk"
 import KaffeRegistrering from "./components/ContainerComponents/KaffeRegistrering";
+import KaffeListe from "./components/KaffeVisning";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -33,6 +34,7 @@ ReactDOM.render(
                 <IndexRoute component={RegistreringContainer} />
                 <Route path="historikk" component={Historikk} />
                 <Route path="kafferegistrering" component={KaffeRegistrering} />
+                <Route path="kaffeliste" component={KaffeListe} />
             </Route>
         </Router>
     </Provider>,

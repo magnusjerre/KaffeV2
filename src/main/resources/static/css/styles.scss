@@ -581,3 +581,82 @@ nav {
   top: 0;
   right: 0;
 }
+
+table {
+  margin: 1em;
+  background-color: $cardBackground;
+  padding: 1em;
+  min-width: $boxWidth;
+
+  color: $textColor;
+
+  tr {
+
+    td {
+      padding: 0.5em;
+    }
+
+    &:nth-child(even) {
+      background-color: $cardInputBackground;
+    }
+  }
+}
+
+.myCheckBoxInput {
+  display: none;
+}
+
+.myCheckBox {
+  width: 1.5em;
+  height: 1.5em;
+  opacity: 0.2;
+}
+
+.myCheckBoxVisuals {
+  background-color: gray;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.myCheckBoxContainer {
+  position: relative;
+
+  input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    opacity: 0;
+
+    &:focus + label, &:hover + label {
+      -webkit-transform: rotateZ(45deg);
+      -moz-transform: rotateZ(45deg);
+      -ms-transform: rotateZ(45deg);
+      -o-transform: rotateZ(45deg);
+      transform: rotateZ(45deg);
+    }
+
+    &:checked + label::before {
+        content: "X";
+    }
+
+    &:not(:checked) + label {
+    }
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    outline: 0.2em solid $textColor;
+    text-align: center;
+    @include transition(transform $medium);
+  }
+
+}

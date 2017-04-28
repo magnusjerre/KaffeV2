@@ -49,4 +49,13 @@ open class KaffeService {
         }
     }
 
+    fun editKaffeSynlighet(id: String, vis: Boolean): Kaffe? {
+        val kaffe = getKaffe(id)
+        if (kaffe != null) {
+            kaffe.vis = vis
+            kaffeRepository.save(kaffe)
+        }
+        return kaffe
+    }
+
 }
