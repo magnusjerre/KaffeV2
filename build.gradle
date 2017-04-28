@@ -28,11 +28,18 @@ task copyHerokuProperties(type: Copy) {
     rename("application_heroku.properties", "application.properties")
 }
 
-task copyLocalIdeaProperties(type: Copy) {
+task copyLocalMLabProperties(type: Copy) {
     from "config_sources"
     into "config"
-    include "application_local.properties"
-    rename("application_local.properties", "application.properties")
+    include "application_local_mlab.properties"
+    rename("application_local_mlab.properties", "application.properties")
+}
+
+task copyLocalMongoProperties(type: Copy) {
+    from "config_sources"
+    into "config"
+    include "application_local_mongo.properties"
+    rename("application_local_mongo.properties", "application.properties")
 }
 
 task stage(dependsOn: ['copyHerokuProperties', 'clean', 'installDist'])
