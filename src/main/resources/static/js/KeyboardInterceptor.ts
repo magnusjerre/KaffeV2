@@ -1,10 +1,10 @@
 let obj : any = {}
 let body = document.getElementsByTagName("body")[0]
 
-export function addKeyUpListener(keyCode: number, action: VoidFunction) {
+export function addKeyUpListener(keyCode: number, action: VoidFunction, requireAlt: boolean = true) {
     removeKeyUpListener(keyCode)
     let func = function(ev: any){
-        if (ev.keyCode === keyCode && ev.altKey) {
+        if (ev.keyCode === keyCode && (requireAlt ? ev.altKey : true)) {
             ev.preventDefault()
             ev.stopPropagation()
             action()

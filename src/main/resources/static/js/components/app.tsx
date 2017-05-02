@@ -21,7 +21,7 @@ interface IApp {
 }
 
 const AppComp : React.StatelessComponent<IApp> = ({onClose, children}) => {
-    addKeyUpListener(KeyCode.ESCAPE, onClose)
+    addKeyUpListener(KeyCode.ESCAPE, onClose, false)
 
     return (
     <div>
