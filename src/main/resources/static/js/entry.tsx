@@ -20,6 +20,7 @@ import {fetchStatistikk} from "./actions/statistikk_actions";
 import {getFirstDayOfWeek} from "./factory";
 import {StatistikkIntervall} from "./models";
 import Statistikk from "./components/ContainerComponents/Statistikk";
+import About from "./components/Om";
 
 // Vil helst bruke følgende, men dette gir en irriterende editor-feilmelding, den kompilerer riktignok..
 // import { composeWithDevTools } from "redux-devtools-extension"
@@ -43,6 +44,7 @@ ReactDOM.render(
                 <Route path="kafferegistrering" component={KaffeRegistrering} />
                 <Route path="kaffeliste" component={KaffeListe} />
                 <Route path="statistikk" component={Statistikk} />
+                <Route path="Om" component={About} />
             </Route>
         </Router>
     </Provider>,

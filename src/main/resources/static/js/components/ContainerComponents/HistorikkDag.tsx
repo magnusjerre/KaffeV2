@@ -16,7 +16,7 @@ export interface IHistorikkDag {
 
 const HistorikkDag : React.StatelessComponent<any> = ({dagensBrygg, valgtBrygg, kaffer, onClose, changeBrygg}) => (
     <div className="verticalContainer historikkDag">
-        <button className="closeButtonButton historikkClose" onClick={ e => onClose() }/>
+        <button title="Snarvei: Escape" className="closeButtonButton historikkClose" onClick={ e => onClose() }/>
         <select autoFocus={true} name="brygg" value={valgtBrygg._id} className="historikkBryggSelect" onChange={(e: React.FormEvent<HTMLSelectElement>) => {
             e.preventDefault()
             changeBrygg(e.currentTarget.value)

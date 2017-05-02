@@ -31,7 +31,7 @@ html{
 }
 
 
-p, a, h1, h2, label, select, input, button, span {
+p, a, h1, h2, h3, ul, li label, select, input, button, span {
   color: $textColor;
   margin: 0;
   padding: 0;
@@ -699,5 +699,17 @@ table {
       padding: 0.25em 0.5em;
       text-align: center;
     }
+  }
+}
+
+.om {
+  h1, h2, h3 {
+    margin: 1em;
+  }
+  p {
+    font-weight: normal;
+  }
+  ul {
+    margin: 1em;
   }
 }
