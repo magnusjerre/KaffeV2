@@ -295,11 +295,16 @@ ul.nonListDisplay {
 nav {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   border-bottom: 0.25em $cardSubmitBackground solid;
 
   .navElement {
     padding: 0.5em 1em;
+
+    &:hover {
+      font-weight: normal;
+    }
   }
 
   .navValgt {
