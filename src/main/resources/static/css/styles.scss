@@ -301,10 +301,7 @@ nav {
 
   .navElement {
     padding: 0.5em 1em;
-
-    &:hover {
-      font-weight: normal;
-    }
+    font-weight: bold;
   }
 
   .navValgt {
@@ -313,9 +310,9 @@ nav {
   }
 
   a {
+    text-decoration: none;
     &:focus, &:hover {
       outline: none;
-      font-weight: bold;
       background-color: $cardSubmitFocus;
     }
   }
