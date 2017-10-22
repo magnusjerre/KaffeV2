@@ -51,7 +51,7 @@ task webpack(type: Exec) {
     commandLine "$projectDir/node_modules/.bin/webpack"
 }
 
-task stage(dependsOn: ['copyLocalMLabProperties', 'npmInstall', 'webpack', 'clean', 'installDist'])
+task stage(dependsOn: ['copyHerokuProperties', 'npmInstall', 'webpack', 'clean', 'installDist'])
 
 
 sourceSets {
