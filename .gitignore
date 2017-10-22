@@ -25,8 +25,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-src/main/resources/static/js/bundle.js
-src/main/resources/static/js/bundle.js.map
+# src/main/resources/static/js/bundle.js
+# src/main/resources/static/js/bundle.js.map
 
 # Ignore all mdoules downloaded from node
 node_modules/
