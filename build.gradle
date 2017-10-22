@@ -51,7 +51,9 @@ task webpack(type: Exec) {
     commandLine "$projectDir/node_modules/.bin/webpack"
 }
 
-task stage(dependsOn: ['copyHerokuProperties', 'npmInstall', 'webpack', 'clean', 'installDist'])
+task buildLocalFrontend(dependsOn: ['npmInstall', 'webpack'])
+
+task stage(dependsOn: ['copyHerokuProperties', 'clean', 'installDist'])
 
 
 sourceSets {
