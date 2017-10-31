@@ -18,7 +18,7 @@ export const FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS"
 export const addBryggAction = (brygg: IBryggRegistrering) : ThunkAction<void, IBryggRegistrering, void> => (dispatch: Dispatch<any>) => {
     dispatch(addBryggRequestAction(brygg))
     let nyttBrygg = JSON.stringify(createBrygg(brygg.navn, brygg.brygger, brygg.kaffeId, brygg.liter, brygg.skjeer))
-    return fetch("http://localhost:8080/api/brygg", {
+    return fetch("api/brygg", {
         method: "POST",
         body: nyttBrygg,
         headers: {

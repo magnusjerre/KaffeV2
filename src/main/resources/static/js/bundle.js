@@ -3097,7 +3097,7 @@ exports.FETCH_BRYGG_SUCCESS = "FETCH_BRYGG_SUCCESS";
 exports.addBryggAction = function (brygg) { return function (dispatch) {
     dispatch(addBryggRequestAction(brygg));
     var nyttBrygg = JSON.stringify(factory_1.createBrygg(brygg.navn, brygg.brygger, brygg.kaffeId, brygg.liter, brygg.skjeer));
-    return fetch("http://localhost:8080/api/brygg", {
+    return fetch("api/brygg", {
         method: "POST",
         body: nyttBrygg,
         headers: {

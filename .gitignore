@@ -30,3 +30,5 @@ gradle-app.setting
 
 # Ignore all mdoules downloaded from node
 node_modules/
+
+.DS_STORE
